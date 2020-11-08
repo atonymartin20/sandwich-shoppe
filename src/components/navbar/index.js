@@ -1,11 +1,3 @@
-// Logo Left with home redirect
-
-// Right Side
-// Order online
-// 
-// Menu
-// Contact
-
 import React from 'react';
 
 // @material-ui/core components
@@ -138,9 +130,18 @@ const styles = theme => ({
         display: 'flex',
         height: 'auto',
         alignItems: 'center',
+        minWidth: '600px',
+        [theme.breakpoints.down(1050)]: {
+            minWidth: '500px',
+        },
         [theme.breakpoints.down(800)]: {
             display: 'none'
         }
+    },
+    linkNoHover: {
+        textDecoration: 'none',
+        color: 'white',
+        margin: '0 auto',
     },
     link: {
         textDecoration: 'none',
@@ -166,6 +167,21 @@ const styles = theme => ({
         width: '25px',
         height: '25px',
         cursor: "pointer",
+    },
+    navButton: {
+        color: 'white',
+        backgroundColor: '#7600A8',
+        height: 60,
+        width: 150,
+        fontSize: '2.5rem',
+        textTransform: 'none',
+        fontWeight: "400",
+        border: '3px solid #7600A8',
+        borderRadius: '10px',
+        "&:hover": {
+            color: '#7600A8',
+            backgroundColor: 'white',
+        }
     },
     show800: {
         display: 'flex',
@@ -276,9 +292,9 @@ class Navbar extends React.Component {
                         <Hidden implementation='css' className={classes.hide800}>
                             <Link to='/menu' className={classes.link}><h1 className={classes.logo2}>Menu</h1></Link>
                             <Link to='/contact' className={classes.link}><h1 className={classes.logo2}>Contact</h1></Link>
-                            <Link to='/orderNow' className={classes.link}>
+                            <Link to='/orderNow' className={classes.linkNoHover}>
                                 <Button
-                                    className={classes.drawerNavLink}
+                                    className={classes.navButton}
                                 >
                                     Order Now
                                 </Button>
