@@ -1,10 +1,10 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import { BrowserRouter as Router } from "react-router-dom";
-import App from "./App";
-import AppProvider from "./components/context/appContext.js";
-import reportWebVitals from "./reportWebVitals";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import { BrowserRouter as Router } from 'react-router-dom';
+import App from './App';
+import AppProvider from './components/context/appContext.js';
+import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
 	<AppProvider>
@@ -14,7 +14,7 @@ ReactDOM.render(
 			</Router>
 		</React.StrictMode>
 	</AppProvider>,
-	document.getElementById("root")
+	document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
