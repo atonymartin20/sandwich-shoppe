@@ -10,3 +10,50 @@ Font Family: 'Roboto', sans-serif;
 
 
 
+
+# Menu
+### Sandwiches:
+Buffalo Chicken
+Philly Cheese Steak
+Chicken Parm
+Meatball
+Chicken Bacon Ranch
+BLT
+Turkey
+Club
+Ham
+Create your own
+
+### Meats:
+Chicken
+Turkey
+Ham
+Steak
+Backon
+Meatball
+
+### Cheese:
+American
+Cheddar
+Mozzarella
+Pepperjack
+Provolone
+Swiss
+
+### Bread:
+Italian
+Parmesan Oregano
+Wheat
+White
+Wrap
+
+### Veggies:
+Banana Peppers
+Cucumbers
+Green Peppers
+Jalepenos
+Lettuce
+Pickles
+Red Onions
+Spinach
+Tomatoes
