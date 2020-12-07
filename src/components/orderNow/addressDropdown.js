@@ -84,12 +84,13 @@ const styles = (theme) => ({
 
 class AddressDropdown extends React.Component {
 	state = {
-		address: '',
-		city: '',
-		stateValue: '',
-		zipCode: '',
+		address: this.context.state.address || '',
+		city: this.context.state.city || '',
+		stateValue: this.context.state.stateValue || '',
+		zipCode: this.context.state.zipCode || '',
 		deliveryRedirect: false,
 		pickupRedirect: false,
+		disableButton: false,
 	};
 
     InputHandler = event => {
@@ -106,19 +107,25 @@ class AddressDropdown extends React.Component {
 
 	PickupSubmit = event => {
 		event.preventDefault();
+		this.setState({
+			disableButton: true,
+		})
 		this.context.storeAddress("", this.state.city, this.state.stateValue, this.state.zipCode)
-		this.setState({ pickupRedirect: true})
+		setTimeout(() => {this.setState({ pickupRedirect: true})}, 500);
 	}
 
 	DeliverySubmit = event => {
 		event.preventDefault();
+		this.setState({
+			disableButton: true,
+		})
 		this.context.storeAddress(this.state.address, this.state.city, this.state.stateValue, this.state.zipCode)
-		this.setState({ deliveryRedirect: true})
+		
+		setTimeout(() => {this.setState({ deliveryRedirect: true})}, 500);
 	}
 
 	render() {
 		const { classes } = this.props;
-		console.log(this.state)
 		if (this.props.type === 'Delivery') {
 			return (
 				<div className={classes.addressDropdownDiv}>
@@ -174,7 +181,7 @@ class AddressDropdown extends React.Component {
 								<MenuItem className={classes.menuItem} value="WY">Wyoming</MenuItem>
 							</Select>
 							<Input className={classes.input} type='text' id='zipCode' inputProps={{ maxLength: 5 }} name='zipCode' placeholder='Zipcode' onChange={this.InputHandler} disableUnderline />
-						<button onClick={this.DeliverySubmit} className={classes.submitButton} disabled={this.state.zipCode === '' || this.state.city === '' || this.state.stateValue ===''}>
+						<button onClick={this.DeliverySubmit} className={classes.submitButton} disabled={this.state.zipCode === '' || this.state.city === '' || this.state.stateValue ==='' || this.state.disableButton}>
 							Continue
 						</button>
 					</form>
@@ -234,7 +241,7 @@ class AddressDropdown extends React.Component {
 								<MenuItem className={classes.menuItem} value="WY">Wyoming</MenuItem>
 							</Select>
 							<Input className={classes.input} type='text' id='zipCode' inputProps={{ maxLength: 5 }} name='zipCode' placeholder='Zipcode' onChange={this.InputHandler} disableUnderline />
-						<button onClick={this.PickupSubmit} className={classes.submitButton} disabled={this.state.zipCode === '' || this.state.city === '' || this.state.stateValue ===''}>
+						<button onClick={this.PickupSubmit} className={classes.submitButton} disabled={this.state.zipCode === '' || this.state.city === '' || this.state.stateValue ===''  || this.state.disableButton}>
 							Continue
 						</button>
 					</form>
