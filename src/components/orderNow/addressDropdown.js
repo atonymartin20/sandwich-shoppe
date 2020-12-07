@@ -86,7 +86,7 @@ class AddressDropdown extends React.Component {
 	state = {
 		address: this.context.state.address || '',
 		city: this.context.state.city || '',
-		stateValue: this.context.state.stateValue || '',
+		stateValue: this.context.state.stateValue || 'Select State',
 		zipCode: this.context.state.zipCode || '',
 		deliveryRedirect: false,
 		pickupRedirect: false,
@@ -131,9 +131,9 @@ class AddressDropdown extends React.Component {
 				<div className={classes.addressDropdownDiv}>
 					{this.state.deliveryRedirect === true ? <Redirect to='/orderNow/chooseLocation' /> : null }
 					<form className={classes.form}>
-							<Input className={classes.input} type='text' id='address' name='address' placeholder='Street Address' onChange={this.InputHandler} disableUnderline />
-							<Input className={classes.input} type='text' id='city' name='city' placeholder='City' onChange={this.InputHandler} disableUnderline />
-							<Select defaultValue={this.props.value || "Select State"} displayEmpty className={classes.select} onChange={this.SelectHandler} disableUnderline placeholder='Select State' IconComponent={() => (<ExpandMoreIcon className={classes.icon} />)} style={{ color: this.state.stateValue === "" ? '#AEB0B2' : 'black'}}>
+							<Input className={classes.input} type='text' id='address' name='address' placeholder='Street Address' onChange={this.InputHandler} disableUnderline value={this.state.address} />
+							<Input className={classes.input} type='text' id='city' name='city' placeholder='City' onChange={this.InputHandler} disableUnderline value={this.state.city} />
+							<Select defaultValue={this.state.stateValue ?? "Select State"} value={this.state.stateValue ?? "Select State"} className={classes.select} onChange={this.SelectHandler} disableUnderline IconComponent={() => (<ExpandMoreIcon className={classes.icon} />)} style={{ color: this.state.stateValue === "Select State" ? '#AEB0B2' : 'black'}}>
 								<MenuItem className={classes.menuItemEmpty} value="Select State" disabled selected hidden>Select State</MenuItem>
 								<MenuItem className={classes.menuItem} value="AL">Alabama</MenuItem>
 								<MenuItem className={classes.menuItem} value="AZ">Arizona</MenuItem>
@@ -180,7 +180,7 @@ class AddressDropdown extends React.Component {
 								<MenuItem className={classes.menuItem} value="WI">Wisconsin</MenuItem>
 								<MenuItem className={classes.menuItem} value="WY">Wyoming</MenuItem>
 							</Select>
-							<Input className={classes.input} type='text' id='zipCode' inputProps={{ maxLength: 5 }} name='zipCode' placeholder='Zipcode' onChange={this.InputHandler} disableUnderline />
+							<Input className={classes.input} type='text' id='zipCode' inputProps={{ maxLength: 5 }} name='zipCode' placeholder='Zipcode' onChange={this.InputHandler} disableUnderline value={this.state.zipCode} />
 						<button onClick={this.DeliverySubmit} className={classes.submitButton} disabled={this.state.zipCode === '' || this.state.city === '' || this.state.stateValue ==='' || this.state.disableButton}>
 							Continue
 						</button>
@@ -192,9 +192,9 @@ class AddressDropdown extends React.Component {
 				<div className={classes.addressDropdownDiv}>
 					{this.state.pickupRedirect === true ? <Redirect to='/orderNow/chooseLocation' /> : null }
 					<form className={classes.form}>
-							<Input className={classes.input} type='text' id='city' name='city' placeholder='City' onChange={this.InputHandler} disableUnderline />
-							<Select displayEmpty className={classes.select} onChange={this.SelectHandler} disableUnderline label='Select State' IconComponent={() => (<ExpandMoreIcon className={classes.icon} />)} style={{ color: this.state.stateValue === "" ? '#AEB0B2' : 'black'}}>
-								<MenuItem className={classes.menuItemEmpty} disabled selected hidden>Select State</MenuItem>
+					<Input className={classes.input} type='text' id='city' name='city' placeholder='City' onChange={this.InputHandler} disableUnderline value={this.state.city} />
+					<Select defaultValue={this.state.stateValue ?? "Select State"} value={this.state.stateValue ?? "Select State"} className={classes.select} onChange={this.SelectHandler} disableUnderline IconComponent={() => (<ExpandMoreIcon className={classes.icon} />)} style={{ color: this.state.stateValue === "Select State" ? '#AEB0B2' : 'black'}}>
+								<MenuItem className={classes.menuItemEmpty} value="Select State" disabled selected hidden>Select State</MenuItem>
 								<MenuItem className={classes.menuItem} value="AL">Alabama</MenuItem>
 								<MenuItem className={classes.menuItem} value="AZ">Arizona</MenuItem>
 								<MenuItem className={classes.menuItem} value="AR">Arkansas</MenuItem>
@@ -240,7 +240,7 @@ class AddressDropdown extends React.Component {
 								<MenuItem className={classes.menuItem} value="WI">Wisconsin</MenuItem>
 								<MenuItem className={classes.menuItem} value="WY">Wyoming</MenuItem>
 							</Select>
-							<Input className={classes.input} type='text' id='zipCode' inputProps={{ maxLength: 5 }} name='zipCode' placeholder='Zipcode' onChange={this.InputHandler} disableUnderline />
+							<Input className={classes.input} type='text' id='zipCode' inputProps={{ maxLength: 5 }} name='zipCode' placeholder='Zipcode' onChange={this.InputHandler} disableUnderline value={this.state.zipCode} />
 						<button onClick={this.PickupSubmit} className={classes.submitButton} disabled={this.state.zipCode === '' || this.state.city === '' || this.state.stateValue ===''  || this.state.disableButton}>
 							Continue
 						</button>
