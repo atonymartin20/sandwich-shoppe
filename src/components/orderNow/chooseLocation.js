@@ -3,6 +3,7 @@ import Navbar from '../navbar';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { AppContext } from '../context/appContext.js';
 import LooksOneIcon from '@material-ui/icons/LooksOne';
+import { Redirect } from 'react-router-dom';
 
 const styles = theme => ({
     businessAddress: {
@@ -107,15 +108,27 @@ class ChooseLocation extends React.Component {
     state = {
         disableButton: false,
         redirect: false,
+        businessStreetAddress1: '123 Street Rd.',
+        businessCityStateZip1: 'Your Town, ST 12345',
+        businessHours1: '10AM - 7PM',
+        businessPhone1: '(123)456-7890',
+        businessTitle1: 'Sandwich Shoppe',
+
     }
 
 	ChooseLocation = event => {
-		event.preventDefault();
+        event.preventDefault();
 		this.setState({
 			disableButton: true,
-		})
-		this.context.storeBusinessAddress(this.state.address, this.state.city, this.state.stateValue, this.state.zipCode)
-		
+        })
+        let business = {
+            CityStateZip: this.state.businessCityStateZip1,
+            Hours: this.state.businessHours1,
+            Phone: this.state.businessPhone1,
+            StreetAddress: this.state.businessStreetAddress1,
+            Title: this.state.businessTitle1,
+        }
+		this.context.storeBusinessAddress(business)
 		setTimeout(() => {this.setState({ redirect: true})}, 500);
     }
     
@@ -125,17 +138,18 @@ class ChooseLocation extends React.Component {
             <div className={classes.orderNowDiv}>
                 <Navbar />
                 <div className={classes.orderNowSpacingDiv}>
+                    {this.state.redirect === true ? <Redirect to='/orderNow/menu' /> : null }
                     <h1 className={classes.location}>Choose from one of our nearby locations:</h1>
                     <div className={classes.card}>
                         <LooksOneIcon className={classes.icon} />
                         <div className={classes.insideCard}>
-                            <p className={classes.businessTitle}>Sandwich Shoppe</p>
-                            <p className={classes.businessAddress}>123 Street Rd.</p>
-                            <p className={classes.businessAddress}>Your Town, ST 12345</p>
+                            <p className={classes.businessTitle}>{this.state.businessTitle1}</p>
+                            <p className={classes.businessAddress}>{this.state.businessStreetAddress1}</p>
+                            <p className={classes.businessAddress}>{this.state.businessCityStateZip1}</p>
                             <p className={classes.businessDistance}>5.0 miles away</p>
                             <p className={classes.businessHours}>Today's Hours:</p>
-                            <p className={classes.businessHours}>10AM - 7PM</p>
-                            <p className={classes.businessPhone}>(123)456-7890</p>
+                            <p className={classes.businessHours}>{this.state.businessHours1}</p>
+                            <p className={classes.businessPhone}>{this.state.businessPhone1}</p>
                             <button onClick={this.ChooseLocation} disabled={this.state.disableButton} className={classes.button}>Order</button>
                         </div>
 
