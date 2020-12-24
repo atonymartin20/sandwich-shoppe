@@ -4,6 +4,7 @@ import Homepage from './components/homepage';
 import Menu from './components/menu';
 import Contact from './components/contact';
 import OrderNow from './components/orderNow';
+import ChooseLocation from './components/orderNow/chooseLocation.js';
 import { AppContext } from './components/context/appContext.js';
 
 class App extends React.Component {
@@ -20,7 +21,13 @@ class App extends React.Component {
 					<Route path="/contact">
 						<Contact />
 					</Route>
-					<Route path="/orderNow">
+					<Route path='/orderNow/menu'>
+						<Menu />
+					</Route>
+					<Route path='/orderNow/chooseLocation'>
+						<ChooseLocation />
+					</Route>
+					<Route exact path="/orderNow">
 						<OrderNow />
 					</Route>
 					<Route>
