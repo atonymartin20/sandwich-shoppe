@@ -8,7 +8,24 @@ export default class AppProvider extends React.Component {
         city: '',
         stateValue: '',
         zipCode: '',
-        sandwich1created: false,
+        business: {
+            CityStateZip: '',
+            Hours: '',
+            Phone: '',
+            StreetAddress: '',
+            Title: '',
+        },
+        orderItemCount: 0,
+        orderSandwichCount: 0,
+        drink1Created: false,
+        drink1: {
+            name: '',
+            isSmall: false,
+            isLarge: false,
+            smallPrice: 1.50,
+            largePrice: 2.50,
+        },
+        sandwich1Created: false,
         sandwich1: {
             name: '',
             // Bread
@@ -63,7 +80,7 @@ export default class AppProvider extends React.Component {
             isMediumSandwich: false,
             isLargeSandwich: false,
             price: 0.00,
-        }
+        },
     };
 
     render() {
@@ -79,7 +96,13 @@ export default class AppProvider extends React.Component {
                             stateValue,
                             zipCode
                         })
+                    },
+                    storeBusinessAddress: (business) => {
+                        this.setState({
+                            business
+                        })
                     }
+
                 }}
             >
                 {this.props.children}
