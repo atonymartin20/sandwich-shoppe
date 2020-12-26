@@ -42,6 +42,7 @@ class Menu extends React.Component {
                     <Navbar />
                     <div className={classes.menuSpacingDiv}>
                         {/* Add Stepper Here */}
+                        {/* Top Stepper Past Step 1 Back button to push stepper back a page*/}
                         {/* 
                             Step 1
                             4 Boxes
@@ -57,9 +58,10 @@ class Menu extends React.Component {
                             Alteration page
                             Bottom of page Add to Cart
 
-                            Back to Step 1
-                        
+                            Step 4
+                            Add another item or checkout
                         */}
+                        {/* Below Stepper while item count > 0,  Show cart on bottom of screen*/}
 
                         <h1>Menu:</h1>
                         <div className={classes.menuInsideContiner}>
