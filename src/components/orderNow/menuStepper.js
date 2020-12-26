@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '../navbar';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { AppContext } from '../context/appContext.js';
+import Button from "@material-ui/core/Button";
 
 const styles = theme => ({
     menuDiv: {
@@ -99,6 +100,30 @@ class MenuStepper extends React.Component {
                 <div className={classes.menuDiv}>
                     <Navbar />
                     <div className={classes.menuSpacingDiv}>
+                        {this.state.step1 === true ? <Button></Button> : null }
+
+                        {/* Add Stepper Here */}
+                        {/* Top Stepper Past Step 1 Back button to push stepper back a page*/}
+                        {/* 
+                            Step 1
+                            4 Boxes
+                            Top Left Sandwiches
+                            Top Right Salads
+                            Bottom Left: Sides
+                            Bottom Right: Drinks
+                            
+                            Step 2
+                            Boxes for inside things
+
+                            Step 3
+                            Alteration page
+                            Bottom of page Add to Cart
+
+                            Step 4
+                            Add another item or checkout
+                        */}
+                        {/* Below Stepper while item count > 0,  Show cart on bottom of screen*/}
+
                         <h1>Menu:</h1>
                         <div className={classes.menuInsideContiner}>
                             <button></button>
