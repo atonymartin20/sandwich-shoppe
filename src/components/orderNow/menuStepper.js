@@ -33,6 +33,63 @@ const styles = theme => ({
 });
 
 class MenuStepper extends React.Component {
+    state = {
+        step0: true,
+        step1: false,
+        step2: false,
+        step3: false,
+        step4: false,
+    }
+
+    goBack = (event) => {
+        event.preventDefault();
+        if(this.state.step4 === true) {
+            this.setState({
+                step0: true,
+                step1: true,
+                step2: true,
+                step3: true,
+                step4: false,
+            })
+        }
+        else if(this.state.step3 === true) {
+            this.setState({
+                step0: true,
+                step1: true,
+                step2: true,
+                step3: false,
+                step4: false,
+            })
+        }
+        else if(this.state.step2 === true) {
+            this.setState({
+                step0: true,
+                step1: true,
+                step2: false,
+                step3: false,
+                step4: false,
+            })
+        }
+        else if(this.state.step1 === true) {
+            this.setState({
+                step0: true,
+                step1: false,
+                step2: false,
+                step3: false,
+                step4: false,
+            })
+        }
+        else {
+            this.setState({
+                step0: false,
+                step1: false,
+                step2: false,
+                step3: false,
+                step4: false,
+            })
+        }
+    }
+
     render() {
         const { classes } = this.props;
 
