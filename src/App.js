@@ -6,6 +6,7 @@ import Contact from './components/contact';
 import OrderNow from './components/orderNow';
 import ChooseLocation from './components/orderNow/chooseLocation.js';
 import { AppContext } from './components/context/appContext.js';
+import MenuStepper from './components/orderNow/menuStepper.js';
 
 class App extends React.Component {
 	render() {
@@ -22,7 +23,7 @@ class App extends React.Component {
 						<Contact />
 					</Route>
 					<Route path='/orderNow/menu'>
-						<Menu />
+						<MenuStepper />
 					</Route>
 					<Route path='/orderNow/chooseLocation'>
 						<ChooseLocation />
