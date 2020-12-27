@@ -125,15 +125,19 @@ class MenuStepper extends React.Component {
                             Pass functions for choice and passing step change
 
 
-
+                            Step 2
+                            More Div Boxes for inside items
+                            Sandwiches has different sandwich types(Meatball etc)
+                            Salads has different salad types
+                            Sides has cookies, cheesebread, chips
+                            Drinks has ... drinks
 
 
 
 
 
                             
-                            Step 2
-                            Boxes for inside things
+
 
                             Step 3
                             Alteration page
