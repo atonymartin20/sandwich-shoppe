@@ -131,17 +131,26 @@ class MenuStepper extends React.Component {
                             Salads has different salad types
                             Sides has cookies, cheesebread, chips
                             Drinks has ... drinks
+                            Again passing functions to components
 
+                            Step 3:
+                            If Sandwich(
+                                Make alterations to sandwich
+                                Choose Size and Bread
+                                Extra toppings etc
+                            )
 
+                            If Salad()
+                                Choose Dressing
 
+                            If Side()
+                                Add to cart button
 
+                            If Drink()
+                                Choose flavour of soda
 
-                            
-
-
-                            Step 3
-                            Alteration page
-                            Bottom of page Add to Cart
+                            Bottom of Page
+                            Add to Cart
 
                             Step 4
                             Add another item or checkout
