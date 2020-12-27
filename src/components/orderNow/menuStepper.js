@@ -42,6 +42,17 @@ class MenuStepper extends React.Component {
         step4: false,
     }
 
+    chooseSandwich = (event) => {
+        event.preventDefault();
+        this.setState({
+            step0: true,
+            step1: true,
+            step2: false,
+            step3: false,
+            step4: false,
+            userChoseSandwich: true,
+        })
+    }
     goBack = (event) => {
         event.preventDefault();
         if(this.state.step4 === true) {
@@ -111,6 +122,15 @@ class MenuStepper extends React.Component {
                             Top Right Salads
                             Bottom Left: Sides
                             Bottom Right: Drinks
+
+
+
+
+
+
+
+
+                            
                             
                             Step 2
                             Boxes for inside things
