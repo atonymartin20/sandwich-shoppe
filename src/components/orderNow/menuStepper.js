@@ -117,11 +117,12 @@ class MenuStepper extends React.Component {
                         {/* Top Stepper Past Step 1 Back button to push stepper back a page*/}
                         {/* 
                             Step 1
-                            4 Boxes
+                            4 Div Boxes  (100px from top) (Split 2 and 2 accept for mobile)
                             Top Left Sandwiches
                             Top Right Salads
                             Bottom Left: Sides
                             Bottom Right: Drinks
+                            Pass functions for choice and passing step change
 
 
 
@@ -130,7 +131,6 @@ class MenuStepper extends React.Component {
 
 
 
-                            
                             
                             Step 2
                             Boxes for inside things
