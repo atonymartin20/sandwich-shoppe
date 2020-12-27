@@ -154,6 +154,9 @@ class MenuStepper extends React.Component {
 
                             Step 4
                             Add another item or checkout
+
+                            If add another item() Revert to step 1
+                            If checkout go to checkout
                         */}
                         {/* Below Stepper while item count > 0,  Show cart on bottom of screen*/}
 
