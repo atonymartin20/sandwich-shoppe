@@ -136,37 +136,96 @@ const styles = theme => ({
 });
 
 class Menu extends React.Component {
+    state={
+        showIntro: true,
+        showSandwiches: false,
+        showSalads: false,
+        showSides: false,
+        showDrinks: false,
+    }
+
+    chooseSandwiches = (event) => {
+        event.preventDefault();
+        this.setState({
+            showSandwiches: true,
+            showIntro: false,
+        })
+    }
+
+    chooseSalads = (event) => {
+        event.preventDefault();
+        this.setState({
+            showSalads: true,
+            showIntro: false,
+        })
+    }
+
+    chooseSides = (event) => {
+        event.preventDefault();
+        this.setState({
+            showSides: true,
+            showIntro: false,
+        })
+    }
+
+    chooseDrinks = (event) => {
+        event.preventDefault();
+        this.setState({
+            showDrinks: true,
+            showIntro: false,
+        })
+    }
+
     render() {
         const { classes } = this.props;
         console.log(this.context.state)
         return (
             <div className={classes.menuDiv}>
                 <Navbar />
-                <div className={classes.menuSpacingDiv}>
-                    <h1 className={classes.headerText}>Menu</h1>
-                    <div className={classes.menuInsideContainer}>
-                        <div className={classes.groupDivSandwich}>
-                            <div className={classes.insideGroupDiv}>
-                                Sandwiches
+
+                {this.state.showIntro === true ?
+                    <div className={classes.menuSpacingDiv}>
+                        <h1 className={classes.headerText}>Menu</h1>
+                        <div className={classes.menuInsideContainer}>
+                            <div className={classes.groupDivSandwich} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    Sandwiches
+                                </div>
                             </div>
-                        </div>
-                        <div className={classes.groupDivSalads}>
-                            <div className={classes.insideGroupDiv}>
-                                Salads
+                            <div className={classes.groupDivSalads} onClick={this.chooseSalads}>
+                                <div className={classes.insideGroupDiv}>
+                                    Salads
+                                </div>
                             </div>
-                        </div>
-                        <div className={classes.groupDivSides}>
-                            <div className={classes.insideGroupDiv}>
-                                Sides
+                            <div className={classes.groupDivSides} onClick={this.chooseSides}>
+                                <div className={classes.insideGroupDiv}>
+                                    Sides
+                                </div>
                             </div>
-                        </div>
-                        <div className={classes.groupDivDrinks}>
-                            <div className={classes.insideGroupDiv}>
-                                Drinks
+                            <div className={classes.groupDivDrinks} onClick={this.chooseDrinks}>
+                                <div className={classes.insideGroupDiv}>
+                                    Drinks
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                : null }
+
+                {this.state.showSandwiches === true ? 
+                    null
+                : null }
+
+                {this.state.showSalads === true ? 
+                    null
+                : null }
+
+                {this.state.showSides === true ? 
+                    null
+                : null }
+
+                {this.state.showDrinks === true ?
+                    null
+                : null }
             </div>
         )
     }
