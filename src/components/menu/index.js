@@ -2,10 +2,14 @@ import React from 'react';
 import Navbar from '../navbar';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { AppContext } from '../context/appContext.js';
-import SandwichImg from '../../images/homepage-sub.jpg';
-import SaladImg from '../../images/saladBackgroundImg.jpg';
-import DrinkImg from '../../images/drinksBackgroundImg.jpg';
-import SidesImg from '../../images/cookiesBackgroundImg.jpg';
+import SandwichImg from '../../images/Sandwiches/sandwichesBackgroundImg.jpg';
+import SaladImg from '../../images/Salads/CaesarSalad.jpg';
+import SidesImg from '../../images/Sides/Cookies.jpg';
+import DrinkImg from '../../images/Drinks/Soda.jpg';
+import Sandwiches from './sandwiches.js';
+import Salads from './salads.js';
+import Sides from './sides.js';
+import Drinks from './drinks.js';
 
 const styles = theme => ({
     groupDivDrinks: {
@@ -212,19 +216,19 @@ class Menu extends React.Component {
                 : null }
 
                 {this.state.showSandwiches === true ? 
-                    null
+                    <Sandwiches />
                 : null }
 
                 {this.state.showSalads === true ? 
-                    null
+                    <Salads />
                 : null }
 
                 {this.state.showSides === true ? 
-                    null
+                    <Sides />
                 : null }
 
                 {this.state.showDrinks === true ?
-                    null
+                    <Drinks />
                 : null }
             </div>
         )
