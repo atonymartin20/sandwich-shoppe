@@ -3,6 +3,7 @@ import Navbar from '../navbar';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { AppContext } from '../context/appContext.js';
 import Button from "@material-ui/core/Button";
+import Menu from '../menu';
 
 const styles = theme => ({
     menuDiv: {
@@ -13,7 +14,6 @@ const styles = theme => ({
         flexDirection: 'column',
     },
     menuSpacingDiv: {
-        marginTop: 90,
         width: '100%',
         maxWidth: 1400,
         borderRadius: '4px',
@@ -23,9 +23,10 @@ const styles = theme => ({
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
-        padding: 20,
+        padding: '20px 0px',
         fontSize: '2.0rem',
         lineHeight: 1.25,
+        backgroundColor: 'blue',
     },
     menuText: {
         marginTop: 20,
@@ -35,29 +36,16 @@ const styles = theme => ({
 
 class MenuStepper extends React.Component {
     state = {
-        step0: true,
-        step1: false,
+        step1: true,
         step2: false,
         step3: false,
         step4: false,
     }
 
-    chooseSandwich = (event) => {
-        event.preventDefault();
-        this.setState({
-            step0: true,
-            step1: true,
-            step2: false,
-            step3: false,
-            step4: false,
-            userChoseSandwich: true,
-        })
-    }
     goBack = (event) => {
         event.preventDefault();
         if(this.state.step4 === true) {
             this.setState({
-                step0: true,
                 step1: true,
                 step2: true,
                 step3: true,
@@ -66,7 +54,6 @@ class MenuStepper extends React.Component {
         }
         else if(this.state.step3 === true) {
             this.setState({
-                step0: true,
                 step1: true,
                 step2: true,
                 step3: false,
@@ -75,30 +62,14 @@ class MenuStepper extends React.Component {
         }
         else if(this.state.step2 === true) {
             this.setState({
-                step0: true,
                 step1: true,
                 step2: false,
                 step3: false,
                 step4: false,
             })
         }
-        else if(this.state.step1 === true) {
-            this.setState({
-                step0: true,
-                step1: false,
-                step2: false,
-                step3: false,
-                step4: false,
-            })
-        }
         else {
-            this.setState({
-                step0: false,
-                step1: false,
-                step2: false,
-                step3: false,
-                step4: false,
-            })
+            console.log('Button logic broke.')
         }
     }
 
@@ -111,8 +82,9 @@ class MenuStepper extends React.Component {
                 <div className={classes.menuDiv}>
                     <Navbar />
                     <div className={classes.menuSpacingDiv}>
-                        {this.state.step1 === true ? <Button></Button> : null }
+                        {this.state.step2 === true ? <Button></Button> : null }
 
+                        {this.state.step1 === true ? <Menu /> : null}
                         {/* Add Stepper Here */}
                         {/* Top Stepper Past Step 1 Back button to push stepper back a page*/}
                         {/* 
@@ -159,14 +131,6 @@ class MenuStepper extends React.Component {
                             If checkout go to checkout
                         */}
                         {/* Below Stepper while item count > 0,  Show cart on bottom of screen*/}
-
-                        <h1>Menu:</h1>
-                        <div className={classes.menuInsideContiner}>
-                            <button></button>
-                            <button></button>
-                            <button></button>
-                            <button></button>
-                        </div>
                     </div>
                 </div>
             )
