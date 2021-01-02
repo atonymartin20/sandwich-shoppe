@@ -12,6 +12,27 @@ import Sides from './sides.js';
 import Drinks from './drinks.js';
 
 const styles = theme => ({
+    checkoutButton: {
+        backgroundColor: '#7600A8',
+        fontWeight: 500,
+        height: 50,
+        fontSize: '2.5rem',
+        color: 'white',
+        padding: '0px 15px',
+        border: '3px solid #7600A8',
+        borderRadius: '10px',
+        width: '200px',
+        "&:hover": {
+            color: '#7600A8',
+            backgroundColor: 'white',
+        },
+    },
+    checkoutDiv: {
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'flex-end',
+        padding: '0px 25px',
+    },
     groupDivDrinks: {
         width: '45%',
         border: '1px solid black',
@@ -180,15 +201,26 @@ class Menu extends React.Component {
         })
     }
 
+    goBack = (event) => {
+        event.preventDefault();
+        this.setState({
+            showIntro: true,
+            showSandwiches: false,
+            showSalads: false,
+            showSides: false,
+            showDrinks: false,
+        })
+    }
+
     render() {
         const { classes } = this.props;
-        console.log(this.context.state)
         return (
             <div className={classes.menuDiv}>
                 <Navbar />
 
                 {this.state.showIntro === true ?
                     <div className={classes.menuSpacingDiv}>
+                        {this.context.state.orderItemCount > 0 ? <div>info</div> : <div className={classes.checkoutDiv}><button className={classes.checkoutButton}>Checkout</button></div> }
                         <h1 className={classes.headerText}>Menu</h1>
                         <div className={classes.menuInsideContainer}>
                             <div className={classes.groupDivSandwich} onClick={this.chooseSandwiches}>
@@ -216,19 +248,19 @@ class Menu extends React.Component {
                 : null }
 
                 {this.state.showSandwiches === true ? 
-                    <Sandwiches />
+                    <Sandwiches goBack={this.goBack} />
                 : null }
 
                 {this.state.showSalads === true ? 
-                    <Salads />
+                    <Salads goBack={this.goBack} />
                 : null }
 
                 {this.state.showSides === true ? 
-                    <Sides />
+                    <Sides goBack={this.goBack} />
                 : null }
 
                 {this.state.showDrinks === true ?
-                    <Drinks />
+                    <Drinks goBack={this.goBack} />
                 : null }
             </div>
         )
