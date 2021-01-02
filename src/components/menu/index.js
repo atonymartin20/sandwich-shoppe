@@ -140,7 +140,7 @@ const styles = theme => ({
         flexWrap: 'wrap',
     },
     menuSpacingDiv: {
-        marginTop: 90,
+        marginTop: 60,
         width: '100%',
         maxWidth: 1400,
         borderRadius: '4px',
@@ -220,7 +220,7 @@ class Menu extends React.Component {
 
                 {this.state.showIntro === true ?
                     <div className={classes.menuSpacingDiv}>
-                        {this.context.state.orderItemCount > 0 ? <div>info</div> : <div className={classes.checkoutDiv}><button className={classes.checkoutButton}>Checkout</button></div> }
+                        {this.context.state.orderItemCount > 0 ? <div className={classes.checkoutDiv}><button className={classes.checkoutButton}>Checkout</button></div> : null }
                         <h1 className={classes.headerText}>Menu</h1>
                         <div className={classes.menuInsideContainer}>
                             <div className={classes.groupDivSandwich} onClick={this.chooseSandwiches}>
