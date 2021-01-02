@@ -1,59 +1,39 @@
 import React from 'react';
-import Navbar from '../navbar';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { AppContext } from '../context/appContext.js';
-import SandwichImg from '../../images/Sandwiches/sandwichesBackgroundImg.jpg';
-import SaladImg from '../../images/Salads/CaesarSalad.jpg';
-import SidesImg from '../../images/Sides/Cookies.jpg';
-import DrinkImg from '../../images/Drinks/Soda.jpg';
-import Sandwiches from './sandwiches.js';
-import Salads from './salads.js';
-import Sides from './sides.js';
-import Drinks from './drinks.js';
+import BuffaloChickenSaladImg from '../../images/Salads/BuffaloChickenSalad.jpg';
+import CaesarSaladImg from '../../images/Salads/CaesarSalad.jpg';
+import ChickenCaesarSaladImg from '../../images/Salads/ChickenCaesarSalad.jpg';
+import GardenSaladImg from '../../images/Salads/GardenSalad.jpg';
+import SideSaladImg from '../../images/Salads/SideSalad.jpg';
 
 const styles = theme => ({
-    checkoutButton: {
-        backgroundColor: '#7600A8',
-        fontWeight: 500,
-        height: 50,
+    groupDivBuffaloChickenSalad: {
+        width: '30%',
+        minWidth: 200,
+        border: '1px solid black',
+        borderRadius: 5,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 10,
+        minHeight: 200,
         fontSize: '2.5rem',
-        color: 'white',
-        padding: '0px 15px',
-        border: '3px solid #7600A8',
-        borderRadius: '10px',
-        width: '200px',
-        "&:hover": {
-            color: '#7600A8',
-            backgroundColor: 'white',
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundImage: `url(${BuffaloChickenSaladImg})`,
+        [theme.breakpoints.down(850)]: {
+            width: '45%',
         },
-    },
-    checkoutDiv: {
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'flex-end',
-        padding: '0px 25px',
-    },
-    groupDivDrinks: {
-        width: '45%',
-        border: '1px solid black',
-        borderRadius: 5,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 10,
-        minHeight: 200,
-        fontSize: '2.5rem',
-        backgroundPosition: 'center',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundImage: `url(${DrinkImg})`,
         [theme.breakpoints.down(550)]: {
             width: '100%',
             margin: '10px 0px',
         }
     },
-    groupDivSalads: {
-        width: '45%',
+    groupDivCaesarSalad: {
+        width: '30%',
+        minWidth: 200,
         border: '1px solid black',
         borderRadius: 5,
         display: 'flex',
@@ -65,14 +45,18 @@ const styles = theme => ({
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-        backgroundImage: `url(${SaladImg})`,
+        backgroundImage: `url(${CaesarSaladImg})`,
+        [theme.breakpoints.down(850)]: {
+            width: '45%',
+        },
         [theme.breakpoints.down(550)]: {
             width: '100%',
             margin: '10px 0px',
         }
     },
-    groupDivSandwich: {
-        width: '45%',
+    groupDivChickenCaesarSalad: {
+        width: '30%',
+        minWidth: 200,
         border: '1px solid black',
         borderRadius: 5,
         display: 'flex',
@@ -84,14 +68,18 @@ const styles = theme => ({
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-        backgroundImage: `url(${SandwichImg})`,
+        backgroundImage: `url(${ChickenCaesarSaladImg})`,
+        [theme.breakpoints.down(850)]: {
+            width: '45%',
+        },
         [theme.breakpoints.down(550)]: {
             width: '100%',
             margin: '10px 0px',
         }
     },
-    groupDivSides: {
-        width: '45%',
+    groupDivGardenSalad: {
+        width: '30%',
+        minWidth: 200,
         border: '1px solid black',
         borderRadius: 5,
         display: 'flex',
@@ -103,7 +91,33 @@ const styles = theme => ({
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-        backgroundImage: `url(${SidesImg})`,
+        backgroundImage: `url(${GardenSaladImg})`,
+        [theme.breakpoints.down(850)]: {
+            width: '45%',
+        },
+        [theme.breakpoints.down(550)]: {
+            width: '100%',
+            margin: '10px 0px',
+        }
+    },
+    groupDivSideSalad: {
+        width: '30%',
+        minWidth: 200,
+        border: '1px solid black',
+        borderRadius: 5,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 10,
+        minHeight: 200,
+        fontSize: '2.5rem',
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundImage: `url(${SideSaladImg})`,
+        [theme.breakpoints.down(850)]: {
+            width: '45%',
+        },
         [theme.breakpoints.down(550)]: {
             width: '100%',
             margin: '10px 0px',
@@ -118,11 +132,12 @@ const styles = theme => ({
         width: '100%',
         height: '100%',
         textShadow: '1px 1px 2px black, 1px 0px 2px black, 0px 1px 2px black, 0 0 8px #333',
-        fontSize: '3.5rem',
+        fontSize: '4.0rem',
         color: 'white',
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'flex-end',
+        alignItems: 'center',
+        textAlign: 'center',
     },
     menuDiv: {
         width: '100%',
@@ -140,7 +155,7 @@ const styles = theme => ({
         flexWrap: 'wrap',
     },
     menuSpacingDiv: {
-        marginTop: 60,
+        marginTop: 90,
         width: '100%',
         maxWidth: 1400,
         borderRadius: '4px',
@@ -160,7 +175,7 @@ const styles = theme => ({
     },
 });
 
-class Menu extends React.Component {
+class Salads extends React.Component {
     state={
         showIntro: true,
         showSandwiches: false,
@@ -177,96 +192,53 @@ class Menu extends React.Component {
         })
     }
 
-    chooseSalads = (event) => {
-        event.preventDefault();
-        this.setState({
-            showSalads: true,
-            showIntro: false,
-        })
-    }
-
-    chooseSides = (event) => {
-        event.preventDefault();
-        this.setState({
-            showSides: true,
-            showIntro: false,
-        })
-    }
-
-    chooseDrinks = (event) => {
-        event.preventDefault();
-        this.setState({
-            showDrinks: true,
-            showIntro: false,
-        })
-    }
-
-    goBack = (event) => {
-        event.preventDefault();
-        this.setState({
-            showIntro: true,
-            showSandwiches: false,
-            showSalads: false,
-            showSides: false,
-            showDrinks: false,
-        })
-    }
-
     render() {
         const { classes } = this.props;
+        console.log(this.context.state)
         return (
             <div className={classes.menuDiv}>
-                <Navbar />
 
-                {this.state.showIntro === true ?
                     <div className={classes.menuSpacingDiv}>
-                        {this.context.state.orderItemCount > 0 ? <div className={classes.checkoutDiv}><button className={classes.checkoutButton}>Checkout</button></div> : null }
-                        <h1 className={classes.headerText}>Menu</h1>
+                        <h1 className={classes.headerText}>Salads</h1>
                         <div className={classes.menuInsideContainer}>
-                            <div className={classes.groupDivSandwich} onClick={this.chooseSandwiches}>
+
+                            <div className={classes.groupDivBuffaloChickenSalad} onClick={this.chooseSandwiches}>
                                 <div className={classes.insideGroupDiv}>
-                                    Sandwiches
+                                    Buffalo Chicken Salad
                                 </div>
                             </div>
-                            <div className={classes.groupDivSalads} onClick={this.chooseSalads}>
+
+                            <div className={classes.groupDivCaesarSalad} onClick={this.chooseSandwiches}>
                                 <div className={classes.insideGroupDiv}>
-                                    Salads
+                                    Caesar Salad
                                 </div>
                             </div>
-                            <div className={classes.groupDivSides} onClick={this.chooseSides}>
+
+                            <div className={classes.groupDivChickenCaesarSalad} onClick={this.chooseSandwiches}>
                                 <div className={classes.insideGroupDiv}>
-                                    Sides
+                                    Chicken Caesar Salad
                                 </div>
                             </div>
-                            <div className={classes.groupDivDrinks} onClick={this.chooseDrinks}>
+
+                            <div className={classes.groupDivGardenSalad} onClick={this.chooseSandwiches}>
                                 <div className={classes.insideGroupDiv}>
-                                    Drinks
+                                    Garden Salad
                                 </div>
                             </div>
+
+                            <div className={classes.groupDivSideSalad} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    Side Salad
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-                : null }
-
-                {this.state.showSandwiches === true ? 
-                    <Sandwiches goBack={this.goBack} />
-                : null }
-
-                {this.state.showSalads === true ? 
-                    <Salads goBack={this.goBack} />
-                : null }
-
-                {this.state.showSides === true ? 
-                    <Sides goBack={this.goBack} />
-                : null }
-
-                {this.state.showDrinks === true ?
-                    <Drinks goBack={this.goBack} />
-                : null }
             </div>
         )
     }
 }
 
-Menu.contextType = AppContext;
+Salads.contextType = AppContext;
 
-export default withStyles(styles)(Menu);
+export default withStyles(styles)(Salads);
