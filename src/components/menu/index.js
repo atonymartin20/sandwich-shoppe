@@ -10,6 +10,8 @@ import Sandwiches from './sandwiches.js';
 import Salads from './salads.js';
 import Sides from './sides.js';
 import Drinks from './drinks.js';
+import Button from "@material-ui/core/Button";
+import { Redirect } from 'react-router-dom';
 
 const styles = theme => ({
     checkoutButton: {
@@ -167,6 +169,7 @@ class Menu extends React.Component {
         showSalads: false,
         showSides: false,
         showDrinks: false,
+        redirect: false,
     }
 
     chooseSandwiches = (event) => {
@@ -209,6 +212,14 @@ class Menu extends React.Component {
             showSalads: false,
             showSides: false,
             showDrinks: false,
+            redirect: false,
+        })
+    }
+
+    checkout = (event) => {
+        event.preventDefault();
+        this.setState({
+            redirect: true,
         })
     }
 
@@ -217,10 +228,17 @@ class Menu extends React.Component {
         return (
             <div className={classes.menuDiv}>
                 <Navbar />
+                {this.state.redirect === true ? <Redirect to='/orderNow/checkout' /> : null }
 
                 {this.state.showIntro === true ?
                     <div className={classes.menuSpacingDiv}>
-                        {this.context.state.orderItemCount > 0 ? <div className={classes.checkoutDiv}><button className={classes.checkoutButton}>Checkout</button></div> : null }
+                        {this.context.state.orderItemCount > 0 ? 
+                            <div className={classes.checkoutDiv}>
+                                <Button className={classes.checkoutButton}>
+                                    Checkout
+                                </Button>
+                            </div> : null 
+                        }
                         <h1 className={classes.headerText}>Menu</h1>
                         <div className={classes.menuInsideContainer}>
                             <div className={classes.groupDivSandwich} onClick={this.chooseSandwiches}>
