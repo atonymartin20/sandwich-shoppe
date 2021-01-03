@@ -12,8 +12,60 @@ import PhillyCheeseSteakImg from '../../images/Sandwiches/PhillyCheeseSteak.jpg'
 import TurkeyImg from '../../images/Sandwiches/Turkey.jpg';
 import CreateYourOwnImg from '../../images/Sandwiches/CreateYourOwn.jpg';
 import Button from "@material-ui/core/Button";
+import { Redirect } from 'react-router-dom';
 
 const styles = theme => ({
+    backButton: {
+        backgroundColor: '#0087A8',
+        fontWeight: 500,
+        height: 50,
+        fontSize: '2.5rem',
+        color: 'white',
+        padding: '0px 15px',
+        border: '3px solid #0087A8',
+        borderRadius: '10px',
+        width: '200px',
+        "&:hover": {
+            color: '#0087A8',
+            backgroundColor: 'white',
+        },
+        [theme.breakpoints.down(500)]: {
+            width: '100%',
+            marginBottom: '10px',
+        },
+    },
+    buttonContainerDiv: {
+        width: '100%',
+        display: 'flex',
+        flexWrap:'wrap',
+        justifyContent: 'space-between',
+        padding: '0px 25px',
+    },
+    checkoutButton: {
+        backgroundColor: '#7600A8',
+        fontWeight: 500,
+        height: 50,
+        fontSize: '2.5rem',
+        color: 'white',
+        padding: '0px 15px',
+        border: '3px solid #7600A8',
+        borderRadius: '10px',
+        width: '200px',
+        "&:hover": {
+            color: '#7600A8',
+            backgroundColor: 'white',
+        },
+        [theme.breakpoints.down(500)]: {
+            width: '100%',
+            marginBottom: '10px',
+        },
+    },
+    goBackDiv: {
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'flex-start',
+        padding: '0px 25px',
+    },
     groupDivBLT: {
         width: '30%',
         minWidth: 200,
@@ -276,7 +328,7 @@ const styles = theme => ({
         flexWrap: 'wrap',
     },
     menuSpacingDiv: {
-        marginTop: 90,
+        marginTop: 60,
         width: '100%',
         maxWidth: 1400,
         borderRadius: '4px',
@@ -298,92 +350,99 @@ const styles = theme => ({
 
 class Sandwiches extends React.Component {
     state={
-        showIntro: true,
-        showSandwiches: false,
-        showSalads: false,
-        showSides: false,
-        showDrinks: false,
+        redirect: true,
     }
 
-    chooseSandwiches = (event) => {
+    checkout = (event) => {
         event.preventDefault();
         this.setState({
-            showSandwiches: true,
-            showIntro: false,
+            redirect: true,
         })
     }
 
     render() {
         const { classes } = this.props;
-        console.log(this.context.state)
         return (
             <div className={classes.menuDiv}>
-                    <div className={classes.menuSpacingDiv}>
-                        <Button onClick={this.props.goBack}>Go Back</Button>
-                        <h1 className={classes.headerText}>Sandwiches</h1>
-                        <div className={classes.menuInsideContainer}>
+                {this.state.redirect === true ? <Redirect to='/orderNow/checkout' /> : null }
+                <div className={classes.menuSpacingDiv}>
+                    {this.context.state.orderItemCount > 0 ? 
+                        <div className={classes.buttonContainerDiv}>
+                            <Button className={classes.backButton} onClick={this.props.goBack}>
+                                Go Back
+                            </Button>
+                            <Button className={classes.checkoutButton}>
+                                Checkout
+                            </Button>
+                        </div> : 
+                        <div className={classes.goBackDiv}>
+                            <Button className={classes.backButton} onClick={this.props.goBack}>Go Back</Button>
+                        </div>
+                    }
+                    <h1 className={classes.headerText}>Sandwiches</h1>
+                    <div className={classes.menuInsideContainer}>
 
-                            <div className={classes.groupDivBLT} onClick={this.chooseSandwiches}>
-                                <div className={classes.insideGroupDiv}>
-                                    BLT
-                                </div>
+                        <div className={classes.groupDivBLT} onClick={this.chooseSandwiches}>
+                            <div className={classes.insideGroupDiv}>
+                                BLT
                             </div>
+                        </div>
 
-                            <div className={classes.groupDivBuffaloChicken} onClick={this.chooseSandwiches}>
-                                <div className={classes.insideGroupDiv}>
-                                    Buffalo Chicken
-                                </div>
+                        <div className={classes.groupDivBuffaloChicken} onClick={this.chooseSandwiches}>
+                            <div className={classes.insideGroupDiv}>
+                                Buffalo Chicken
                             </div>
+                        </div>
 
-                            <div className={classes.groupDivChickenBaconRanch} onClick={this.chooseSandwiches}>
-                                <div className={classes.insideGroupDiv}>
-                                    Chicken Bacon Ranch
-                                </div>
+                        <div className={classes.groupDivChickenBaconRanch} onClick={this.chooseSandwiches}>
+                            <div className={classes.insideGroupDiv}>
+                                Chicken Bacon Ranch
                             </div>
+                        </div>
 
-                            <div className={classes.groupDivChickenParm} onClick={this.chooseSandwiches}>
-                                <div className={classes.insideGroupDiv}>
-                                    Chicken Parm
-                                </div>
+                        <div className={classes.groupDivChickenParm} onClick={this.chooseSandwiches}>
+                            <div className={classes.insideGroupDiv}>
+                                Chicken Parm
                             </div>
+                        </div>
 
-                            <div className={classes.groupDivClub} onClick={this.chooseSandwiches}>
-                                <div className={classes.insideGroupDiv}>
-                                    Club
-                                </div>
+                        <div className={classes.groupDivClub} onClick={this.chooseSandwiches}>
+                            <div className={classes.insideGroupDiv}>
+                                Club
                             </div>
+                        </div>
 
-                            <div className={classes.groupDivHamAndCheese} onClick={this.chooseSandwiches}>
-                                <div className={classes.insideGroupDiv}>
-                                    Ham and Cheese
-                                </div>
+                        <div className={classes.groupDivHamAndCheese} onClick={this.chooseSandwiches}>
+                            <div className={classes.insideGroupDiv}>
+                                Ham and Cheese
                             </div>
+                        </div>
 
-                            <div className={classes.groupDivMeatball} onClick={this.chooseSandwiches}>
-                                <div className={classes.insideGroupDiv}>
-                                    Meatball
-                                </div>
+                        <div className={classes.groupDivMeatball} onClick={this.chooseSandwiches}>
+                            <div className={classes.insideGroupDiv}>
+                                Meatball
                             </div>
+                        </div>
 
-                            <div className={classes.groupDivPhillyCheeseSteak} onClick={this.chooseSandwiches}>
-                                <div className={classes.insideGroupDiv}>
-                                    Philly Cheese Steak
-                                </div>
+                        <div className={classes.groupDivPhillyCheeseSteak} onClick={this.chooseSandwiches}>
+                            <div className={classes.insideGroupDiv}>
+                                Philly Cheese Steak
                             </div>
+                        </div>
 
-                            <div className={classes.groupDivTurkey} onClick={this.chooseSandwiches}>
-                                <div className={classes.insideGroupDiv}>
-                                    Turkey
-                                </div>
+                        <div className={classes.groupDivTurkey} onClick={this.chooseSandwiches}>
+                            <div className={classes.insideGroupDiv}>
+                                Turkey
                             </div>
+                        </div>
 
-                            <div className={classes.groupDivCreateYourOwn} onClick={this.chooseSandwiches}>
-                                <div className={classes.insideGroupDiv}>
-                                    Create Your Own
-                                </div>
+                        <div className={classes.groupDivCreateYourOwn} onClick={this.chooseSandwiches}>
+                            <div className={classes.insideGroupDiv}>
+                                Create Your Own
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
         )
     }
