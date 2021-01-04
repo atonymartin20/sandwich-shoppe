@@ -24,7 +24,7 @@ const styles = theme => ({
             color: '#0087A8',
             backgroundColor: 'white',
         },
-        [theme.breakpoints.down(500)]: {
+        [theme.breakpoints.down(550)]: {
             width: '100%',
             marginBottom: '10px',
         },
@@ -35,6 +35,9 @@ const styles = theme => ({
         flexWrap:'wrap',
         justifyContent: 'space-between',
         padding: '0px 25px',
+        [theme.breakpoints.down(550)]: {
+            padding: '0px',    
+        },
     },
     checkoutButton: {
         backgroundColor: '#7600A8',
@@ -50,7 +53,7 @@ const styles = theme => ({
             color: '#7600A8',
             backgroundColor: 'white',
         },
-        [theme.breakpoints.down(500)]: {
+        [theme.breakpoints.down(550)]: {
             width: '100%',
             marginBottom: '10px',
         },
@@ -60,6 +63,9 @@ const styles = theme => ({
         display: 'flex',
         justifyContent: 'flex-start',
         padding: '0px 25px',
+        [theme.breakpoints.down(550)]: {
+            padding: '0px',    
+        },
     },
     groupDivBuffaloChickenSalad: {
         width: '30%',
@@ -208,7 +214,7 @@ const styles = theme => ({
         flexWrap: 'wrap',
     },
     menuSpacingDiv: {
-        marginTop: 60,
+        marginTop: 90,
         width: '100%',
         maxWidth: 1400,
         borderRadius: '4px',
@@ -222,6 +228,21 @@ const styles = theme => ({
         fontSize: '2.0rem',
         lineHeight: 1.25,
     },
+    menuSpacingOrderDiv: {
+        marginTop: 0,
+        width: '100%',
+        maxWidth: 1400,
+        borderRadius: '4px',
+        backgroundColor: '#f8fbfd',
+        minHeight: 100,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        padding: '0px 0px',
+        fontSize: '2.0rem',
+        lineHeight: 1.25,
+    },
     menuText: {
         marginTop: 20,
         marginBottom: 20,
@@ -230,7 +251,7 @@ const styles = theme => ({
 
 class Salads extends React.Component {
     state={
-        redirect: true,
+        redirect: false,
     }
 
     checkout = (event) => {
@@ -242,60 +263,116 @@ class Salads extends React.Component {
 
     render() {
         const { classes } = this.props;
-        return (
-            <div className={classes.menuDiv}>
-                {this.state.redirect === true ? <Redirect to='/orderNow/checkout' /> : null }
-                <div className={classes.menuSpacingDiv}>
-                    {this.context.state.orderItemCount > 0 ? 
-                        <div className={classes.buttonContainerDiv}>
-                            <Button className={classes.backButton} onClick={this.props.goBack}>
-                                Go Back
-                            </Button>
-                            <Button className={classes.checkoutButton}>
-                                Checkout
-                            </Button>
-                        </div> : 
-                        <div className={classes.goBackDiv}>
-                            <Button className={classes.backButton} onClick={this.props.goBack}>Go Back</Button>
-                        </div>
-                    }
-                    <h1 className={classes.headerText}>Salads</h1>
-                    <div className={classes.menuInsideContainer}>
-
-                        <div className={classes.groupDivBuffaloChickenSalad} onClick={this.chooseSandwiches}>
-                            <div className={classes.insideGroupDiv}>
-                                Buffalo Chicken Salad
+        if(this.props.type === 'order') {
+            return (
+                <div className={classes.menuDiv}>
+                    {this.state.redirect === true ? <Redirect to='/orderNow/checkout' /> : null }
+                    <div className={classes.menuSpacingOrderDiv}>
+                        {this.context.state.orderItemCount > 0 ? 
+                            <div className={classes.buttonContainerDiv}>
+                                <Button className={classes.backButton} onClick={this.props.goBack}>
+                                    Go Back
+                                </Button>
+                                <Button className={classes.checkoutButton} onClick={this.checkout}>
+                                    Checkout
+                                </Button>
+                            </div> : 
+                            <div className={classes.goBackDiv}>
+                                <Button className={classes.backButton} onClick={this.props.goBack}>Go Back</Button>
+                            </div>
+                        }
+                        <h1 className={classes.headerText}>Salads</h1>
+                        <div className={classes.menuInsideContainer}>
+    
+                            <div className={classes.groupDivBuffaloChickenSalad} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    Buffalo Chicken Salad
+                                </div>
+                            </div>
+    
+                            <div className={classes.groupDivCaesarSalad} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    Caesar Salad
+                                </div>
+                            </div>
+    
+                            <div className={classes.groupDivChickenCaesarSalad} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    Chicken Caesar Salad
+                                </div>
+                            </div>
+    
+                            <div className={classes.groupDivGardenSalad} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    Garden Salad
+                                </div>
+                            </div>
+    
+                            <div className={classes.groupDivSideSalad} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    Side Salad
+                                </div>
                             </div>
                         </div>
-
-                        <div className={classes.groupDivCaesarSalad} onClick={this.chooseSandwiches}>
-                            <div className={classes.insideGroupDiv}>
-                                Caesar Salad
-                            </div>
-                        </div>
-
-                        <div className={classes.groupDivChickenCaesarSalad} onClick={this.chooseSandwiches}>
-                            <div className={classes.insideGroupDiv}>
-                                Chicken Caesar Salad
-                            </div>
-                        </div>
-
-                        <div className={classes.groupDivGardenSalad} onClick={this.chooseSandwiches}>
-                            <div className={classes.insideGroupDiv}>
-                                Garden Salad
-                            </div>
-                        </div>
-
-                        <div className={classes.groupDivSideSalad} onClick={this.chooseSandwiches}>
-                            <div className={classes.insideGroupDiv}>
-                                Side Salad
-                            </div>
-                        </div>
-
                     </div>
                 </div>
-            </div>
-        )
+            )
+        }
+        else {
+            return (
+                <div className={classes.menuDiv}>
+                    {this.state.redirect === true ? <Redirect to='/orderNow/checkout' /> : null }
+                    <div className={classes.menuSpacingDiv}>
+                        {this.context.state.orderItemCount > 0 ? 
+                            <div className={classes.buttonContainerDiv}>
+                                <Button className={classes.backButton} onClick={this.props.goBack}>
+                                    Go Back
+                                </Button>
+                                <Button className={classes.checkoutButton} onClick={this.checkout}>
+                                    Checkout
+                                </Button>
+                            </div> : 
+                            <div className={classes.goBackDiv}>
+                                <Button className={classes.backButton} onClick={this.props.goBack}>Go Back</Button>
+                            </div>
+                        }
+                        <h1 className={classes.headerText}>Salads</h1>
+                        <div className={classes.menuInsideContainer}>
+    
+                            <div className={classes.groupDivBuffaloChickenSalad} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    Buffalo Chicken Salad
+                                </div>
+                            </div>
+    
+                            <div className={classes.groupDivCaesarSalad} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    Caesar Salad
+                                </div>
+                            </div>
+    
+                            <div className={classes.groupDivChickenCaesarSalad} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    Chicken Caesar Salad
+                                </div>
+                            </div>
+    
+                            <div className={classes.groupDivGardenSalad} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    Garden Salad
+                                </div>
+                            </div>
+    
+                            <div className={classes.groupDivSideSalad} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    Side Salad
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
     }
 }
 
