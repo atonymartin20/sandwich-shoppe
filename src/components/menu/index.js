@@ -142,7 +142,7 @@ const styles = theme => ({
         flexWrap: 'wrap',
     },
     menuSpacingDiv: {
-        marginTop: 60,
+        marginTop: 90,
         width: '100%',
         maxWidth: 1400,
         borderRadius: '4px',
@@ -153,6 +153,21 @@ const styles = theme => ({
         alignItems: 'center',
         flexDirection: 'column',
         padding: '20px 0px',
+        fontSize: '2.0rem',
+        lineHeight: 1.25,
+    },
+    menuSpacingOrderDiv: {
+        marginTop: 0,
+        width: '100%',
+        maxWidth: 1400,
+        borderRadius: '4px',
+        backgroundColor: '#f8fbfd',
+        minHeight: 100,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        padding: '0px 0px',
         fontSize: '2.0rem',
         lineHeight: 1.25,
     },
@@ -177,6 +192,7 @@ class Menu extends React.Component {
         this.setState({
             showSandwiches: true,
             showIntro: false,
+            redirect: false,
         })
     }
 
@@ -185,6 +201,7 @@ class Menu extends React.Component {
         this.setState({
             showSalads: true,
             showIntro: false,
+            redirect: false,
         })
     }
 
@@ -193,6 +210,7 @@ class Menu extends React.Component {
         this.setState({
             showSides: true,
             showIntro: false,
+            redirect: false,
         })
     }
 
@@ -201,6 +219,7 @@ class Menu extends React.Component {
         this.setState({
             showDrinks: true,
             showIntro: false,
+            redirect: false,
         })
     }
 
@@ -225,63 +244,115 @@ class Menu extends React.Component {
 
     render() {
         const { classes } = this.props;
-        return (
-            <div className={classes.menuDiv}>
-                <Navbar />
-                {this.state.redirect === true ? <Redirect to='/orderNow/checkout' /> : null }
-
-                {this.state.showIntro === true ?
-                    <div className={classes.menuSpacingDiv}>
-                        {this.context.state.orderItemCount > 0 ? 
-                            <div className={classes.checkoutDiv}>
-                                <Button className={classes.checkoutButton}>
-                                    Checkout
-                                </Button>
-                            </div> : null 
-                        }
-                        <h1 className={classes.headerText}>Menu</h1>
-                        <div className={classes.menuInsideContainer}>
-                            <div className={classes.groupDivSandwich} onClick={this.chooseSandwiches}>
-                                <div className={classes.insideGroupDiv}>
-                                    Sandwiches
+        if(this.props.type === 'order') {
+            return (
+                <div className={classes.menuDiv}>
+                    {this.state.redirect === true ? <Redirect to='/orderNow/checkout' /> : null }
+    
+                    {this.state.showIntro === true ?
+                        <div className={classes.menuSpacingOrderDiv}>
+                            {this.context.state.orderItemCount > 0 ? 
+                                <div className={classes.checkoutDiv}>
+                                    <Button className={classes.checkoutButton} onClick={this.checkout}>
+                                        Checkout
+                                    </Button>
+                                </div> : null 
+                            }
+                            <h1 className={classes.headerText}>Menu</h1>
+                            <div className={classes.menuInsideContainer}>
+                                <div className={classes.groupDivSandwich} onClick={this.chooseSandwiches}>
+                                    <div className={classes.insideGroupDiv}>
+                                        Sandwiches
+                                    </div>
                                 </div>
-                            </div>
-                            <div className={classes.groupDivSalads} onClick={this.chooseSalads}>
-                                <div className={classes.insideGroupDiv}>
-                                    Salads
+                                <div className={classes.groupDivSalads} onClick={this.chooseSalads}>
+                                    <div className={classes.insideGroupDiv}>
+                                        Salads
+                                    </div>
                                 </div>
-                            </div>
-                            <div className={classes.groupDivSides} onClick={this.chooseSides}>
-                                <div className={classes.insideGroupDiv}>
-                                    Sides
+                                <div className={classes.groupDivSides} onClick={this.chooseSides}>
+                                    <div className={classes.insideGroupDiv}>
+                                        Sides
+                                    </div>
                                 </div>
-                            </div>
-                            <div className={classes.groupDivDrinks} onClick={this.chooseDrinks}>
-                                <div className={classes.insideGroupDiv}>
-                                    Drinks
+                                <div className={classes.groupDivDrinks} onClick={this.chooseDrinks}>
+                                    <div className={classes.insideGroupDiv}>
+                                        Drinks
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                : null }
-
-                {this.state.showSandwiches === true ? 
-                    <Sandwiches goBack={this.goBack} />
-                : null }
-
-                {this.state.showSalads === true ? 
-                    <Salads goBack={this.goBack} />
-                : null }
-
-                {this.state.showSides === true ? 
-                    <Sides goBack={this.goBack} />
-                : null }
-
-                {this.state.showDrinks === true ?
-                    <Drinks goBack={this.goBack} />
-                : null }
-            </div>
-        )
+                    : null }
+    
+                    {this.state.showSandwiches === true ? 
+                        <Sandwiches type='order' goBack={this.goBack} />
+                    : null }
+    
+                    {this.state.showSalads === true ? 
+                        <Salads type='order' goBack={this.goBack} />
+                    : null }
+    
+                    {this.state.showSides === true ? 
+                        <Sides type='order' goBack={this.goBack} />
+                    : null }
+    
+                    {this.state.showDrinks === true ?
+                        <Drinks type='order' goBack={this.goBack} />
+                    : null }
+                </div>
+            )
+        }
+        else {
+            return (
+                <div className={classes.menuDiv}>
+                    <Navbar />
+    
+                    {this.state.showIntro === true ?
+                        <div className={classes.menuSpacingDiv}>
+                            <h1 className={classes.headerText}>Menu</h1>
+                            <div className={classes.menuInsideContainer}>
+                                <div className={classes.groupDivSandwich} onClick={this.chooseSandwiches}>
+                                    <div className={classes.insideGroupDiv}>
+                                        Sandwiches
+                                    </div>
+                                </div>
+                                <div className={classes.groupDivSalads} onClick={this.chooseSalads}>
+                                    <div className={classes.insideGroupDiv}>
+                                        Salads
+                                    </div>
+                                </div>
+                                <div className={classes.groupDivSides} onClick={this.chooseSides}>
+                                    <div className={classes.insideGroupDiv}>
+                                        Sides
+                                    </div>
+                                </div>
+                                <div className={classes.groupDivDrinks} onClick={this.chooseDrinks}>
+                                    <div className={classes.insideGroupDiv}>
+                                        Drinks
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    : null }
+    
+                    {this.state.showSandwiches === true ? 
+                        <Sandwiches goBack={this.goBack} />
+                    : null }
+    
+                    {this.state.showSalads === true ? 
+                        <Salads goBack={this.goBack} />
+                    : null }
+    
+                    {this.state.showSides === true ? 
+                        <Sides goBack={this.goBack} />
+                    : null }
+    
+                    {this.state.showDrinks === true ?
+                        <Drinks goBack={this.goBack} />
+                    : null }
+                </div>
+            )
+        }
     }
 }
 
