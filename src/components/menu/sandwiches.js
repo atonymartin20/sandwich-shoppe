@@ -29,7 +29,7 @@ const styles = theme => ({
             color: '#0087A8',
             backgroundColor: 'white',
         },
-        [theme.breakpoints.down(500)]: {
+        [theme.breakpoints.down(550)]: {
             width: '100%',
             marginBottom: '10px',
         },
@@ -40,6 +40,9 @@ const styles = theme => ({
         flexWrap:'wrap',
         justifyContent: 'space-between',
         padding: '0px 25px',
+        [theme.breakpoints.down(550)]: {
+            padding: '0px',    
+        },
     },
     checkoutButton: {
         backgroundColor: '#7600A8',
@@ -55,7 +58,7 @@ const styles = theme => ({
             color: '#7600A8',
             backgroundColor: 'white',
         },
-        [theme.breakpoints.down(500)]: {
+        [theme.breakpoints.down(550)]: {
             width: '100%',
             marginBottom: '10px',
         },
@@ -65,6 +68,9 @@ const styles = theme => ({
         display: 'flex',
         justifyContent: 'flex-start',
         padding: '0px 25px',
+        [theme.breakpoints.down(550)]: {
+            padding: '0px',    
+        },
     },
     groupDivBLT: {
         width: '30%',
@@ -328,7 +334,7 @@ const styles = theme => ({
         flexWrap: 'wrap',
     },
     menuSpacingDiv: {
-        marginTop: 60,
+        marginTop: 90,
         width: '100%',
         maxWidth: 1400,
         borderRadius: '4px',
@@ -342,6 +348,21 @@ const styles = theme => ({
         fontSize: '2.0rem',
         lineHeight: 1.25,
     },
+    menuSpacingOrderDiv: {
+        marginTop: 0,
+        width: '100%',
+        maxWidth: 1400,
+        borderRadius: '4px',
+        backgroundColor: '#f8fbfd',
+        minHeight: 100,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        padding: '0px 0px',
+        fontSize: '2.0rem',
+        lineHeight: 1.25,
+    },
     menuText: {
         marginTop: 20,
         marginBottom: 20,
@@ -350,7 +371,7 @@ const styles = theme => ({
 
 class Sandwiches extends React.Component {
     state={
-        redirect: true,
+        redirect: false,
     }
 
     checkout = (event) => {
@@ -362,89 +383,166 @@ class Sandwiches extends React.Component {
 
     render() {
         const { classes } = this.props;
-        return (
-            <div className={classes.menuDiv}>
-                {this.state.redirect === true ? <Redirect to='/orderNow/checkout' /> : null }
-                <div className={classes.menuSpacingDiv}>
-                    {this.context.state.orderItemCount > 0 ? 
-                        <div className={classes.buttonContainerDiv}>
-                            <Button className={classes.backButton} onClick={this.props.goBack}>
-                                Go Back
-                            </Button>
-                            <Button className={classes.checkoutButton}>
-                                Checkout
-                            </Button>
-                        </div> : 
-                        <div className={classes.goBackDiv}>
-                            <Button className={classes.backButton} onClick={this.props.goBack}>Go Back</Button>
-                        </div>
-                    }
-                    <h1 className={classes.headerText}>Sandwiches</h1>
-                    <div className={classes.menuInsideContainer}>
-
-                        <div className={classes.groupDivBLT} onClick={this.chooseSandwiches}>
-                            <div className={classes.insideGroupDiv}>
-                                BLT
+        if(this.props.type === 'order') {
+            return (
+                <div className={classes.menuDiv}>
+                    {this.state.redirect === true ? <Redirect to='/orderNow/checkout' /> : null }
+                    <div className={classes.menuSpacingOrderDiv}>
+                        {this.context.state.orderItemCount > 0 ? 
+                            <div className={classes.buttonContainerDiv}>
+                                <Button className={classes.backButton} onClick={this.props.goBack}>
+                                    Go Back
+                                </Button>
+                                <Button className={classes.checkoutButton} onClick={this.checkout}>
+                                    Checkout
+                                </Button>
+                            </div> : 
+                            <div className={classes.goBackDiv}>
+                                <Button className={classes.backButton} onClick={this.props.goBack}>Go Back</Button>
                             </div>
-                        </div>
-
-                        <div className={classes.groupDivBuffaloChicken} onClick={this.chooseSandwiches}>
-                            <div className={classes.insideGroupDiv}>
-                                Buffalo Chicken
+                        }
+                        <h1 className={classes.headerText}>Sandwiches</h1>
+                        <div className={classes.menuInsideContainer}>
+    
+                            <div className={classes.groupDivBLT} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    BLT
+                                </div>
                             </div>
-                        </div>
-
-                        <div className={classes.groupDivChickenBaconRanch} onClick={this.chooseSandwiches}>
-                            <div className={classes.insideGroupDiv}>
-                                Chicken Bacon Ranch
+    
+                            <div className={classes.groupDivBuffaloChicken} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    Buffalo Chicken
+                                </div>
                             </div>
-                        </div>
-
-                        <div className={classes.groupDivChickenParm} onClick={this.chooseSandwiches}>
-                            <div className={classes.insideGroupDiv}>
-                                Chicken Parm
+    
+                            <div className={classes.groupDivChickenBaconRanch} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    Chicken Bacon Ranch
+                                </div>
                             </div>
-                        </div>
-
-                        <div className={classes.groupDivClub} onClick={this.chooseSandwiches}>
-                            <div className={classes.insideGroupDiv}>
-                                Club
+    
+                            <div className={classes.groupDivChickenParm} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    Chicken Parm
+                                </div>
                             </div>
-                        </div>
-
-                        <div className={classes.groupDivHamAndCheese} onClick={this.chooseSandwiches}>
-                            <div className={classes.insideGroupDiv}>
-                                Ham and Cheese
+    
+                            <div className={classes.groupDivClub} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    Club
+                                </div>
                             </div>
-                        </div>
-
-                        <div className={classes.groupDivMeatball} onClick={this.chooseSandwiches}>
-                            <div className={classes.insideGroupDiv}>
-                                Meatball
+    
+                            <div className={classes.groupDivHamAndCheese} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    Ham and Cheese
+                                </div>
                             </div>
-                        </div>
-
-                        <div className={classes.groupDivPhillyCheeseSteak} onClick={this.chooseSandwiches}>
-                            <div className={classes.insideGroupDiv}>
-                                Philly Cheese Steak
+    
+                            <div className={classes.groupDivMeatball} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    Meatball
+                                </div>
                             </div>
-                        </div>
-
-                        <div className={classes.groupDivTurkey} onClick={this.chooseSandwiches}>
-                            <div className={classes.insideGroupDiv}>
-                                Turkey
+    
+                            <div className={classes.groupDivPhillyCheeseSteak} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    Philly Cheese Steak
+                                </div>
                             </div>
-                        </div>
-
-                        <div className={classes.groupDivCreateYourOwn} onClick={this.chooseSandwiches}>
-                            <div className={classes.insideGroupDiv}>
-                                Create Your Own
+    
+                            <div className={classes.groupDivTurkey} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    Turkey
+                                </div>
+                            </div>
+    
+                            <div className={classes.groupDivCreateYourOwn} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    Create Your Own
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        )
+            )
+        }
+        else {
+            return (
+                <div className={classes.menuDiv}>
+                    <div className={classes.menuSpacingDiv}>
+                        <div className={classes.goBackDiv}>
+                            <Button className={classes.backButton} onClick={this.props.goBack}>Go Back</Button>
+                        </div>
+
+                        <h1 className={classes.headerText}>Sandwiches</h1>
+                        <div className={classes.menuInsideContainer}>
+
+                            <div className={classes.groupDivBLT} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    BLT
+                                </div>
+                            </div>
+
+                            <div className={classes.groupDivBuffaloChicken} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    Buffalo Chicken
+                                </div>
+                            </div>
+
+                            <div className={classes.groupDivChickenBaconRanch} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    Chicken Bacon Ranch
+                                </div>
+                            </div>
+
+                            <div className={classes.groupDivChickenParm} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    Chicken Parm
+                                </div>
+                            </div>
+
+                            <div className={classes.groupDivClub} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    Club
+                                </div>
+                            </div>
+
+                            <div className={classes.groupDivHamAndCheese} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    Ham and Cheese
+                                </div>
+                            </div>
+
+                            <div className={classes.groupDivMeatball} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    Meatball
+                                </div>
+                            </div>
+
+                            <div className={classes.groupDivPhillyCheeseSteak} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    Philly Cheese Steak
+                                </div>
+                            </div>
+
+                            <div className={classes.groupDivTurkey} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    Turkey
+                                </div>
+                            </div>
+
+                            <div className={classes.groupDivCreateYourOwn} onClick={this.chooseSandwiches}>
+                                <div className={classes.insideGroupDiv}>
+                                    Create Your Own
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
     }
 }
 
