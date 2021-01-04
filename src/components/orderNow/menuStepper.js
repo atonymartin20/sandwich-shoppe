@@ -2,7 +2,6 @@ import React from 'react';
 import Navbar from '../navbar';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { AppContext } from '../context/appContext.js';
-import Button from "@material-ui/core/Button";
 import Menu from '../menu';
 
 const styles = theme => ({
@@ -26,7 +25,7 @@ const styles = theme => ({
         padding: '20px 0px',
         fontSize: '2.0rem',
         lineHeight: 1.25,
-        backgroundColor: 'blue',
+        marginTop: 90,
     },
     menuText: {
         marginTop: 20,
@@ -35,44 +34,6 @@ const styles = theme => ({
 });
 
 class MenuStepper extends React.Component {
-    state = {
-        step1: true,
-        step2: false,
-        step3: false,
-        step4: false,
-    }
-
-    goBack = (event) => {
-        event.preventDefault();
-        if(this.state.step4 === true) {
-            this.setState({
-                step1: true,
-                step2: true,
-                step3: true,
-                step4: false,
-            })
-        }
-        else if(this.state.step3 === true) {
-            this.setState({
-                step1: true,
-                step2: true,
-                step3: false,
-                step4: false,
-            })
-        }
-        else if(this.state.step2 === true) {
-            this.setState({
-                step1: true,
-                step2: false,
-                step3: false,
-                step4: false,
-            })
-        }
-        else {
-            console.log('Button logic broke.')
-        }
-    }
-
     render() {
         const { classes } = this.props;
 
@@ -82,29 +43,9 @@ class MenuStepper extends React.Component {
                 <div className={classes.menuDiv}>
                     <Navbar />
                     <div className={classes.menuSpacingDiv}>
-                        {this.state.step2 === true ? <Button></Button> : null }
-
-                        {this.state.step1 === true ? <Menu /> : null}
-                        {/* Add Stepper Here */}
+                        <Menu type='order' />
                         {/* Top Stepper Past Step 1 Back button to push stepper back a page*/}
                         {/* 
-                            Step 1
-                            4 Div Boxes  (100px from top) (Split 2 and 2 accept for mobile)
-                            Top Left Sandwiches
-                            Top Right Salads
-                            Bottom Left: Sides
-                            Bottom Right: Drinks
-                            Pass functions for choice and passing step change
-
-
-                            Step 2
-                            More Div Boxes for inside items
-                            Sandwiches has different sandwich types(Meatball etc)
-                            Salads has different salad types
-                            Sides has cookies, cheesebread, chips
-                            Drinks has ... drinks
-                            Again passing functions to components
-
                             Step 3:
                             If Sandwich(
                                 Make alterations to sandwich
@@ -130,6 +71,8 @@ class MenuStepper extends React.Component {
                             If add another item() Revert to step 1
                             If checkout go to checkout
                         */}
+                        {this.context.state.orderItemCount > 0 ? null : null }
+
                         {/* Below Stepper while item count > 0,  Show cart on bottom of screen*/}
                     </div>
                 </div>
