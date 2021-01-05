@@ -569,16 +569,16 @@ class Sandwiches extends React.Component {
             return (
                 <div className={classes.menuDiv}>
                     <div className={classes.menuSpacingDiv}>
-                        {this.state.moreInfoBLT === true ? <SandwichInfo close={this.closeMoreInfo} name='BLT' text='' img={BLTImg} /> : null }
-                        {this.state.moreInfoBuffaloChicken === true ? <SandwichInfo close={this.closeMoreInfo} name='Buffalo Chicken' text='' img={BuffaloChickenImg} /> : null }
-                        {this.state.moreInfoChickenBaconRanch === true ? <SandwichInfo close={this.closeMoreInfo} name='Chicken Bacon Ranch' text='' img={ChickenBaconRanchImg} /> : null }
-                        {this.state.moreInfoChickenParm === true ? <SandwichInfo close={this.closeMoreInfo} name='Chicken Parm' text='' img={ChickenParmImg} /> : null }
-                        {this.state.moreInfoClub === true ? <SandwichInfo close={this.closeMoreInfo} name='Club' text='' img={ClubImg} /> : null }
-                        {this.state.moreInfoHamAndCheese === true ? <SandwichInfo close={this.closeMoreInfo} name='Ham and Cheese' text='' img={HamAndCheeseImg} /> : null }
-                        {this.state.moreInfoMeatball === true ? <SandwichInfo close={this.closeMoreInfo} name='Meatball' text='' img={MeatballImg} /> : null }
-                        {this.state.moreInfoPhillyCheeseSteak === true ? <SandwichInfo close={this.closeMoreInfo} name='Philly Cheesesteak' text='' img={PhillyCheeseSteakImg} /> : null }
-                        {this.state.moreInfoTurkey === true ? <SandwichInfo close={this.closeMoreInfo} name='Turkey' text='' img={TurkeyImg} /> : null }
-                        {this.state.moreInfoCreateYourOwn === true ? <SandwichInfo close={this.closeMoreInfo} name='Create your Own' text='' img={CreateYourOwnImg} /> : null }
+                        {this.state.moreInfoBLT === true ? <SandwichInfo close={this.closeMoreInfo} name='BLT' text='Bacon, lettuce, and tomato' img={BLTImg} /> : null }
+                        {this.state.moreInfoBuffaloChicken === true ? <SandwichInfo close={this.closeMoreInfo} name='Buffalo Chicken' text='Homemade Buffalo sauce, chicken, lettuce, and tomato' img={BuffaloChickenImg} /> : null }
+                        {this.state.moreInfoChickenBaconRanch === true ? <SandwichInfo close={this.closeMoreInfo} name='Chicken Bacon Ranch' text='Bacon, chicken, lettuce, tomato, and ranch dressing' img={ChickenBaconRanchImg} /> : null }
+                        {this.state.moreInfoChickenParm === true ? <SandwichInfo close={this.closeMoreInfo} name='Chicken Parm' text='Homemade Marinara and chicken' img={ChickenParmImg} /> : null }
+                        {this.state.moreInfoClub === true ? <SandwichInfo close={this.closeMoreInfo} name='Club' text='Turkey, bacon, ham, lettuce, and tomato' img={ClubImg} /> : null }
+                        {this.state.moreInfoHamAndCheese === true ? <SandwichInfo close={this.closeMoreInfo} name='Ham and Cheese' text='Ham, lettuce, and tomato' img={HamAndCheeseImg} /> : null }
+                        {this.state.moreInfoMeatball === true ? <SandwichInfo close={this.closeMoreInfo} name='Meatball' text='Homemade Marinara and meatballs' img={MeatballImg} /> : null }
+                        {this.state.moreInfoPhillyCheeseSteak === true ? <SandwichInfo close={this.closeMoreInfo} name='Philly Cheesesteak' text='Steak, grilled onions, and peppers' img={PhillyCheeseSteakImg} /> : null }
+                        {this.state.moreInfoTurkey === true ? <SandwichInfo close={this.closeMoreInfo} name='Turkey' text='Turkey, lettuce, and tomato' img={TurkeyImg} /> : null }
+                        {this.state.moreInfoCreateYourOwn === true ? <SandwichInfo close={this.closeMoreInfo} name='Create your Own' text='Choose your own ingredients' img={CreateYourOwnImg} /> : null }
 
                         <div className={classes.goBackDiv}>
                             <Button className={classes.backButton} onClick={this.props.goBack}>Go Back</Button>
