@@ -13,6 +13,7 @@ import TurkeyImg from '../../images/Sandwiches/Turkey.jpg';
 import CreateYourOwnImg from '../../images/Sandwiches/CreateYourOwn.jpg';
 import Button from "@material-ui/core/Button";
 import { Redirect } from 'react-router-dom';
+import SandwichInfo from './sandwichInfo.js';
 
 const styles = theme => ({
     backButton: {
@@ -372,12 +373,108 @@ const styles = theme => ({
 class Sandwiches extends React.Component {
     state={
         redirect: false,
+        moreInfoBLT: false,
+        moreInfoBuffaloChicken: false,
+        moreInfoChickenBaconRanch: false,
+        moreInfoChickenParm: false,
+        moreInfoClub: false,
+        moreInfoHamAndCheese: false,
+        moreInfoMeatball: false,
+        moreInfoPhillyCheeseSteak: false,
+        moreInfoTurkey: false,
+        moreInfoCreateYourOwn: false,
     }
 
     checkout = (event) => {
         event.preventDefault();
         this.setState({
             redirect: true,
+        })
+    }
+
+    openMoreInfoBLT = (event) => {
+        event.preventDefault();
+        this.setState({
+            moreInfoBLT: true,
+        })
+    }
+
+    openMoreInfoBuffaloChicken = (event) => {
+        event.preventDefault();
+        this.setState({
+            moreInfoBuffaloChicken: true,
+        })
+    }
+
+    openMoreInfoChickenBaconRanch = (event) => {
+        event.preventDefault();
+        this.setState({
+            moreInfoChickenBaconRanch: true,
+        })
+    }
+
+    openMoreInfoChickenParm = (event) => {
+        event.preventDefault();
+        this.setState({
+            moreInfoChickenParm: true,
+        })
+    }
+
+    openMoreInfoClub = (event) => {
+        event.preventDefault();
+        this.setState({
+            moreInfoClub: true,
+        })
+    }
+
+    openMoreInfoHamAndCheese = (event) => {
+        event.preventDefault();
+        this.setState({
+            moreInfoHamAndCheese: true,
+        })
+    }
+
+    openMoreInfoMeatball = (event) => {
+        event.preventDefault();
+        this.setState({
+            moreInfoMeatball: true,
+        })
+    }
+
+    openMoreInfoPhillyCheeseSteak = (event) => {
+        event.preventDefault();
+        this.setState({
+            moreInfoPhillyCheeseSteak: true,
+        })
+    }
+
+    openMoreInfoTurkey = (event) => {
+        event.preventDefault();
+        this.setState({
+            moreInfoTurkey: true,
+        })
+    }
+
+    openMoreInfoCreateYourOwn = (event) => {
+        event.preventDefault();
+        this.setState({
+            moreInfoCreateYourOwn: true,
+        })
+    }
+
+    closeMoreInfo = (event) => {
+        event.preventDefault();
+        this.setState({
+            moreInfoBLT: false,
+            moreInfoBuffaloChicken: false,
+            moreInfoChickenBaconRanch: false,
+            moreInfoChickenParm: false,
+            moreInfoClub: false,
+            moreInfoHamAndCheese: false,
+            moreInfoMeatball: false,
+            moreInfoPhillyCheeseSteak: false,
+            moreInfoTurkey: false,
+            moreInfoCreateYourOwn: false,
         })
     }
 
@@ -472,6 +569,17 @@ class Sandwiches extends React.Component {
             return (
                 <div className={classes.menuDiv}>
                     <div className={classes.menuSpacingDiv}>
+                        {this.state.moreInfoBLT === true ? <SandwichInfo close={this.closeMoreInfo} name='BLT' text='' img={BLTImg} /> : null }
+                        {this.state.moreInfoBuffaloChicken === true ? <SandwichInfo close={this.closeMoreInfo} name='Buffalo Chicken' text='' img={BuffaloChickenImg} /> : null }
+                        {this.state.moreInfoChickenBaconRanch === true ? <SandwichInfo close={this.closeMoreInfo} name='Chicken Bacon Ranch' text='' img={ChickenBaconRanchImg} /> : null }
+                        {this.state.moreInfoChickenParm === true ? <SandwichInfo close={this.closeMoreInfo} name='Chicken Parm' text='' img={ChickenParmImg} /> : null }
+                        {this.state.moreInfoClub === true ? <SandwichInfo close={this.closeMoreInfo} name='Club' text='' img={ClubImg} /> : null }
+                        {this.state.moreInfoHamAndCheese === true ? <SandwichInfo close={this.closeMoreInfo} name='Ham and Cheese' text='' img={HamAndCheeseImg} /> : null }
+                        {this.state.moreInfoMeatball === true ? <SandwichInfo close={this.closeMoreInfo} name='Meatball' text='' img={MeatballImg} /> : null }
+                        {this.state.moreInfoPhillyCheeseSteak === true ? <SandwichInfo close={this.closeMoreInfo} name='Philly Cheesesteak' text='' img={PhillyCheeseSteakImg} /> : null }
+                        {this.state.moreInfoTurkey === true ? <SandwichInfo close={this.closeMoreInfo} name='Turkey' text='' img={TurkeyImg} /> : null }
+                        {this.state.moreInfoCreateYourOwn === true ? <SandwichInfo close={this.closeMoreInfo} name='Create your Own' text='' img={CreateYourOwnImg} /> : null }
+
                         <div className={classes.goBackDiv}>
                             <Button className={classes.backButton} onClick={this.props.goBack}>Go Back</Button>
                         </div>
@@ -479,61 +587,61 @@ class Sandwiches extends React.Component {
                         <h1 className={classes.headerText}>Sandwiches</h1>
                         <div className={classes.menuInsideContainer}>
 
-                            <div className={classes.groupDivBLT} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivBLT} onClick={this.openMoreInfoBLT}>
                                 <div className={classes.insideGroupDiv}>
                                     BLT
                                 </div>
                             </div>
 
-                            <div className={classes.groupDivBuffaloChicken} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivBuffaloChicken} onClick={this.openMoreInfoBuffaloChicken}>
                                 <div className={classes.insideGroupDiv}>
                                     Buffalo Chicken
                                 </div>
                             </div>
 
-                            <div className={classes.groupDivChickenBaconRanch} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivChickenBaconRanch} onClick={this.openMoreInfoChickenBaconRanch}>
                                 <div className={classes.insideGroupDiv}>
                                     Chicken Bacon Ranch
                                 </div>
                             </div>
 
-                            <div className={classes.groupDivChickenParm} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivChickenParm} onClick={this.openMoreInfoChickenParm}>
                                 <div className={classes.insideGroupDiv}>
                                     Chicken Parm
                                 </div>
                             </div>
 
-                            <div className={classes.groupDivClub} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivClub} onClick={this.openMoreInfoClub}>
                                 <div className={classes.insideGroupDiv}>
                                     Club
                                 </div>
                             </div>
 
-                            <div className={classes.groupDivHamAndCheese} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivHamAndCheese} onClick={this.openMoreInfoHamAndCheese}>
                                 <div className={classes.insideGroupDiv}>
                                     Ham and Cheese
                                 </div>
                             </div>
 
-                            <div className={classes.groupDivMeatball} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivMeatball} onClick={this.openMoreInfoMeatball}>
                                 <div className={classes.insideGroupDiv}>
                                     Meatball
                                 </div>
                             </div>
 
-                            <div className={classes.groupDivPhillyCheeseSteak} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivPhillyCheeseSteak} onClick={this.openMoreInfoPhillyCheeseSteak}>
                                 <div className={classes.insideGroupDiv}>
                                     Philly Cheese Steak
                                 </div>
                             </div>
 
-                            <div className={classes.groupDivTurkey} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivTurkey} onClick={this.openMoreInfoTurkey}>
                                 <div className={classes.insideGroupDiv}>
                                     Turkey
                                 </div>
                             </div>
 
-                            <div className={classes.groupDivCreateYourOwn} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivCreateYourOwn} onClick={this.openMoreInfoCreateYourOwn}>
                                 <div className={classes.insideGroupDiv}>
                                     Create Your Own
                                 </div>
