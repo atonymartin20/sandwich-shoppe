@@ -5,12 +5,12 @@ import CloseIcon from '@material-ui/icons/Close';
 
 const styles = theme => ({
     closeIconStyling: {
-        width: '20px',
-        height: '20px',
+        width: '25px',
+        height: '25px',
         cursor: "pointer",
         marginRight: '2%',
         alignSelf: 'flex-end',
-        marginLeft: '10px',
+        marginBottom: 10,
     },
     container: {
         position: 'fixed',
@@ -22,46 +22,23 @@ const styles = theme => ({
         overflow: 'auto',
         backgroundColor: 'rgba(43, 43, 43, 0.3)',
     },
-
-
-
-
-
     headerText: {
         fontSize: '3.5rem',
-        borderBottom: '2px solid black',
+        marginBottom: 10,
     },
-    insideGroupDiv: {
-        backgroundColor: 'rgba(43, 43, 43, 0.1)',
-        width: '100%',
-        height: '100%',
-        textShadow: '1px 1px 2px black, 1px 0px 2px black, 0px 1px 2px black, 0 0 8px #333',
-        fontSize: '3.5rem',
-        color: 'white',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'flex-end',
-    },
-    menuDiv: {
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-    },
-    menuInsideContainer: {
-        width: '100%',
-        maxWidth: 1400,
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        flexWrap: 'wrap',
+    imgStyling: {
+        width: '75%',
+        maxWidth: '1000px',
+        [theme.breakpoints.down(550)]: {
+            width: '100%',
+            marginBottom: '10px',
+        },
     },
     menuSpacingDiv: {
         margin: '0 auto',
-        marginTop: '25vh',
+        marginTop: '15vh',
         width: '100%',
-        maxWidth: 1400,
+        maxWidth: 1000,
         borderRadius: '4px',
         backgroundColor: '#f8fbfd',
         minHeight: 100,
@@ -73,10 +50,13 @@ const styles = theme => ({
         fontSize: '2.0rem',
         lineHeight: 1.25,
     },
-    menuText: {
-        marginTop: 20,
-        marginBottom: 20,
-    },
+    infoText: {
+        fontSize: '3.0rem',
+        marginTop: 10,
+        width: '100%',
+        padding: '0px 5px',
+        textAlign: 'center',
+    }
 });
 
 class SandwichInfo extends React.Component {
@@ -86,10 +66,9 @@ class SandwichInfo extends React.Component {
                 <div className={classes.container}>
                     <div className={classes.menuSpacingDiv}>
                         <CloseIcon onClick={this.props.close} className={classes.closeIconStyling} />
-                        <img src={this.props.img} />
                         <h1 className={classes.headerText}>{this.props.name}</h1>
-                        <div className={classes.menuInsideContainer}>
-                        </div>
+                        <img className={classes.imgStyling} src={this.props.img} alt='Img of a sandwich' />
+                        <p className={classes.infoText}>{this.props.text}</p>
                     </div>
                 </div>
             )
