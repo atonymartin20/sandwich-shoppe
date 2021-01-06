@@ -41,6 +41,12 @@ const styles = theme => ({
         width: '100%',
         padding: '0px 10px',
         textAlign: 'center',
+        [theme.breakpoints.down(800)]: {
+            fontSize: '2.5rem',
+        },
+        [theme.breakpoints.down(550)]: {
+            fontSize: '2.0rem',
+        },
     },
     menuSpacingDiv: {
         margin: '0 auto',

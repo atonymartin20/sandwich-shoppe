@@ -379,8 +379,6 @@ class Salads extends React.Component {
                     {this.state.moreInfoChickenCaesarSalad === true ? <SaladInfo close={this.closeMoreInfo} name='Chicken Caesar Salad' text='Romaine and iceburg lettuce, chicken, parmesan cheese, and croutons' img={ChickenCaesarSaladImg} /> : null }
                     {this.state.moreInfoGardenSalad === true ? <SaladInfo close={this.closeMoreInfo} name='Garden Salad' text='Romaine and iceburg lettuce, grape tomatoes, red onion, cheddar cheese, and croutons' img={GardenSaladImg} /> : null }
                     {this.state.moreInfoSideSalad === true ? <SaladInfo close={this.closeMoreInfo} name='Side Salad' text='Romaine and iceburg lettuce, grape tomatoes, and cheddar cheese' img={SideSaladImg} /> : null }
-
-                    {this.state.redirect === true ? <Redirect to='/orderNow/checkout' /> : null }
                     <div className={classes.menuSpacingDiv}>
                         <div className={classes.goBackDiv}>
                             <Button className={classes.backButton} onClick={this.props.goBack}>Go Back</Button>
