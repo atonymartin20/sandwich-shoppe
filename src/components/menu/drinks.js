@@ -149,6 +149,7 @@ const styles = theme => ({
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
+        cursor: 'pointer',
     },
     menuDiv: {
         width: '100%',

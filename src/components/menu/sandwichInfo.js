@@ -25,6 +25,7 @@ const styles = theme => ({
     headerText: {
         fontSize: '3.5rem',
         marginBottom: 10,
+        textAlign: 'center',
     },
     imgStyling: {
         width: '75%',
@@ -33,6 +34,13 @@ const styles = theme => ({
             width: '100%',
             marginBottom: '10px',
         },
+    },
+    infoText: {
+        fontSize: '3.0rem',
+        marginTop: 10,
+        width: '100%',
+        padding: '0px 10px',
+        textAlign: 'center',
     },
     menuSpacingDiv: {
         margin: '0 auto',
@@ -50,13 +58,6 @@ const styles = theme => ({
         fontSize: '2.0rem',
         lineHeight: 1.25,
     },
-    infoText: {
-        fontSize: '3.0rem',
-        marginTop: 10,
-        width: '100%',
-        padding: '0px 5px',
-        textAlign: 'center',
-    }
 });
 
 class SandwichInfo extends React.Component {

@@ -125,6 +125,7 @@ const styles = theme => ({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'flex-end',
+        cursor: 'pointer',
     },
     menuDiv: {
         width: '100%',
