@@ -8,6 +8,7 @@ import GardenSaladImg from '../../images/Salads/GardenSalad.jpg';
 import SideSaladImg from '../../images/Salads/SideSalad.jpg';
 import Button from "@material-ui/core/Button";
 import { Redirect } from 'react-router-dom';
+import SaladInfo from './saladInfo.js';
 
 const styles = theme => ({
     backButton: {
@@ -197,6 +198,7 @@ const styles = theme => ({
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
+        cursor: 'pointer',
     },
     menuDiv: {
         width: '100%',
@@ -252,6 +254,11 @@ const styles = theme => ({
 class Salads extends React.Component {
     state={
         redirect: false,
+        moreInfoBuffaloChickenSalad: false,
+        moreInfoCaesarSalad: false,
+        moreInfoChickenCaesarSalad: false,
+        moreInfoGardenSalad: false,
+        moreInfoSideSalad: false,
     }
 
     checkout = (event) => {
@@ -260,6 +267,52 @@ class Salads extends React.Component {
             redirect: true,
         })
     }
+
+    openMoreInfoBuffaloChickenSalad = (event) => {
+        event.preventDefault();
+        this.setState({
+            moreInfoBuffaloChickenSalad: true,
+        })
+    }
+
+    openMoreInfoCaesarSalad = (event) => {
+        event.preventDefault();
+        this.setState({
+            moreInfoCaesarSalad: true,
+        })
+    }
+    openMoreInfoChickenCaesarSalad = (event) => {
+        event.preventDefault();
+        this.setState({
+            moreInfoChickenCaesarSalad: true,
+        })
+    }
+
+    openMoreInfoGardenSalad = (event) => {
+        event.preventDefault();
+        this.setState({
+            moreInfoGardenSalad: true,
+        })
+    }
+
+    openMoreInfoSideSalad = (event) => {
+        event.preventDefault();
+        this.setState({
+            moreInfoSideSalad: true,
+        })
+    }
+
+    closeMoreInfo = (event) => {
+        event.preventDefault();
+        this.setState({
+            moreInfoBuffaloChickenSalad: false,
+            moreInfoCaesarSalad: false,
+            moreInfoChickenCaesarSalad: false,
+            moreInfoGardenSalad: false,
+            moreInfoSideSalad: false,
+        })
+    }
+
 
     render() {
         const { classes } = this.props;
@@ -321,49 +374,45 @@ class Salads extends React.Component {
         else {
             return (
                 <div className={classes.menuDiv}>
+                    {this.state.moreInfoBuffaloChickenSalad === true ? <SaladInfo close={this.closeMoreInfo} name='Buffalo Chicken Salad' text='Romaine and iceburg lettuce, buffalo chicken, mozzarella cheese, and croutons' img={BuffaloChickenSaladImg} /> : null }
+                    {this.state.moreInfoCaesarSalad === true ? <SaladInfo close={this.closeMoreInfo} name='Caesar Salad' text='Romaine and iceburg lettuce, parmesan cheese, and croutons' img={CaesarSaladImg} /> : null }
+                    {this.state.moreInfoChickenCaesarSalad === true ? <SaladInfo close={this.closeMoreInfo} name='Chicken Caesar Salad' text='Romaine and iceburg lettuce, chicken, parmesan cheese, and croutons' img={ChickenCaesarSaladImg} /> : null }
+                    {this.state.moreInfoGardenSalad === true ? <SaladInfo close={this.closeMoreInfo} name='Garden Salad' text='Romaine and iceburg lettuce, grape tomatoes, red onion, cheddar cheese, and croutons' img={GardenSaladImg} /> : null }
+                    {this.state.moreInfoSideSalad === true ? <SaladInfo close={this.closeMoreInfo} name='Side Salad' text='Romaine and iceburg lettuce, grape tomatoes, and cheddar cheese' img={SideSaladImg} /> : null }
+
                     {this.state.redirect === true ? <Redirect to='/orderNow/checkout' /> : null }
                     <div className={classes.menuSpacingDiv}>
-                        {this.context.state.orderItemCount > 0 ? 
-                            <div className={classes.buttonContainerDiv}>
-                                <Button className={classes.backButton} onClick={this.props.goBack}>
-                                    Go Back
-                                </Button>
-                                <Button className={classes.checkoutButton} onClick={this.checkout}>
-                                    Checkout
-                                </Button>
-                            </div> : 
-                            <div className={classes.goBackDiv}>
-                                <Button className={classes.backButton} onClick={this.props.goBack}>Go Back</Button>
-                            </div>
-                        }
+                        <div className={classes.goBackDiv}>
+                            <Button className={classes.backButton} onClick={this.props.goBack}>Go Back</Button>
+                        </div>
                         <h1 className={classes.headerText}>Salads</h1>
                         <div className={classes.menuInsideContainer}>
     
-                            <div className={classes.groupDivBuffaloChickenSalad} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivBuffaloChickenSalad} onClick={this.openMoreInfoBuffaloChickenSalad}>
                                 <div className={classes.insideGroupDiv}>
                                     Buffalo Chicken Salad
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivCaesarSalad} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivCaesarSalad} onClick={this.openMoreInfoCaesarSalad}>
                                 <div className={classes.insideGroupDiv}>
                                     Caesar Salad
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivChickenCaesarSalad} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivChickenCaesarSalad} onClick={this.openMoreInfoChickenCaesarSalad}>
                                 <div className={classes.insideGroupDiv}>
                                     Chicken Caesar Salad
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivGardenSalad} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivGardenSalad} onClick={this.openMoreInfoGardenSalad}>
                                 <div className={classes.insideGroupDiv}>
                                     Garden Salad
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivSideSalad} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivSideSalad} onClick={this.openMoreInfoSideSalad}>
                                 <div className={classes.insideGroupDiv}>
                                     Side Salad
                                 </div>
