@@ -8,7 +8,7 @@ import ChickenParmImg from '../../images/Sandwiches/ChickenParm.jpg';
 import ClubImg from '../../images/Sandwiches/Club.jpg';
 import HamAndCheeseImg from '../../images/Sandwiches/HamAndCheese.jpg';
 import MeatballImg from '../../images/Sandwiches/Meatball.jpg';
-import PhillyCheeseSteakImg from '../../images/Sandwiches/PhillyCheeseSteak.jpg';
+import PhillyCheesesteakImg from '../../images/Sandwiches/PhillyCheeseSteak.jpg';
 import TurkeyImg from '../../images/Sandwiches/Turkey.jpg';
 import CreateYourOwnImg from '../../images/Sandwiches/CreateYourOwn.jpg';
 import Button from "@material-ui/core/Button";
@@ -234,7 +234,7 @@ const styles = theme => ({
             margin: '10px 0px',
         }
     },
-    groupDivPhillyCheeseSteak: {
+    groupDivPhillyCheesesteak: {
         width: '30%',
         minWidth: 200,
         border: '1px solid black',
@@ -248,7 +248,7 @@ const styles = theme => ({
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-        backgroundImage: `url(${PhillyCheeseSteakImg})`,
+        backgroundImage: `url(${PhillyCheesesteakImg})`,
         [theme.breakpoints.down(850)]: {
             width: '45%',
         },
@@ -318,6 +318,7 @@ const styles = theme => ({
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
+        cursor: 'pointer',
     },
     menuDiv: {
         width: '100%',
@@ -380,7 +381,7 @@ class Sandwiches extends React.Component {
         moreInfoClub: false,
         moreInfoHamAndCheese: false,
         moreInfoMeatball: false,
-        moreInfoPhillyCheeseSteak: false,
+        moreInfoPhillyCheesesteak: false,
         moreInfoTurkey: false,
         moreInfoCreateYourOwn: false,
     }
@@ -441,10 +442,10 @@ class Sandwiches extends React.Component {
         })
     }
 
-    openMoreInfoPhillyCheeseSteak = (event) => {
+    openMoreInfoPhillyCheesesteak = (event) => {
         event.preventDefault();
         this.setState({
-            moreInfoPhillyCheeseSteak: true,
+            moreInfoPhillyCheesesteak: true,
         })
     }
 
@@ -472,7 +473,7 @@ class Sandwiches extends React.Component {
             moreInfoClub: false,
             moreInfoHamAndCheese: false,
             moreInfoMeatball: false,
-            moreInfoPhillyCheeseSteak: false,
+            moreInfoPhillyCheesesteak: false,
             moreInfoTurkey: false,
             moreInfoCreateYourOwn: false,
         })
@@ -543,9 +544,9 @@ class Sandwiches extends React.Component {
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivPhillyCheeseSteak} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivPhillyCheesesteak} onClick={this.chooseSandwiches}>
                                 <div className={classes.insideGroupDiv}>
-                                    Philly Cheese Steak
+                                    Philly Cheesesteak
                                 </div>
                             </div>
     
@@ -576,7 +577,7 @@ class Sandwiches extends React.Component {
                         {this.state.moreInfoClub === true ? <SandwichInfo close={this.closeMoreInfo} name='Club' text='Turkey, bacon, ham, lettuce, and tomato' img={ClubImg} /> : null }
                         {this.state.moreInfoHamAndCheese === true ? <SandwichInfo close={this.closeMoreInfo} name='Ham and Cheese' text='Ham, lettuce, and tomato' img={HamAndCheeseImg} /> : null }
                         {this.state.moreInfoMeatball === true ? <SandwichInfo close={this.closeMoreInfo} name='Meatball' text='Homemade Marinara and meatballs' img={MeatballImg} /> : null }
-                        {this.state.moreInfoPhillyCheeseSteak === true ? <SandwichInfo close={this.closeMoreInfo} name='Philly Cheesesteak' text='Steak, grilled onions, and peppers' img={PhillyCheeseSteakImg} /> : null }
+                        {this.state.moreInfoPhillyCheesesteak === true ? <SandwichInfo close={this.closeMoreInfo} name='Philly Cheesesteak' text='Steak, grilled onions, and peppers' img={PhillyCheesesteakImg} /> : null }
                         {this.state.moreInfoTurkey === true ? <SandwichInfo close={this.closeMoreInfo} name='Turkey' text='Turkey, lettuce, and tomato' img={TurkeyImg} /> : null }
                         {this.state.moreInfoCreateYourOwn === true ? <SandwichInfo close={this.closeMoreInfo} name='Create your Own' text='Choose your own ingredients' img={CreateYourOwnImg} /> : null }
 
@@ -629,9 +630,9 @@ class Sandwiches extends React.Component {
                                 </div>
                             </div>
 
-                            <div className={classes.groupDivPhillyCheeseSteak} onClick={this.openMoreInfoPhillyCheeseSteak}>
+                            <div className={classes.groupDivPhillyCheesesteak} onClick={this.openMoreInfoPhillyCheesesteak}>
                                 <div className={classes.insideGroupDiv}>
-                                    Philly Cheese Steak
+                                    Philly Cheesesteak
                                 </div>
                             </div>
 
