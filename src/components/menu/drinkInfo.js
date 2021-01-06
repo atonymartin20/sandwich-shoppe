@@ -28,10 +28,11 @@ const styles = theme => ({
         textAlign: 'center',
     },
     imgStyling: {
-        width: '75%',
+        minWidth: '25%',
+        width: '50%',
         maxWidth: '1000px',
+        maxHeight: '50vh',
         [theme.breakpoints.down(550)]: {
-            width: '100%',
             marginBottom: '10px',
         },
     },
