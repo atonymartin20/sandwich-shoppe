@@ -6,6 +6,7 @@ import ChipsImg from '../../images/Sides/Chips.jpg';
 import CookiesImg from '../../images/Sides/Cookies.jpg';
 import Button from "@material-ui/core/Button";
 import { Redirect } from 'react-router-dom';
+import SideInfo from './sideinfo.js';
 
 const styles = theme => ({
     backButton: {
@@ -205,12 +206,45 @@ const styles = theme => ({
 class Sides extends React.Component {
     state={
         redirect: false,
+        moreInfoCheesebread: false,
+        moreInfoChips: false,
+        moreInfoCookies: false,
     }
 
     checkout = (event) => {
         event.preventDefault();
         this.setState({
             redirect: true,
+        })
+    }
+
+    openMoreInfoCheesebread = (event) => {
+        event.preventDefault();
+        this.setState({
+            moreInfoCheesebread: true,
+        })
+    }
+
+    openMoreInfoChips = (event) => {
+        event.preventDefault();
+        this.setState({
+            moreInfoChips: true,
+        })
+    }
+
+    openMoreInfoCookies = (event) => {
+        event.preventDefault();
+        this.setState({
+            moreInfoCookies: true,
+        })
+    }
+
+    closeMoreInfo = (event) => {
+        event.preventDefault();
+        this.setState({
+            moreInfoCheesebread: false,
+            moreInfoChips: false,
+            moreInfoCookies: false,
         })
     }
 
@@ -262,37 +296,30 @@ class Sides extends React.Component {
         else {
             return (
                 <div className={classes.menuDiv}>
-                    {this.state.redirect === true ? <Redirect to='/orderNow/checkout' /> : null }
+
+                    {this.state.moreInfoCheesebread === true ? <SideInfo close={this.closeMoreInfo} name='Cheesebread' text='Stuffed cheesebread with garlic and italian seasoning' img={CheesebreadImg} /> : null }
+                    {this.state.moreInfoChips === true ? <SideInfo close={this.closeMoreInfo} name='Chips' text='Doritos, Fritos, Lays, or Sun Chips' img={ChipsImg} /> : null }
+                    {this.state.moreInfoCookies === true ? <SideInfo close={this.closeMoreInfo} name='Cookies' text='Chocolate chip or sugar cookies' img={CookiesImg} /> : null }
                     <div className={classes.menuSpacingDiv}>
-                        {this.context.state.orderItemCount > 0 ? 
-                            <div className={classes.buttonContainerDiv}>
-                                <Button className={classes.backButton} onClick={this.props.goBack}>
-                                    Go Back
-                                </Button>
-                                <Button className={classes.checkoutButton} onClick={this.checkout}>
-                                    Checkout
-                                </Button>
-                            </div> : 
-                            <div className={classes.goBackDiv}>
-                                <Button className={classes.backButton} onClick={this.props.goBack}>Go Back</Button>
-                            </div>
-                        }
+                        <div className={classes.goBackDiv}>
+                            <Button className={classes.backButton} onClick={this.props.goBack}>Go Back</Button>
+                        </div>
                         <h1 className={classes.headerText}>Sides</h1>
                         <div className={classes.menuInsideContainer}>
     
-                            <div className={classes.groupDivCheesebread} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivCheesebread} onClick={this.openMoreInfoCheesebread}>
                                 <div className={classes.insideGroupDiv}>
                                     Cheesebread
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivChips} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivChips} onClick={this.openMoreInfoChips}>
                                 <div className={classes.insideGroupDiv}>
                                     Chips
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivCookies} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivCookies} onClick={this.openMoreInfoCookies}>
                                 <div className={classes.insideGroupDiv}>
                                     Cookies
                                 </div>
