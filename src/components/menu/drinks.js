@@ -6,6 +6,7 @@ import SodaImg from '../../images/Drinks/Soda.jpg';
 import TeaImg from '../../images/Drinks/Tea.jpg';
 import Button from "@material-ui/core/Button";
 import { Redirect } from 'react-router-dom';
+import DrinkInfo from './drinkInfo.js';
 
 const styles = theme => ({
     backButton: {
@@ -205,12 +206,45 @@ const styles = theme => ({
 class Drinks extends React.Component {
     state={
         redirect: false,
+        moreInfoLemonade: false,
+        moreInfoSoda: false,
+        moreInfoTea: false,
     }
 
     checkout = (event) => {
         event.preventDefault();
         this.setState({
             redirect: true,
+        })
+    }
+
+    openMoreInfoLemonade = (event) => {
+        event.preventDefault();
+        this.setState({
+            moreInfoLemonade: true,
+        })
+    }
+
+    openMoreInfoSoda = (event) => {
+        event.preventDefault();
+        this.setState({
+            moreInfoSoda: true,
+        })
+    }
+
+    openMoreInfoTea = (event) => {
+        event.preventDefault();
+        this.setState({
+            moreInfoTea: true,
+        })
+    }
+
+    closeMoreInfo = (event) => {
+        event.preventDefault();
+        this.setState({
+            moreInfoLemonade: false,
+            moreInfoSoda: false,
+            moreInfoTea: false,
         })
     }
 
@@ -262,37 +296,29 @@ class Drinks extends React.Component {
         else {
             return (
                 <div className={classes.menuDiv}>
-                    {this.state.redirect === true ? <Redirect to='/orderNow/checkout' /> : null }
+                    {this.state.moreInfoLemonade === true ? <DrinkInfo close={this.closeMoreInfo} name='Lemonade' text='Homemade lemonade' img={LemonadeImg} /> : null }
+                    {this.state.moreInfoSoda === true ? <DrinkInfo close={this.closeMoreInfo} name='Soda' text='Pepsi, Diet Pepsi, Dr. Pepper, Diet Dr. Pepper, Sierra Mist, Mountain Dew, and MUG Root Beer' img={SodaImg} /> : null }
+                    {this.state.moreInfoTea === true ? <DrinkInfo close={this.closeMoreInfo} name='Tea' text='Sweet or unsweet tea' img={TeaImg} /> : null }
                     <div className={classes.menuSpacingDiv}>
-                        {this.context.state.orderItemCount > 0 ? 
-                            <div className={classes.buttonContainerDiv}>
-                                <Button className={classes.backButton} onClick={this.props.goBack}>
-                                    Go Back
-                                </Button>
-                                <Button className={classes.checkoutButton} onClick={this.checkout}>
-                                    Checkout
-                                </Button>
-                            </div> : 
-                            <div className={classes.goBackDiv}>
-                                <Button className={classes.backButton} onClick={this.props.goBack}>Go Back</Button>
-                            </div>
-                        }
+                        <div className={classes.goBackDiv}>
+                            <Button className={classes.backButton} onClick={this.props.goBack}>Go Back</Button>
+                        </div>
                         <h1 className={classes.headerText}>Drinks</h1>
                         <div className={classes.menuInsideContainer}>
     
-                            <div className={classes.groupDivLemonade} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivLemonade} onClick={this.openMoreInfoLemonade}>
                                 <div className={classes.insideGroupDiv}>
                                     Lemonade
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivSoda} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivSoda} onClick={this.openMoreInfoSoda}>
                                 <div className={classes.insideGroupDiv}>
                                     Soda
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivTea} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivTea} onClick={this.openMoreInfoTea}>
                                 <div className={classes.insideGroupDiv}>
                                     Tea
                                 </div>
