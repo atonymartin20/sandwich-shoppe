@@ -2,32 +2,26 @@
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-# Styling Guide:
-Desktop 1400 px
-Tablet 800 px
-Mobile 400 px
-Font Family: 'Roboto', sans-serif;
-
 # Menu
 ### Sandwiches:
-Buffalo Chicken
-Philly Cheese Steak
-Chicken Parm
-Meatball
-Chicken Bacon Ranch
 BLT
-Turkey
+Buffalo Chicken
+Chicken Bacon Ranch
+Chicken Parm
 Club
-Ham
+Ham and Cheese
+Meatball
+Philly Cheesesteak
+Turkey
 Create your own
 
 ### Meats:
+Bacon
 Chicken
-Turkey
 Ham
-Steak
-Backon
 Meatball
+Steak
+Turkey
 
 ### Cheese:
 American
@@ -57,43 +51,48 @@ Spinach
 Tomatoes
 
 ### Seasonings:
-Salt & Pepper
+Oregano
 Pepper
 Salt
-Oregano
+Salt & Pepper
 
 ### Sauces:
 Barbecue
 Buffalo
+Marinara
 Mayo
+Mustard
 Oil
 Ranch Dressing
-Mustard
 Spicy Mustard
 Sriracha
 Thousand Island
 
 ### Salads:
-Chicken Caesar Salad
 Buffalo Chicken Salad
 Caesar Salad
+Chicken Caesar Salad
 Garden Salad
 Side Salad
 
 ### Dressings:
-Ranch Dressing
-Italian Dressing
-French Dressing
 Fat Free Ranch Dressing
+French Dressing
+Italian Dressing
+Ranch Dressing
 Thousand Island Dressing
 
-### Extras:
+### Sides:
+Cheesebread
 Chips (Doritos, Sun Chips, Lays, Fritos)
 Chocolate Chip Cookie, Sugar Cookie
-Cheesebread
 
 ### Drinks:
-Soda (Pepsi, Diet Pepsi, Dr. Pepper, Diet Dr. Pepper, Mountain Dew, Sierra Mist, Mug Root Beer)
 Lemonade
-Unsweet Tea
-Sweet Tea
+Soda (Pepsi, Diet Pepsi, Dr. Pepper, Diet Dr. Pepper, Mountain Dew, Sierra Mist, Mug Root Beer)
+Tea
+
+### To Do List:
+Build Customize Component
+Build Checkout Component
+Build Cart Component

@@ -4,8 +4,68 @@ import { AppContext } from '../context/appContext.js';
 import LemonadeImg from '../../images/Drinks/Lemonade.jpg';
 import SodaImg from '../../images/Drinks/Soda.jpg';
 import TeaImg from '../../images/Drinks/Tea.jpg';
+import Button from "@material-ui/core/Button";
+import { Redirect } from 'react-router-dom';
+import DrinkInfo from './drinkInfo.js';
 
 const styles = theme => ({
+    backButton: {
+        backgroundColor: '#0087A8',
+        fontWeight: 500,
+        height: 50,
+        fontSize: '2.5rem',
+        color: 'white',
+        padding: '0px 15px',
+        border: '3px solid #0087A8',
+        borderRadius: '10px',
+        width: '200px',
+        "&:hover": {
+            color: '#0087A8',
+            backgroundColor: 'white',
+        },
+        [theme.breakpoints.down(550)]: {
+            width: '100%',
+            marginBottom: '10px',
+        },
+    },
+    buttonContainerDiv: {
+        width: '100%',
+        display: 'flex',
+        flexWrap:'wrap',
+        justifyContent: 'space-between',
+        padding: '0px 25px',
+        [theme.breakpoints.down(550)]: {
+            padding: '0px',    
+        },
+    },
+    checkoutButton: {
+        backgroundColor: '#7600A8',
+        fontWeight: 500,
+        height: 50,
+        fontSize: '2.5rem',
+        color: 'white',
+        padding: '0px 15px',
+        border: '3px solid #7600A8',
+        borderRadius: '10px',
+        width: '200px',
+        "&:hover": {
+            color: '#7600A8',
+            backgroundColor: 'white',
+        },
+        [theme.breakpoints.down(550)]: {
+            width: '100%',
+            marginBottom: '10px',
+        },
+    },
+    goBackDiv: {
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'flex-start',
+        padding: '0px 25px',
+        [theme.breakpoints.down(550)]: {
+            padding: '0px',    
+        },
+    },
     groupDivLemonade: {
         width: '30%',
         minWidth: 200,
@@ -90,6 +150,7 @@ const styles = theme => ({
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
+        cursor: 'pointer',
     },
     menuDiv: {
         width: '100%',
@@ -121,6 +182,21 @@ const styles = theme => ({
         fontSize: '2.0rem',
         lineHeight: 1.25,
     },
+    menuSpacingOrderDiv: {
+        marginTop: 0,
+        width: '100%',
+        maxWidth: 1400,
+        borderRadius: '4px',
+        backgroundColor: '#f8fbfd',
+        minHeight: 100,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        padding: '0px 0px',
+        fontSize: '2.0rem',
+        lineHeight: 1.25,
+    },
     menuText: {
         marginTop: 20,
         marginBottom: 20,
@@ -129,43 +205,84 @@ const styles = theme => ({
 
 class Drinks extends React.Component {
     state={
-        showIntro: true,
-        showSandwiches: false,
-        showSalads: false,
-        showSides: false,
-        showDrinks: false,
+        redirect: false,
+        moreInfoLemonade: false,
+        moreInfoSoda: false,
+        moreInfoTea: false,
     }
 
-    chooseSandwiches = (event) => {
+    checkout = (event) => {
         event.preventDefault();
         this.setState({
-            showSandwiches: true,
-            showIntro: false,
+            redirect: true,
+        })
+    }
+
+    openMoreInfoLemonade = (event) => {
+        event.preventDefault();
+        this.setState({
+            moreInfoLemonade: true,
+        })
+    }
+
+    openMoreInfoSoda = (event) => {
+        event.preventDefault();
+        this.setState({
+            moreInfoSoda: true,
+        })
+    }
+
+    openMoreInfoTea = (event) => {
+        event.preventDefault();
+        this.setState({
+            moreInfoTea: true,
+        })
+    }
+
+    closeMoreInfo = (event) => {
+        event.preventDefault();
+        this.setState({
+            moreInfoLemonade: false,
+            moreInfoSoda: false,
+            moreInfoTea: false,
         })
     }
 
     render() {
         const { classes } = this.props;
-        console.log(this.context.state)
-        return (
-            <div className={classes.menuDiv}>
-
-                    <div className={classes.menuSpacingDiv}>
+        if(this.props.type === 'order') {
+            return (
+                <div className={classes.menuDiv}>
+                    {this.state.redirect === true ? <Redirect to='/orderNow/checkout' /> : null }
+                    <div className={classes.menuSpacingOrderDiv}>
+                        {this.context.state.orderItemCount > 0 ? 
+                            <div className={classes.buttonContainerDiv}>
+                                <Button className={classes.backButton} onClick={this.props.goBack}>
+                                    Go Back
+                                </Button>
+                                <Button className={classes.checkoutButton} onClick={this.checkout}>
+                                    Checkout
+                                </Button>
+                            </div> : 
+                            <div className={classes.goBackDiv}>
+                                <Button className={classes.backButton} onClick={this.props.goBack}>Go Back</Button>
+                            </div>
+                        }
                         <h1 className={classes.headerText}>Drinks</h1>
                         <div className={classes.menuInsideContainer}>
-
+    
                             <div className={classes.groupDivLemonade} onClick={this.chooseSandwiches}>
                                 <div className={classes.insideGroupDiv}>
                                     Lemonade
                                 </div>
                             </div>
-
+    
                             <div className={classes.groupDivSoda} onClick={this.chooseSandwiches}>
                                 <div className={classes.insideGroupDiv}>
                                     Soda
                                 </div>
                             </div>
-
+    
                             <div className={classes.groupDivTea} onClick={this.chooseSandwiches}>
                                 <div className={classes.insideGroupDiv}>
                                     Tea
@@ -173,8 +290,44 @@ class Drinks extends React.Component {
                             </div>
                         </div>
                     </div>
-            </div>
-        )
+                </div>
+            )
+        }
+        else {
+            return (
+                <div className={classes.menuDiv}>
+                    {this.state.moreInfoLemonade === true ? <DrinkInfo close={this.closeMoreInfo} name='Lemonade' text='Homemade lemonade' img={LemonadeImg} /> : null }
+                    {this.state.moreInfoSoda === true ? <DrinkInfo close={this.closeMoreInfo} name='Soda' text='Pepsi, Diet Pepsi, Dr. Pepper, Diet Dr. Pepper, Sierra Mist, Mountain Dew, and MUG Root Beer' img={SodaImg} /> : null }
+                    {this.state.moreInfoTea === true ? <DrinkInfo close={this.closeMoreInfo} name='Tea' text='Sweet or unsweet tea' img={TeaImg} /> : null }
+                    <div className={classes.menuSpacingDiv}>
+                        <div className={classes.goBackDiv}>
+                            <Button className={classes.backButton} onClick={this.props.goBack}>Go Back</Button>
+                        </div>
+                        <h1 className={classes.headerText}>Drinks</h1>
+                        <div className={classes.menuInsideContainer}>
+    
+                            <div className={classes.groupDivLemonade} onClick={this.openMoreInfoLemonade}>
+                                <div className={classes.insideGroupDiv}>
+                                    Lemonade
+                                </div>
+                            </div>
+    
+                            <div className={classes.groupDivSoda} onClick={this.openMoreInfoSoda}>
+                                <div className={classes.insideGroupDiv}>
+                                    Soda
+                                </div>
+                            </div>
+    
+                            <div className={classes.groupDivTea} onClick={this.openMoreInfoTea}>
+                                <div className={classes.insideGroupDiv}>
+                                    Tea
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
     }
 }
 
