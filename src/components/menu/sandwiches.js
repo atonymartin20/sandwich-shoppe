@@ -384,6 +384,7 @@ class Sandwiches extends React.Component {
         moreInfoPhillyCheesesteak: false,
         moreInfoTurkey: false,
         moreInfoCreateYourOwn: false,
+        createSandwich: false,
     }
 
     checkout = (event) => {
@@ -460,6 +461,20 @@ class Sandwiches extends React.Component {
         event.preventDefault();
         this.setState({
             moreInfoCreateYourOwn: true,
+        })
+    }
+
+    createSandwich = (event, sandwich) => {
+        event.preventDefault();
+        this.setState({
+            sandwich
+        })
+    }
+
+    closeMenu = (event) => {
+        event.preventDefault();
+        this.setState({
+            createSandwich: true,
         })
     }
 
