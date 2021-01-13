@@ -426,6 +426,7 @@ class Sandwiches extends React.Component {
             // Sauces
             hasBarbecueSauce: false,
             hasBuffaloSauce: false,
+            hasMarinara: false,
             hasMayo: false,
             hasMustard: false,
             hasOil: false,
@@ -594,13 +595,13 @@ class Sandwiches extends React.Component {
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivChickenBaconRanch} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivChickenBaconRanch} onClick={() => {this.createSandwich({name: 'Chicken Bacon Ranch', hasBacon: true, hasChicken: true, hasLeafLettuce: true, hasTomatoes: true, hasRanchDressing: true, startingPrice: 4.59 })}}>
                                 <div className={classes.insideGroupDiv}>
                                     Chicken Bacon Ranch
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivChickenParm} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivChickenParm} onClick={() => {this.createSandwich({name: 'Chicken Parm', hasChicken: true, hasMarinara: true, startingPrice: 3.99 })}}>
                                 <div className={classes.insideGroupDiv}>
                                     Chicken Parm
                                 </div>
