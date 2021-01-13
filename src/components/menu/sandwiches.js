@@ -394,12 +394,12 @@ class Sandwiches extends React.Component {
             hasWhiteBread: false,
             hasWrap: false,
             // Meats
-            hasChicken: false,
-            hasTurkey: false,
-            hasHam: false,
-            hasSteak: false,
             hasBacon: false,
+            hasChicken: false,
+            hasHam: false,
             hasMeatball: false,
+            hasSteak: false,
+            hasTurkey: false,
             // Cheese
             hasAmericanCheese: false,
             hasCheddarCheese: false,
@@ -438,7 +438,8 @@ class Sandwiches extends React.Component {
             isSmallSandwich: false,
             isMediumSandwich: false,
             isLargeSandwich: false,
-            price: 0.00,
+            startingPrice: 0.00,
+            finalPrice: 0.00,
         }
     }
 
@@ -581,13 +582,13 @@ class Sandwiches extends React.Component {
                         <h1 className={classes.headerText}>Sandwiches</h1>
                         <div className={classes.menuInsideContainer}>
     
-                            <div className={classes.groupDivBLT} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivBLT} onClick={() => {this.createSandwich({name: 'BLT', hasBacon: true, hasLeafLettuce: true, hasTomatoes: true, startingPrice: 3.99 })}}>
                                 <div className={classes.insideGroupDiv}>
                                     BLT
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivBuffaloChicken} onClick={() => {this.createSandwich({name: 'Buffalo Chicken'})}}>
+                            <div className={classes.groupDivBuffaloChicken} onClick={() => {this.createSandwich({name: 'Buffalo Chicken', hasBuffaloSauce: true, hasChicken: true, hasShreddedLettuce: true, hasTomatoes: true, startingPrice: 3.99 })}}>
                                 <div className={classes.insideGroupDiv}>
                                     Buffalo Chicken
                                 </div>
