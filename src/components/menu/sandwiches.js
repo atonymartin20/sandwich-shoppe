@@ -519,10 +519,18 @@ class Sandwiches extends React.Component {
         })
     }
 
-    createSandwich = (event, sandwich) => {
-        event.preventDefault();
+    createSandwich = (sandwich) => {
+        let newSandwich = this.state.sandwich;
+        Object.keys(newSandwich).forEach(function (newSandwichKey) {
+            Object.keys(sandwich).forEach(function (sandwichKey) {
+                if(sandwichKey === newSandwichKey) {
+                    newSandwich[newSandwichKey] = sandwich[sandwichKey]
+                }
+            })
+        });
+        
         this.setState({
-            sandwich
+            sandwich: newSandwich,
         })
     }
 
@@ -551,6 +559,7 @@ class Sandwiches extends React.Component {
 
     render() {
         const { classes } = this.props;
+        console.log(this.state.sandwich)
         if(this.props.type === 'order') {
             return (
                 <div className={classes.menuDiv}>
@@ -578,7 +587,7 @@ class Sandwiches extends React.Component {
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivBuffaloChicken} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivBuffaloChicken} onClick={() => {this.createSandwich({name: 'Buffalo Chicken'})}}>
                                 <div className={classes.insideGroupDiv}>
                                     Buffalo Chicken
                                 </div>
