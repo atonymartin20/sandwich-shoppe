@@ -8,6 +8,7 @@ const styles = theme => ({
         width: '25px',
         height: '25px',
         cursor: "pointer",
+        marginLeft: 'auto',
         marginRight: '2%',
         alignSelf: 'flex-end',
         marginBottom: 10,
@@ -22,10 +23,22 @@ const styles = theme => ({
         overflow: 'auto',
         backgroundColor: 'rgba(43, 43, 43, 0.3)',
     },
+    header: {
+        display: 'flex',
+        width: '100%',
+        justifyContent: 'flex-end',
+        borderBottom: '1px solid black',
+    },
     headerText: {
         fontSize: '3.5rem',
+        marginLeft: 'auto',
+        paddingLeft: '42px',
         marginBottom: 10,
         textAlign: 'center',
+        [theme.breakpoints.down(550)]: {
+            fontSize: '3.0rem',
+            paddingLeft: '34px'
+        },
     },
     infoText: {
         fontSize: '3.0rem',
@@ -65,11 +78,15 @@ class CreateSandwich extends React.Component {
 
     render() {
         const { classes } = this.props;
+        console.log(this.state.sandwich)
             return (
                 <div className={classes.container}>
                     <div className={classes.menuSpacingDiv}>
-                        <h1 className={classes.headerText}>{this.props.title}</h1>
-                        <CloseIcon onClick={this.props.close} className={classes.closeIconStyling} />
+                        <div className={classes.header}>
+                            <h1 className={classes.headerText}>{this.props.title}</h1>
+                            <CloseIcon onClick={this.props.close} className={classes.closeIconStyling} />
+                        </div>
+
                         <p className={classes.infoText}>{this.props.text}</p>
                     </div>
                 </div>
