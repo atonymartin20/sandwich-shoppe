@@ -35,12 +35,12 @@ export default class AppProvider extends React.Component {
             hasWhiteBread: false,
             hasWrap: false,
             // Meats
-            hasChicken: false,
-            hasTurkey: false,
-            hasHam: false,
-            hasSteak: false,
             hasBacon: false,
+            hasChicken: false,
+            hasHam: false,
             hasMeatball: false,
+            hasSteak: false,
+            hasTurkey: false,
             // Cheese
             hasAmericanCheese: false,
             hasCheddarCheese: false,
@@ -52,6 +52,7 @@ export default class AppProvider extends React.Component {
             hasBananaPeppers: false,
             hasCucumbers: false,
             hasGreenPeppers: false,
+            hasGrilledOnions: false,
             hasJalapenos: false,
             hasLeafLettuce: false,
             hasPickles: false,
@@ -67,6 +68,7 @@ export default class AppProvider extends React.Component {
             // Sauces
             hasBarbecueSauce: false,
             hasBuffaloSauce: false,
+            hasMarinara: false,
             hasMayo: false,
             hasMustard: false,
             hasOil: false,
@@ -79,7 +81,8 @@ export default class AppProvider extends React.Component {
             isSmallSandwich: false,
             isMediumSandwich: false,
             isLargeSandwich: false,
-            price: 0.00,
+            startingPrice: 0.00,
+            finalPrice: 0.00,
         },
     };
 
