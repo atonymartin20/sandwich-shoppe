@@ -27,14 +27,6 @@ const styles = theme => ({
         marginBottom: 10,
         textAlign: 'center',
     },
-    imgStyling: {
-        width: '75%',
-        maxWidth: '1000px',
-        [theme.breakpoints.down(550)]: {
-            width: '100%',
-            marginBottom: '10px',
-        },
-    },
     infoText: {
         fontSize: '3.0rem',
         marginTop: 10,
@@ -67,14 +59,17 @@ const styles = theme => ({
 });
 
 class CreateSandwich extends React.Component {
+    state={
+        sandwich: this.props.sandwich || {}
+    }
+
     render() {
         const { classes } = this.props;
             return (
                 <div className={classes.container}>
                     <div className={classes.menuSpacingDiv}>
+                        <h1 className={classes.headerText}>{this.props.title}</h1>
                         <CloseIcon onClick={this.props.close} className={classes.closeIconStyling} />
-                        <h1 className={classes.headerText}>{this.props.name}</h1>
-                        <img className={classes.imgStyling} src={this.props.img} alt='Img of a sandwich' />
                         <p className={classes.infoText}>{this.props.text}</p>
                     </div>
                 </div>
