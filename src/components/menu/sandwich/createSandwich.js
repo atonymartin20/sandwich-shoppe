@@ -3,8 +3,16 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import { AppContext } from '../../context/appContext.js';
 import CloseIcon from '@material-ui/icons/Close';
 import SandwichSizeRadioButtons from './sandwichSizeRadioButtons.js';
+import SandwichBreadRadioButtons from './sandwichBreadRadioButtons.js';
 
 const styles = theme => ({
+    categoryBar: {
+        width: '100%',
+        backgroundColor: '#0087A8',
+        color: 'white',
+        marginTop: 0,
+        textAlign: 'center',
+    },
     closeIconStyling: {
         width: '25px',
         height: '25px',
@@ -28,7 +36,6 @@ const styles = theme => ({
         display: 'flex',
         width: '100%',
         justifyContent: 'flex-end',
-        borderBottom: '1px solid black',
     },
     headerText: {
         fontSize: '3.5rem',
@@ -143,9 +150,28 @@ class CreateSandwich extends React.Component {
         })
     }
 
+    SandwichSizeRadioButton = (small, medium, large) => {
+        let otherValues = this.state.otherValues
+        if(small || medium || large) {
+            otherValues['isSmallSandwich'] = small;
+            otherValues['isMediumSandwich'] = medium;
+            otherValues['isLargeSandwich'] = large;
+            this.setState({
+                otherValues,
+            })
+        }
+        else {
+            otherValues['isSmallSandwich'] = true;
+            otherValues['isMediumSandwich'] = false;
+            otherValues['isLargeSandwich'] = false;
+            this.setState({
+                otherValues,
+            })
+        }
+    }
+
     render() {
         const { classes } = this.props;
-        console.log(this.state)
 
             return (
                 <div className={classes.container}>
@@ -154,6 +180,9 @@ class CreateSandwich extends React.Component {
                             <h1 className={classes.headerText}>{this.props.title}</h1>
                             <CloseIcon onClick={this.props.close} className={classes.closeIconStyling} />
                         </div>
+                        <div className={classes.categoryBar}>Choose Size:</div>
+                        <SandwichSizeRadioButtons updateButtons={this.SandwichSizeRadioButton} price={this.state.otherValues['startingPrice']} />
+                        <div className={classes.categoryBar}>Choose Bread:</div>
                         <p className={classes.infoText}>{this.props.text}</p>
                     </div>
                 </div>
