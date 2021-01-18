@@ -6,7 +6,7 @@ import SandwichImg from '../../images/Sandwiches/sandwichesBackgroundImg.jpg';
 import SaladImg from '../../images/Salads/CaesarSalad.jpg';
 import SidesImg from '../../images/Sides/Cookies.jpg';
 import DrinkImg from '../../images/Drinks/Soda.jpg';
-import Sandwiches from './sandwiches.js';
+import Sandwiches from './sandwich/sandwiches.js';
 import Salads from './salads.js';
 import Sides from './sides.js';
 import Drinks from './drinks.js';

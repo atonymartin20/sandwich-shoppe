@@ -1,7 +1,8 @@
 import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { AppContext } from '../context/appContext.js';
+import { AppContext } from '../../context/appContext.js';
 import CloseIcon from '@material-ui/icons/Close';
+import SandwichSizeRadioButtons from './sandwichSizeRadioButtons.js';
 
 const styles = theme => ({
     closeIconStyling: {
@@ -73,12 +74,79 @@ const styles = theme => ({
 
 class CreateSandwich extends React.Component {
     state={
-        sandwich: this.props.sandwich || {}
+        sandwich: {},
+        breads: {},
+        meats: {},
+        cheeses: {},
+        veggies: {},
+        seasonings: {},
+        sauces: {},
+        otherValues: {},
+        sandwichDefaults: {},
+    }
+
+    componentDidMount() {
+        let sandwich = this.props.sandwich || {}
+        let breads = {};
+        let meats = {};
+        let cheeses = {};
+        let veggies = {};
+        let seasonings = {};
+        let sauces = {};
+        let otherValues = {};
+        let sandwichDefaults = {};
+
+        for (const [key, value] of Object.entries(sandwich)) {
+            if(value === true) {
+                sandwichDefaults[key] = value
+            }
+
+            if(key.includes('Bread') || key === 'hasWrap') {
+                breads[key] = value
+            }
+
+            if(key === 'hasBacon' || key === 'hasChicken' || key === 'hasHam'  || key === 'hasMeatball' || key === 'hasSteak' || key === 'hasTurkey') {
+                meats[key] = value
+            }
+
+            if(key.includes('Cheese')) {
+                cheeses[key] = value
+            }
+
+            if(key.includes('Lettuce') || key.includes('Peppers') || key === 'hasCucumbers' || key.includes('Onions') || key === 'hasJalapenos' || key === 'hasPickles' || key === 'hasSpinach' || key === 'hasTomatoes') {
+                veggies[key] = value
+            }
+
+            if(key.includes('Salt') || key === 'hasOregano' || key === 'hasPepper') {
+                seasonings[key] = value
+            }
+
+            if(key.includes('Sauce') || key === 'hasMarinara' || key === 'hasMayo' || key.includes('Mustard') || key === 'hasOil' || key.includes('Dressing')) {
+                sauces[key] = value
+            }
+
+            if (key === 'name' || key === 'isToasted' || key.includes('Sandwich') || key.includes('Price')) {
+                otherValues[key] = value
+            }
+        }
+
+        this.setState({
+            sandwichDefaults,
+            sandwich,
+            breads,
+            meats,
+            cheeses,
+            veggies,
+            seasonings,
+            sauces,
+            otherValues,
+        })
     }
 
     render() {
         const { classes } = this.props;
-        console.log(this.state.sandwich)
+        console.log(this.state)
+
             return (
                 <div className={classes.container}>
                     <div className={classes.menuSpacingDiv}>
@@ -86,7 +154,6 @@ class CreateSandwich extends React.Component {
                             <h1 className={classes.headerText}>{this.props.title}</h1>
                             <CloseIcon onClick={this.props.close} className={classes.closeIconStyling} />
                         </div>
-
                         <p className={classes.infoText}>{this.props.text}</p>
                     </div>
                 </div>

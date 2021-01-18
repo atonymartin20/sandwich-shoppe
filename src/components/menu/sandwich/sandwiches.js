@@ -1,16 +1,16 @@
 import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { AppContext } from '../context/appContext.js';
-import BLTImg from '../../images/Sandwiches/BLT.jpg';
-import BuffaloChickenImg from '../../images/Sandwiches/BuffaloChicken.jpg';
-import ChickenBaconRanchImg from '../../images/Sandwiches/ChickenBaconRanch.jpg';
-import ChickenParmImg from '../../images/Sandwiches/ChickenParm.jpg';
-import ClubImg from '../../images/Sandwiches/Club.jpg';
-import HamAndCheeseImg from '../../images/Sandwiches/HamAndCheese.jpg';
-import MeatballImg from '../../images/Sandwiches/Meatball.jpg';
-import PhillyCheesesteakImg from '../../images/Sandwiches/PhillyCheeseSteak.jpg';
-import TurkeyImg from '../../images/Sandwiches/Turkey.jpg';
-import CreateYourOwnImg from '../../images/Sandwiches/CreateYourOwn.jpg';
+import { AppContext } from '../../context/appContext.js';
+import BLTImg from '../../../images/Sandwiches/BLT.jpg';
+import BuffaloChickenImg from '../../../images/Sandwiches/BuffaloChicken.jpg';
+import ChickenBaconRanchImg from '../../../images/Sandwiches/ChickenBaconRanch.jpg';
+import ChickenParmImg from '../../../images/Sandwiches/ChickenParm.jpg';
+import ClubImg from '../../../images/Sandwiches/Club.jpg';
+import HamAndCheeseImg from '../../../images/Sandwiches/HamAndCheese.jpg';
+import MeatballImg from '../../../images/Sandwiches/Meatball.jpg';
+import PhillyCheesesteakImg from '../../../images/Sandwiches/PhillyCheeseSteak.jpg';
+import TurkeyImg from '../../../images/Sandwiches/Turkey.jpg';
+import CreateYourOwnImg from '../../../images/Sandwiches/CreateYourOwn.jpg';
 import Button from "@material-ui/core/Button";
 import { Redirect } from 'react-router-dom';
 import SandwichInfo from './sandwichInfo.js';
@@ -438,7 +438,7 @@ class Sandwiches extends React.Component {
             hasThousandIslandDressing: false,
             // Other
             isToasted: false,
-            isSmallSandwich: false,
+            isSmallSandwich: true,
             isMediumSandwich: false,
             isLargeSandwich: false,
             startingPrice: 0.00,
