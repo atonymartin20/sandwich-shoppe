@@ -150,7 +150,7 @@ class CreateSandwich extends React.Component {
         })
     }
 
-    SandwichSizeRadioButton = (small, medium, large) => {
+    SandwichSizeRadios = (small, medium, large) => {
         let otherValues = this.state.otherValues
         if(small || medium || large) {
             otherValues['isSmallSandwich'] = small;
@@ -164,8 +164,35 @@ class CreateSandwich extends React.Component {
             otherValues['isSmallSandwich'] = true;
             otherValues['isMediumSandwich'] = false;
             otherValues['isLargeSandwich'] = false;
+            
             this.setState({
                 otherValues,
+            })
+        }
+    }
+
+    SandwichBreadRadios = (italian, parm, wheat, white, wrap) => {
+        let breads = this.state.breads
+        if(italian || parm || wheat || white || wrap) {
+            breads['hasItalianBread'] = italian;
+            breads['hasParmesanOreganoBread'] = parm;
+            breads['hasWheatBread'] = wheat;
+            breads['hasWhiteBread'] = white;
+            breads['hasWrap'] = wrap;
+
+            this.setState({
+                breads,
+            })
+        }
+        else {
+            breads['hasItalianBread'] = true;
+            breads['hasParmesanOreganoBread'] = false;
+            breads['hasWheatBread'] = false;
+            breads['hasWhiteBread'] = false;
+            breads['hasWrap'] = false;
+
+            this.setState({
+                breads,
             })
         }
     }
@@ -181,8 +208,9 @@ class CreateSandwich extends React.Component {
                             <CloseIcon onClick={this.props.close} className={classes.closeIconStyling} />
                         </div>
                         <div className={classes.categoryBar}>Choose Size:</div>
-                        <SandwichSizeRadioButtons updateButtons={this.SandwichSizeRadioButton} price={this.state.otherValues['startingPrice']} />
+                        <SandwichSizeRadioButtons updateButtons={this.SandwichSizeRadios} price={this.state.otherValues['startingPrice']} />
                         <div className={classes.categoryBar}>Choose Bread:</div>
+                        <SandwichBreadRadioButtons updateButtons={this.SandwichBreadRadios} />
                         <p className={classes.infoText}>{this.props.text}</p>
                     </div>
                 </div>
