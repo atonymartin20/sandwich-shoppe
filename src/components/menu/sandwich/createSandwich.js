@@ -4,6 +4,7 @@ import { AppContext } from '../../context/appContext.js';
 import CloseIcon from '@material-ui/icons/Close';
 import SandwichSizeRadioButtons from './sandwichSizeRadioButtons.js';
 import SandwichBreadRadioButtons from './sandwichBreadRadioButtons.js';
+import SandwichCheeseCheckboxes from './sandwichCheeseCheckboxes.js';
 
 const styles = theme => ({
     categoryBar: {
@@ -12,6 +13,14 @@ const styles = theme => ({
         color: 'white',
         marginTop: 0,
         textAlign: 'center',
+    },
+    categoryInfoBar: {
+        width: '100%',
+        backgroundColor: '#CDCDCD',
+        color: 'black',
+        marginTop: 0,
+        textAlign: 'center',
+        fontSize: '1.7rem',
     },
     closeIconStyling: {
         width: '25px',
@@ -150,8 +159,9 @@ class CreateSandwich extends React.Component {
         })
     }
 
-    SandwichSizeRadios = (small, medium, large) => {
+    UpdateSandwichSizeRadios = (small, medium, large) => {
         let otherValues = this.state.otherValues
+        
         if(small || medium || large) {
             otherValues['isSmallSandwich'] = small;
             otherValues['isMediumSandwich'] = medium;
@@ -171,8 +181,9 @@ class CreateSandwich extends React.Component {
         }
     }
 
-    SandwichBreadRadios = (italian, parm, wheat, white, wrap) => {
+    UpdateSandwichBreadRadios = (italian, parm, wheat, white, wrap) => {
         let breads = this.state.breads
+
         if(italian || parm || wheat || white || wrap) {
             breads['hasItalianBread'] = italian;
             breads['hasParmesanOreganoBread'] = parm;
@@ -197,6 +208,33 @@ class CreateSandwich extends React.Component {
         }
     }
 
+    UpdateSandwichCheeseCheckboxes = (american, cheddar, mozzarella, pepperjack, provolone, swiss) => {
+        let cheeses = this.state.cheeses
+        if(american || cheddar || mozzarella || pepperjack || provolone || swiss) {
+            cheeses['hasAmericanCheese'] = american;
+            cheeses['hasCheddarCheese'] = cheddar;
+            cheeses['hasMozzarellaCheese'] = mozzarella;
+            cheeses['hasPepperjackCheese'] = pepperjack;
+            cheeses['hasProvoloneCheese'] = provolone;
+            cheeses['hasSwissCheese'] = swiss;
+            this.setState({
+                cheeses,
+            })
+        }
+        else {
+            cheeses['hasAmericanCheese'] = false;
+            cheeses['hasCheddarCheese'] = false;
+            cheeses['hasMozzarellaCheese'] = false;
+            cheeses['hasPepperjackCheese'] = false;
+            cheeses['hasProvoloneCheese'] = false;
+            cheeses['hasSwissCheese'] = false;
+
+            this.setState({
+                cheeses,
+            })
+        }
+    }
+
     render() {
         const { classes } = this.props;
 
@@ -208,9 +246,12 @@ class CreateSandwich extends React.Component {
                             <CloseIcon onClick={this.props.close} className={classes.closeIconStyling} />
                         </div>
                         <div className={classes.categoryBar}>Choose Size:</div>
-                        <SandwichSizeRadioButtons updateButtons={this.SandwichSizeRadios} price={this.state.otherValues['startingPrice']} />
+                        <SandwichSizeRadioButtons updateButtons={this.UpdateSandwichSizeRadios} price={this.state.otherValues['startingPrice']} />
                         <div className={classes.categoryBar}>Choose Bread:</div>
-                        <SandwichBreadRadioButtons updateButtons={this.SandwichBreadRadios} />
+                        <SandwichBreadRadioButtons updateButtons={this.UpdateSandwichBreadRadios} />
+                        <div className={classes.categoryBar}>Choose Cheese:</div>
+                        <div className={classes.categoryInfoBar}>One cheese comes with the sandwich.  Extra cheeses $.40 each.</div>
+                        <SandwichCheeseCheckboxes updateButtons={this.UpdateSandwichCheeseCheckboxes} cheeses={this.state.cheeses} />
                         <p className={classes.infoText}>{this.props.text}</p>
                     </div>
                 </div>
