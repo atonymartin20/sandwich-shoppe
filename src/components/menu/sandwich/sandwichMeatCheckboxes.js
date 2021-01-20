@@ -52,7 +52,7 @@ export default function SandwichMeatCheckboxes(props) {
                 meats: newMeats
             })
         }
-    }, [props])
+    }, [props]) // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleChange = (event) => {
         let meats = state.meats

@@ -44,7 +44,7 @@ export default function SandwichDefaultsCheckboxes(props) {
                 defaults
             })
         }
-    }, [props])
+    }, [props]) // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleChange = (event) => {
         let defaults = state.defaults
