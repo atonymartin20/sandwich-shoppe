@@ -64,7 +64,13 @@ export default function SandwichMeatCheckboxes(props) {
             meats,
         })
 
-        props.updateButtons(meats)
+        let extraMeatPrice = 0.00
+        Object.values(meats).forEach(function (meatValue) {
+            if(meatValue === true) {
+                extraMeatPrice += .80
+            }
+        })
+        props.updateButtons(meats, extraMeatPrice)
 	};
 
     if(Object.keys(state.meats).length === 6) {

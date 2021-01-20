@@ -105,10 +105,11 @@ class CreateSandwich extends React.Component {
         sauces: {},
         otherValues: {},
         sandwichDefaults: {},
+        render: false,
     }
 
     componentDidMount() {
-        let sandwich = this.props.sandwich || {}
+        let sandwich = this.props.sandwich;
         let breads = {};
         let meats = {};
         let cheeses = {};
@@ -162,16 +163,19 @@ class CreateSandwich extends React.Component {
             seasonings,
             sauces,
             otherValues,
+            render: true,
         })
     }
 
-    UpdateSandwichSizeRadios = (small, medium, large) => {
+    UpdateSandwichSizeRadios = (small, medium, large, largerSandwichPrice) => {
         let otherValues = this.state.otherValues
         
         if(small || medium || large) {
             otherValues['isSmallSandwich'] = small;
             otherValues['isMediumSandwich'] = medium;
             otherValues['isLargeSandwich'] = large;
+            otherValues['largerSandwichPrice'] = largerSandwichPrice;
+
             this.setState({
                 otherValues,
             })
@@ -180,7 +184,8 @@ class CreateSandwich extends React.Component {
             otherValues['isSmallSandwich'] = true;
             otherValues['isMediumSandwich'] = false;
             otherValues['isLargeSandwich'] = false;
-            
+            otherValues['largerSandwichPrice'] = 0.00;
+
             this.setState({
                 otherValues,
             })
@@ -215,7 +220,9 @@ class CreateSandwich extends React.Component {
     }
 
     UpdateSandwichCheeseCheckboxes = (american, cheddar, mozzarella, pepperjack, provolone, swiss) => {
-        let cheeses = this.state.cheeses
+        let cheeses = this.state.cheeses;
+        let otherValues = this.state.otherValues;
+        let extraCheesePrice = -0.40
         if(american || cheddar || mozzarella || pepperjack || provolone || swiss) {
             cheeses['hasAmericanCheese'] = american;
             cheeses['hasCheddarCheese'] = cheddar;
@@ -223,8 +230,24 @@ class CreateSandwich extends React.Component {
             cheeses['hasPepperjackCheese'] = pepperjack;
             cheeses['hasProvoloneCheese'] = provolone;
             cheeses['hasSwissCheese'] = swiss;
+
+            Object.values(cheeses).forEach(function (cheeseValue) {
+                if(cheeseValue === true) {
+                    extraCheesePrice += .40
+                }
+            })
+
+            if(extraCheesePrice > 0){
+                otherValues['extraCheesePrice'] = extraCheesePrice;
+            }
+
+            else {
+                otherValues['extraCheesePrice'] = 0.00
+            }
+
             this.setState({
                 cheeses,
+                otherValues,
             })
         }
         else {
@@ -234,9 +257,11 @@ class CreateSandwich extends React.Component {
             cheeses['hasPepperjackCheese'] = false;
             cheeses['hasProvoloneCheese'] = false;
             cheeses['hasSwissCheese'] = false;
+            otherValues['extraCheesePrice'] = 0.00;
 
             this.setState({
                 cheeses,
+                otherValues,
             })
         }
     }
@@ -249,17 +274,20 @@ class CreateSandwich extends React.Component {
         }
     }
 
-    UpdateSandwichMeatCheckboxes = (meats) => {
+    UpdateSandwichMeatCheckboxes = (meats, extraMeatPrice) => {
         if (meats) {
-            console.log(meats)
+            let otherValues = this.state.otherValues;
+            otherValues['extraMeatPrice'] = extraMeatPrice;
+
             this.setState({
-                meats
+                meats,
+                otherValues
             })
         }
     }
     render() {
         const { classes } = this.props;
-
+        if(this.state.render) {
             return (
                 <div className={classes.container}>
                     <div className={classes.menuSpacingDiv}>
@@ -268,20 +296,20 @@ class CreateSandwich extends React.Component {
                             <CloseIcon onClick={this.props.close} className={classes.closeIconStyling} />
                         </div>
                         <div className={classes.categoryBar}>Choose Size:</div>
-                        <SandwichSizeRadioButtons updateButtons={this.UpdateSandwichSizeRadios} price={this.state.otherValues['startingPrice']} />
+                        <SandwichSizeRadioButtons updateButtons={this.UpdateSandwichSizeRadios} price={this.state.otherValues['startingPrice']} largerSandwichPrice={this.state.otherValues['largerSandwichPrice']} />
 
                         <div className={classes.categoryBar}>Choose Bread:</div>
                         <SandwichBreadRadioButtons updateButtons={this.UpdateSandwichBreadRadios} />
 
                         <div className={classes.categoryBar}>Choose Cheese:</div>
                         <div className={classes.categoryInfoBar}>One cheese comes with the sandwich.  Extra cheeses $.40 each.</div>
-                        <SandwichCheeseCheckboxes updateButtons={this.UpdateSandwichCheeseCheckboxes} cheeses={this.state.cheeses} />
+                        <SandwichCheeseCheckboxes updateButtons={this.UpdateSandwichCheeseCheckboxes} cheeses={this.state.cheeses} extraCheesePrice={this.state.otherValues['extraCheesePrice']} />
 
                         <div className={classes.categoryBar}>Comes With:</div>
                         <SandwichDefaultsCheckboxes updateButtons={this.UpdateSandwichDefaultsCheckboxes} defaults={this.state.sandwichDefaults} />
 
                         <div className={classes.categoryBar}>Add Meat:</div>
-                        <SandwichMeatCheckboxes updateButtons={this.UpdateSandwichMeatCheckboxes} defaults={this.state.sandwichDefaults} meats={this.state.meats} />
+                        <SandwichMeatCheckboxes updateButtons={this.UpdateSandwichMeatCheckboxes} defaults={this.state.sandwichDefaults} meats={this.state.meats} extraMeatPrice={this.state.otherValues['extraMeatPrice']} />
 
                         {/*<SandwichToastedCheckbox updateButton={this.UpdateSandwichToastedCheckbox} toasted={this.state.otherValues['toasted']} />
 
@@ -299,6 +327,12 @@ class CreateSandwich extends React.Component {
                 </div>
             )
         }
+
+        else {
+            return null
+        }
+
+    }
 }
 
 CreateSandwich.contextType = AppContext;

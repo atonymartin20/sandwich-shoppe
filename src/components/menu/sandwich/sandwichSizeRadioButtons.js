@@ -39,13 +39,13 @@ export default function SandwichSizeRadioButtons(props) {
 	const handleChange = (event) => {
         setValue(event.target.value);
         if(event.target.value === 'small') {
-            props.updateButtons(true, false, false)
+            props.updateButtons(true, false, false, 0.00)
         }
         else if(event.target.value === 'medium') {
-            props.updateButtons(false, true, false)
+            props.updateButtons(false, true, false, 2.00)
         }
         else if(event.target.value === 'large') {
-            props.updateButtons(false, false, true)
+            props.updateButtons(false, false, true, 4.00)
         }
     };
     
