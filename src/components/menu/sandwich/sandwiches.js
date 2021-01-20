@@ -443,6 +443,9 @@ class Sandwiches extends React.Component {
             isLargeSandwich: false,
             startingPrice: 0.00,
             finalPrice: 0.00,
+            largerSandwichPrice: 0.00,
+            extraCheesePrice: 0.00,
+            extraMeatPrice: 0.00,
         }
     }
 
@@ -598,6 +601,9 @@ class Sandwiches extends React.Component {
             isLargeSandwich: false,
             startingPrice: 0.00,
             finalPrice: 0.00,
+            largerSandwichPrice: 0.00,
+            extraCheesePrice: 0.00,
+            extraMeatPrice: 0.00,
         }
         this.setState({
             createSandwich: false,
