@@ -248,7 +248,15 @@ class CreateSandwich extends React.Component {
             })
         }
     }
-    
+
+    UpdateSandwichMeatCheckboxes = (meats) => {
+        if (meats) {
+            console.log(meats)
+            this.setState({
+                meats
+            })
+        }
+    }
     render() {
         const { classes } = this.props;
 
