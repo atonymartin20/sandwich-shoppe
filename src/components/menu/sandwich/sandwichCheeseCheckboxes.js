@@ -5,7 +5,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Typography from '@material-ui/core/Typography';
 
-
 const useStyles = makeStyles((theme) => ({
     checkbox: {
         transform: 'scale(1.5)'
