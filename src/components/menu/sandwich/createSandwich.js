@@ -7,7 +7,7 @@ import SandwichBreadRadioButtons from './sandwichBreadRadioButtons.js';
 import SandwichCheeseCheckboxes from './sandwichCheeseCheckboxes.js';
 import SandwichDefaultsCheckboxes from './sandwichDefaultsCheckboxes.js';
 import SandwichMeatCheckboxes from './sandwichMeatCheckboxes.js';
-// import SandwichToastedCheckbox from './sandwichToastedCheckbox.js';
+import SandwichToastedCheckbox from './sandwichToastedCheckbox.js';
 // import SandwichVeggiesCheckboxes from './sandwichVeggiesCheckboxes.js';
 // import SandwichSaucesCheckboxes from './sandwichSaucesCheckboxes.js';
 // import SandwichSeasoningsCheckboxes from './sandwichSeasoningsCheckboxes.js';
@@ -285,6 +285,24 @@ class CreateSandwich extends React.Component {
             })
         }
     }
+
+    UpdateSandwichToastedCheckbox = (toasted) => {
+        if(toasted) {
+            let otherValues = this.state.otherValues;
+            otherValues['isToasted'] = toasted;
+            this.setState({
+                otherValues
+            })
+        }
+        else {
+            let otherValues = this.state.otherValues;
+            otherValues['isToasted'] = false;
+            this.setState({
+                otherValues
+            })
+        }
+    }
+
     render() {
         const { classes } = this.props;
         if(this.state.render) {
@@ -311,9 +329,10 @@ class CreateSandwich extends React.Component {
                         <div className={classes.categoryBar}>Add Meat:</div>
                         <SandwichMeatCheckboxes updateButtons={this.UpdateSandwichMeatCheckboxes} defaults={this.state.sandwichDefaults} meats={this.state.meats} extraMeatPrice={this.state.otherValues['extraMeatPrice']} />
 
-                        {/*<SandwichToastedCheckbox updateButton={this.UpdateSandwichToastedCheckbox} toasted={this.state.otherValues['toasted']} />
+                        <div className={classes.categoryBar}>Toasted:</div>
+                        <SandwichToastedCheckbox updateButton={this.UpdateSandwichToastedCheckbox} toasted={this.state.otherValues['isToasted']} />
 
-                        <div className={classes.categoryBar}>Add Veggies:</div>
+                        {/* <div className={classes.categoryBar}>Add Veggies:</div>
                         <SandwichVeggiesCheckboxes updateButtons={this.UpdateSandwichVeggiesCheckboxes} defaults={this.state.sandwichDefaults} veggies={this.state.veggies} />
 
                         <div className={classes.categoryBar}>Add Sauces:</div>
