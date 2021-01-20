@@ -5,6 +5,12 @@ import CloseIcon from '@material-ui/icons/Close';
 import SandwichSizeRadioButtons from './sandwichSizeRadioButtons.js';
 import SandwichBreadRadioButtons from './sandwichBreadRadioButtons.js';
 import SandwichCheeseCheckboxes from './sandwichCheeseCheckboxes.js';
+import SandwichDefaultsCheckboxes from './sandwichDefaultsCheckboxes.js';
+import SandwichMeatCheckboxes from './sandwichMeatCheckboxes.js';
+// import SandwichToastedCheckbox from './sandwichToastedCheckbox.js';
+// import SandwichVeggiesCheckboxes from './sandwichVeggiesCheckboxes.js';
+// import SandwichSaucesCheckboxes from './sandwichSaucesCheckboxes.js';
+// import SandwichSeasoningsCheckboxes from './sandwichSeasoningsCheckboxes.js';
 
 const styles = theme => ({
     categoryBar: {
@@ -113,7 +119,7 @@ class CreateSandwich extends React.Component {
         let sandwichDefaults = {};
 
         for (const [key, value] of Object.entries(sandwich)) {
-            if(value === true) {
+            if(value === true && !key.includes('Sandwich')) {
                 sandwichDefaults[key] = value
             }
 
@@ -235,6 +241,14 @@ class CreateSandwich extends React.Component {
         }
     }
 
+    UpdateSandwichDefaultsCheckboxes = (sandwichDefault) => {
+        if (sandwichDefault) {
+            this.setState({
+                sandwichDefaults: sandwichDefault
+            })
+        }
+    }
+    
     render() {
         const { classes } = this.props;
 
@@ -247,11 +261,31 @@ class CreateSandwich extends React.Component {
                         </div>
                         <div className={classes.categoryBar}>Choose Size:</div>
                         <SandwichSizeRadioButtons updateButtons={this.UpdateSandwichSizeRadios} price={this.state.otherValues['startingPrice']} />
+
                         <div className={classes.categoryBar}>Choose Bread:</div>
                         <SandwichBreadRadioButtons updateButtons={this.UpdateSandwichBreadRadios} />
+
                         <div className={classes.categoryBar}>Choose Cheese:</div>
                         <div className={classes.categoryInfoBar}>One cheese comes with the sandwich.  Extra cheeses $.40 each.</div>
                         <SandwichCheeseCheckboxes updateButtons={this.UpdateSandwichCheeseCheckboxes} cheeses={this.state.cheeses} />
+
+                        <div className={classes.categoryBar}>Comes With:</div>
+                        <SandwichDefaultsCheckboxes updateButtons={this.UpdateSandwichDefaultsCheckboxes} defaults={this.state.sandwichDefaults} />
+
+                        <div className={classes.categoryBar}>Add Meat:</div>
+                        <SandwichMeatCheckboxes updateButtons={this.UpdateSandwichMeatCheckboxes} defaults={this.state.sandwichDefaults} meats={this.state.meats} />
+
+                        {/*<SandwichToastedCheckbox updateButton={this.UpdateSandwichToastedCheckbox} toasted={this.state.otherValues['toasted']} />
+
+                        <div className={classes.categoryBar}>Add Veggies:</div>
+                        <SandwichVeggiesCheckboxes updateButtons={this.UpdateSandwichVeggiesCheckboxes} defaults={this.state.sandwichDefaults} veggies={this.state.veggies} />
+
+                        <div className={classes.categoryBar}>Add Sauces:</div>
+                        <SandwichSaucesCheckboxes updateButtons={this.UpdateSandwichSaucesCheckboxes} defaults={this.state.sandwichDefaults} sauces={this.state.sauces} />
+
+                        <div className={classes.categoryBar}>Add Seasonings:</div>
+                        <SandwichSeasoningsCheckboxes updateButtons={this.UpdateSandwichSeasoningsCheckboxes} defaults={this.state.sandwichDefaults} seasonings={this.state.seasonings} /> */}
+
                         <p className={classes.infoText}>{this.props.text}</p>
                     </div>
                 </div>
