@@ -8,7 +8,7 @@ import SandwichCheeseCheckboxes from './sandwichCheeseCheckboxes.js';
 import SandwichDefaultsCheckboxes from './sandwichDefaultsCheckboxes.js';
 import SandwichMeatCheckboxes from './sandwichMeatCheckboxes.js';
 import SandwichToastedCheckbox from './sandwichToastedCheckbox.js';
-// import SandwichVeggiesCheckboxes from './sandwichVeggiesCheckboxes.js';
+import SandwichVeggiesCheckboxes from './sandwichVeggiesCheckboxes.js';
 // import SandwichSaucesCheckboxes from './sandwichSaucesCheckboxes.js';
 // import SandwichSeasoningsCheckboxes from './sandwichSeasoningsCheckboxes.js';
 
@@ -303,6 +303,15 @@ class CreateSandwich extends React.Component {
         }
     }
 
+    UpdateSandwichVeggiesCheckboxes = (veggies) => {
+        if (veggies) {
+            console.log(veggies)
+            this.setState({
+                veggies,
+            })
+        }
+    }
+
     render() {
         const { classes } = this.props;
         if(this.state.render) {
@@ -332,10 +341,10 @@ class CreateSandwich extends React.Component {
                         <div className={classes.categoryBar}>Toasted:</div>
                         <SandwichToastedCheckbox updateButton={this.UpdateSandwichToastedCheckbox} toasted={this.state.otherValues['isToasted']} />
 
-                        {/* <div className={classes.categoryBar}>Add Veggies:</div>
+                        <div className={classes.categoryBar}>Add Veggies:</div>
                         <SandwichVeggiesCheckboxes updateButtons={this.UpdateSandwichVeggiesCheckboxes} defaults={this.state.sandwichDefaults} veggies={this.state.veggies} />
 
-                        <div className={classes.categoryBar}>Add Sauces:</div>
+                        {/* <div className={classes.categoryBar}>Add Sauces:</div>
                         <SandwichSaucesCheckboxes updateButtons={this.UpdateSandwichSaucesCheckboxes} defaults={this.state.sandwichDefaults} sauces={this.state.sauces} />
 
                         <div className={classes.categoryBar}>Add Seasonings:</div>
