@@ -2,6 +2,7 @@ import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { AppContext } from '../../context/appContext.js';
 import CloseIcon from '@material-ui/icons/Close';
+import Button from "@material-ui/core/Button";
 import SandwichSizeRadioButtons from './sandwichSizeRadioButtons.js';
 import SandwichBreadRadioButtons from './sandwichBreadRadioButtons.js';
 import SandwichCheeseCheckboxes from './sandwichCheeseCheckboxes.js';
@@ -9,10 +10,33 @@ import SandwichDefaultsCheckboxes from './sandwichDefaultsCheckboxes.js';
 import SandwichMeatCheckboxes from './sandwichMeatCheckboxes.js';
 import SandwichToastedCheckbox from './sandwichToastedCheckbox.js';
 import SandwichVeggiesCheckboxes from './sandwichVeggiesCheckboxes.js';
-// import SandwichSaucesCheckboxes from './sandwichSaucesCheckboxes.js';
-// import SandwichSeasoningsCheckboxes from './sandwichSeasoningsCheckboxes.js';
+import SandwichSaucesCheckboxes from './sandwichSaucesCheckboxes.js';
+import SandwichSeasoningsCheckboxes from './sandwichSeasoningsCheckboxes.js';
 
 const styles = theme => ({
+    addToCartButton: {
+        backgroundColor: '#7600A8',
+        fontWeight: 500,
+        height: 50,
+        fontSize: '2.5rem',
+        color: 'white',
+        padding: '0px 15px',
+        border: '3px solid# 7600A8',
+        borderRadius: '10px',
+        width: '200px',
+        textTransform: 'none',
+        marginLeft: '10%',
+        "&:hover": {
+            color: '#7600A8',
+            backgroundColor: 'white',
+        },
+        [theme.breakpoints.down(550)]: {
+            width: '100%',
+            marginLeft: 0,
+            marginTop: '10px',
+            marginBottom: '10px',
+        },
+    },
     categoryBar: {
         width: '100%',
         backgroundColor: '#0087A8',
@@ -47,6 +71,14 @@ const styles = theme => ({
         overflow: 'auto',
         backgroundColor: 'rgba(43, 43, 43, 0.3)',
     },
+    finalInfo: {
+        width: '100%',
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontWeight: 500,
+    },
     header: {
         display: 'flex',
         width: '100%',
@@ -62,6 +94,9 @@ const styles = theme => ({
             fontSize: '3.0rem',
             paddingLeft: '34px'
         },
+    },
+    holderDiv: {
+        width: '100%',
     },
     infoText: {
         fontSize: '3.0rem',
@@ -106,6 +141,7 @@ class CreateSandwich extends React.Component {
         otherValues: {},
         sandwichDefaults: {},
         render: false,
+        disableCartButton: false,
     }
 
     componentDidMount() {
@@ -153,6 +189,8 @@ class CreateSandwich extends React.Component {
             }
         }
 
+        otherValues['finalPrice'] = otherValues['startingPrice']
+
         this.setState({
             sandwichDefaults,
             sandwich,
@@ -175,6 +213,8 @@ class CreateSandwich extends React.Component {
             otherValues['isMediumSandwich'] = medium;
             otherValues['isLargeSandwich'] = large;
             otherValues['largerSandwichPrice'] = largerSandwichPrice;
+            let finalPrice = Number(this.state.otherValues['startingPrice'] + largerSandwichPrice + this.state.otherValues['extraCheesePrice'] + this.state.otherValues['extraMeatPrice']).toFixed(2)
+            otherValues['finalPrice'] = Number(finalPrice)
 
             this.setState({
                 otherValues,
@@ -239,6 +279,8 @@ class CreateSandwich extends React.Component {
 
             if(extraCheesePrice > 0){
                 otherValues['extraCheesePrice'] = extraCheesePrice;
+                let finalPrice = Number(this.state.otherValues['startingPrice'] + this.state.otherValues['largerSandwichPrice'] + extraCheesePrice + this.state.otherValues['extraMeatPrice']).toFixed(2)
+                otherValues['finalPrice'] = Number(finalPrice)
             }
 
             else {
@@ -278,6 +320,8 @@ class CreateSandwich extends React.Component {
         if (meats) {
             let otherValues = this.state.otherValues;
             otherValues['extraMeatPrice'] = extraMeatPrice;
+            let finalPrice =  Number(this.state.otherValues['startingPrice'] + this.state.otherValues['largerSandwichPrice'] + this.state.otherValues['extraCheesePrice'] + extraMeatPrice).toFixed(2)
+            otherValues['finalPrice'] = Number(finalPrice)
 
             this.setState({
                 meats,
@@ -305,13 +349,46 @@ class CreateSandwich extends React.Component {
 
     UpdateSandwichVeggiesCheckboxes = (veggies) => {
         if (veggies) {
-            console.log(veggies)
             this.setState({
                 veggies,
             })
         }
     }
 
+    UpdateSandwichSaucesCheckboxes = (sauces) => {
+        if (sauces) {
+            this.setState({
+                sauces,
+            })
+        }
+    }
+
+    UpdateSandwichSeasoningsCheckboxes = (seasonings) => {
+        if (seasonings) {
+            this.setState({
+                seasonings
+            })
+        }
+    }
+
+    AddSandwichToCart = () => {
+        this.setState({
+            disableCartButton: true,
+        })
+        let newSandwich = {
+            ...this.state.sandwichDefaults,
+            ...this.state.breads,
+            ...this.state.meats,
+            ...this.state.cheeses,
+            ...this.state.veggies,
+            ...this.state.seasonings,
+            ...this.state.sauces,
+            ...this.state.otherValues,
+        }
+        
+        console.log(newSandwich)
+
+    }
     render() {
         const { classes } = this.props;
         if(this.state.render) {
@@ -332,10 +409,11 @@ class CreateSandwich extends React.Component {
                         <div className={classes.categoryInfoBar}>One cheese comes with the sandwich.  Extra cheeses $.40 each.</div>
                         <SandwichCheeseCheckboxes updateButtons={this.UpdateSandwichCheeseCheckboxes} cheeses={this.state.cheeses} extraCheesePrice={this.state.otherValues['extraCheesePrice']} />
 
-                        <div className={classes.categoryBar}>Comes With:</div>
-                        <SandwichDefaultsCheckboxes updateButtons={this.UpdateSandwichDefaultsCheckboxes} defaults={this.state.sandwichDefaults} />
+                        {(Object.keys(this.state.sandwichDefaults).length > 0) ? <div className={classes.holderDiv}><div className={classes.categoryBar}>Comes With:</div>
+                        <SandwichDefaultsCheckboxes updateButtons={this.UpdateSandwichDefaultsCheckboxes} defaults={this.state.sandwichDefaults} /></div> : null }
 
                         <div className={classes.categoryBar}>Add Meat:</div>
+                        <div className={classes.categoryInfoBar}>Extra meats $.80 each.</div>
                         <SandwichMeatCheckboxes updateButtons={this.UpdateSandwichMeatCheckboxes} defaults={this.state.sandwichDefaults} meats={this.state.meats} extraMeatPrice={this.state.otherValues['extraMeatPrice']} />
 
                         <div className={classes.categoryBar}>Toasted:</div>
@@ -344,13 +422,13 @@ class CreateSandwich extends React.Component {
                         <div className={classes.categoryBar}>Add Veggies:</div>
                         <SandwichVeggiesCheckboxes updateButtons={this.UpdateSandwichVeggiesCheckboxes} defaults={this.state.sandwichDefaults} veggies={this.state.veggies} />
 
-                        {/* <div className={classes.categoryBar}>Add Sauces:</div>
+                        <div className={classes.categoryBar}>Add Sauces:</div>
                         <SandwichSaucesCheckboxes updateButtons={this.UpdateSandwichSaucesCheckboxes} defaults={this.state.sandwichDefaults} sauces={this.state.sauces} />
 
                         <div className={classes.categoryBar}>Add Seasonings:</div>
-                        <SandwichSeasoningsCheckboxes updateButtons={this.UpdateSandwichSeasoningsCheckboxes} defaults={this.state.sandwichDefaults} seasonings={this.state.seasonings} /> */}
+                        <SandwichSeasoningsCheckboxes updateButtons={this.UpdateSandwichSeasoningsCheckboxes} seasonings={this.state.seasonings} />
 
-                        <p className={classes.infoText}>{this.props.text}</p>
+                        <div className={classes.finalInfo}>Price: { this.state.otherValues['finalPrice']}<Button className={classes.addToCartButton} onClick={this.AddSandwichToCart} disabled={this.state.disableCartButton}>Add to Cart</Button></div>
                     </div>
                 </div>
             )
