@@ -26,7 +26,13 @@ const styles = theme => ({
         width: '200px',
         textTransform: 'none',
         marginLeft: '10%',
+        marginTop: '10px',
+        marginBottom: '10px',
         "&:hover": {
+            color: '#7600A8',
+            backgroundColor: 'white',
+        },
+        "&:disabled": {
             color: '#7600A8',
             backgroundColor: 'white',
         },
@@ -78,6 +84,7 @@ const styles = theme => ({
         justifyContent: 'center',
         alignItems: 'center',
         fontWeight: 500,
+        backgroundColor: '#CDCDCD',
     },
     header: {
         display: 'flex',
@@ -385,7 +392,7 @@ class CreateSandwich extends React.Component {
             ...this.state.sauces,
             ...this.state.otherValues,
         }
-        
+
         console.log(newSandwich)
 
     }
