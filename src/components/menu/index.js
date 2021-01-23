@@ -185,7 +185,7 @@ class Menu extends React.Component {
         showSalads: false,
         showSides: false,
         showDrinks: false,
-        redirect: false,
+        checkout: this.props.checkout,
     }
 
     chooseSandwiches = (event) => {
@@ -193,7 +193,6 @@ class Menu extends React.Component {
         this.setState({
             showSandwiches: true,
             showIntro: false,
-            redirect: false,
         })
     }
 
@@ -202,7 +201,6 @@ class Menu extends React.Component {
         this.setState({
             showSalads: true,
             showIntro: false,
-            redirect: false,
         })
     }
 
@@ -211,7 +209,6 @@ class Menu extends React.Component {
         this.setState({
             showSides: true,
             showIntro: false,
-            redirect: false,
         })
     }
 
@@ -220,7 +217,6 @@ class Menu extends React.Component {
         this.setState({
             showDrinks: true,
             showIntro: false,
-            redirect: false,
         })
     }
 
@@ -232,14 +228,6 @@ class Menu extends React.Component {
             showSalads: false,
             showSides: false,
             showDrinks: false,
-            redirect: false,
-        })
-    }
-
-    checkout = (event) => {
-        event.preventDefault();
-        this.setState({
-            redirect: true,
         })
     }
 
@@ -248,13 +236,11 @@ class Menu extends React.Component {
         if(this.props.type === 'order') {
             return (
                 <div className={classes.menuDiv}>
-                    {this.state.redirect === true ? <Redirect to='/orderNow/checkout' /> : null }
-    
                     {this.state.showIntro === true ?
                         <div className={classes.menuSpacingOrderDiv}>
                             {this.context.state.orderItemCount > 0 ? 
                                 <div className={classes.checkoutDiv}>
-                                    <Button className={classes.checkoutButton} onClick={this.checkout}>
+                                    <Button className={classes.checkoutButton} onClick={this.props.goToCheckout}>
                                         Checkout
                                     </Button>
                                 </div> : null 
@@ -286,19 +272,19 @@ class Menu extends React.Component {
                     : null }
     
                     {this.state.showSandwiches === true ? 
-                        <Sandwiches type='order' goBack={this.goBack} />
+                        <Sandwiches type='order' goBack={this.goBack} itemAddedToCart={this.props.itemAddedToCart} goToCheckout={this.props.goToCheckout} checkout={this.state.checkout} />
                     : null }
     
                     {this.state.showSalads === true ? 
-                        <Salads type='order' goBack={this.goBack} />
+                        <Salads type='order' goBack={this.goBack} itemAddedToCart={this.props.itemAddedToCart} goToCheckout={this.props.goToCheckout} checkout={this.state.checkout} />
                     : null }
     
                     {this.state.showSides === true ? 
-                        <Sides type='order' goBack={this.goBack} />
+                        <Sides type='order' goBack={this.goBack} itemAddedToCart={this.props.itemAddedToCart} goToCheckout={this.props.goToCheckout} checkout={this.state.checkout} />
                     : null }
     
                     {this.state.showDrinks === true ?
-                        <Drinks type='order' goBack={this.goBack} />
+                        <Drinks type='order' goBack={this.goBack} itemAddedToCart={this.props.itemAddedToCart} goToCheckout={this.props.goToCheckout} checkout={this.state.checkout} />
                     : null }
                 </div>
             )
