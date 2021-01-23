@@ -27,6 +27,7 @@ const styles = theme => ({
         border: '3px solid #0087A8',
         borderRadius: '10px',
         width: '200px',
+        textTransform: 'none',
         "&:hover": {
             color: '#0087A8',
             backgroundColor: 'white',
@@ -56,6 +57,7 @@ const styles = theme => ({
         border: '3px solid #7600A8',
         borderRadius: '10px',
         width: '200px',
+        textTransform: 'none',
         "&:hover": {
             color: '#7600A8',
             backgroundColor: 'white',
