@@ -256,14 +256,15 @@ class Drinks extends React.Component {
         })
     }
 
+    itemAddedToCart={this.props.itemAddedToCart} 
     render() {
         const { classes } = this.props;
         if(this.props.type === 'order') {
             return (
                 <div className={classes.menuDiv}>
-                    {this.state.moreInfoLemonade === true ? <CreateDrink close={this.closeMoreInfo} name='Lemonade' text='Homemade lemonade' img={LemonadeImg} /> : null }
-                    {this.state.moreInfoSoda === true ? <CreateDrink close={this.closeMoreInfo} name='Soda' text='Pepsi, Diet Pepsi, Dr. Pepper, Diet Dr. Pepper, Sierra Mist, Mountain Dew, and MUG Root Beer' img={SodaImg} /> : null }
-                    {this.state.moreInfoTea === true ? <CreateDrink close={this.closeMoreInfo} name='Tea' text='Sweet or unsweet tea' img={TeaImg} /> : null }
+                    {this.state.moreInfoLemonade === true ? <CreateDrink close={this.closeMenu} name='Lemonade' itemAddedToCart={this.props.itemAddedToCart} /> : null }
+                    {this.state.moreInfoSoda === true ? <CreateDrink close={this.closeMenu} name='Soda' itemAddedToCart={this.props.itemAddedToCart}  /> : null }
+                    {this.state.moreInfoTea === true ? <CreateDrink close={this.closeMenu} name='Tea' itemAddedToCart={this.props.itemAddedToCart} /> : null }
                     <div className={classes.menuSpacingOrderDiv}>
                         {this.context.state.orderItemCount > 0 ? 
                             <div className={classes.buttonContainerDiv}>
