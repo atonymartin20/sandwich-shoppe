@@ -205,17 +205,11 @@ const styles = theme => ({
 
 class Drinks extends React.Component {
     state={
-        redirect: false,
         moreInfoLemonade: false,
         moreInfoSoda: false,
         moreInfoTea: false,
-    }
-
-    checkout = (event) => {
-        event.preventDefault();
-        this.setState({
-            redirect: true,
-        })
+        createDrink: false,
+        checkout: this.props.checkout,
     }
 
     openMoreInfoLemonade = (event) => {
@@ -248,19 +242,35 @@ class Drinks extends React.Component {
         })
     }
 
+    createDrink = (event) => {
+        event.preventDefault();
+        this.setState({
+            createDrink: true,
+        })
+    }
+
+    closeMenu = (event) => {
+        event.preventDefault();
+        this.setState({
+            createDrink: false,
+        })
+    }
+
     render() {
         const { classes } = this.props;
         if(this.props.type === 'order') {
             return (
                 <div className={classes.menuDiv}>
-                    {this.state.redirect === true ? <Redirect to='/orderNow/checkout' /> : null }
+                    {this.state.moreInfoLemonade === true ? <CreateDrink close={this.closeMoreInfo} name='Lemonade' text='Homemade lemonade' img={LemonadeImg} /> : null }
+                    {this.state.moreInfoSoda === true ? <CreateDrink close={this.closeMoreInfo} name='Soda' text='Pepsi, Diet Pepsi, Dr. Pepper, Diet Dr. Pepper, Sierra Mist, Mountain Dew, and MUG Root Beer' img={SodaImg} /> : null }
+                    {this.state.moreInfoTea === true ? <CreateDrink close={this.closeMoreInfo} name='Tea' text='Sweet or unsweet tea' img={TeaImg} /> : null }
                     <div className={classes.menuSpacingOrderDiv}>
                         {this.context.state.orderItemCount > 0 ? 
                             <div className={classes.buttonContainerDiv}>
                                 <Button className={classes.backButton} onClick={this.props.goBack}>
                                     Go Back
                                 </Button>
-                                <Button className={classes.checkoutButton} onClick={this.checkout}>
+                                <Button className={classes.checkoutButton} onClick={this.props.goToCheckout}>
                                     Checkout
                                 </Button>
                             </div> : 
