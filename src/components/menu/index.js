@@ -185,7 +185,6 @@ class Menu extends React.Component {
         showSalads: false,
         showSides: false,
         showDrinks: false,
-        checkout: this.props.checkout,
     }
 
     chooseSandwiches = (event) => {
@@ -272,19 +271,19 @@ class Menu extends React.Component {
                     : null }
     
                     {this.state.showSandwiches === true ? 
-                        <Sandwiches type='order' goBack={this.goBack} itemAddedToCart={this.props.itemAddedToCart} goToCheckout={this.props.goToCheckout} checkout={this.state.checkout} />
+                        <Sandwiches type='order' goBack={this.goBack} itemAddedToCart={this.props.itemAddedToCart} goToCheckout={this.props.goToCheckout} checkout={this.props.checkout} />
                     : null }
     
                     {this.state.showSalads === true ? 
-                        <Salads type='order' goBack={this.goBack} itemAddedToCart={this.props.itemAddedToCart} goToCheckout={this.props.goToCheckout} checkout={this.state.checkout} />
+                        <Salads type='order' goBack={this.goBack} itemAddedToCart={this.props.itemAddedToCart} goToCheckout={this.props.goToCheckout} checkout={this.props.checkout} />
                     : null }
     
                     {this.state.showSides === true ? 
-                        <Sides type='order' goBack={this.goBack} itemAddedToCart={this.props.itemAddedToCart} goToCheckout={this.props.goToCheckout} checkout={this.state.checkout} />
+                        <Sides type='order' goBack={this.goBack} itemAddedToCart={this.props.itemAddedToCart} goToCheckout={this.props.goToCheckout} checkout={this.props.checkout} />
                     : null }
     
                     {this.state.showDrinks === true ?
-                        <Drinks type='order' goBack={this.goBack} itemAddedToCart={this.props.itemAddedToCart} goToCheckout={this.props.goToCheckout} checkout={this.state.checkout} />
+                        <Drinks type='order' goBack={this.goBack} itemAddedToCart={this.props.itemAddedToCart} goToCheckout={this.props.goToCheckout} checkout={this.props.checkout} />
                     : null }
                 </div>
             )
