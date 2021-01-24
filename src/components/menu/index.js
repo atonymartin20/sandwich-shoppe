@@ -11,7 +11,6 @@ import Salads from './salads.js';
 import Sides from './sides.js';
 import Drinks from './drinks.js';
 import Button from "@material-ui/core/Button";
-import { Redirect } from 'react-router-dom';
 
 const styles = theme => ({
     checkoutButton: {
@@ -271,19 +270,19 @@ class Menu extends React.Component {
                     : null }
     
                     {this.state.showSandwiches === true ? 
-                        <Sandwiches type='order' goBack={this.goBack} itemAddedToCart={this.props.itemAddedToCart} goToCheckout={this.props.goToCheckout} checkout={this.props.checkout} />
+                        <Sandwiches type='order' goBack={this.goBack} itemAddedToCart={this.props.itemAddedToCart} goToCheckout={this.props.goToCheckout} />
                     : null }
     
                     {this.state.showSalads === true ? 
-                        <Salads type='order' goBack={this.goBack} itemAddedToCart={this.props.itemAddedToCart} goToCheckout={this.props.goToCheckout} checkout={this.props.checkout} />
+                        <Salads type='order' goBack={this.goBack} itemAddedToCart={this.props.itemAddedToCart} goToCheckout={this.props.goToCheckout} />
                     : null }
     
                     {this.state.showSides === true ? 
-                        <Sides type='order' goBack={this.goBack} itemAddedToCart={this.props.itemAddedToCart} goToCheckout={this.props.goToCheckout} checkout={this.props.checkout} />
+                        <Sides type='order' goBack={this.goBack} itemAddedToCart={this.props.itemAddedToCart} goToCheckout={this.props.goToCheckout} />
                     : null }
     
                     {this.state.showDrinks === true ?
-                        <Drinks type='order' goBack={this.goBack} itemAddedToCart={this.props.itemAddedToCart} goToCheckout={this.props.goToCheckout} checkout={this.props.checkout} />
+                        <Drinks type='order' goBack={this.goBack} itemAddedToCart={this.props.itemAddedToCart} goToCheckout={this.props.goToCheckout} />
                     : null }
                 </div>
             )

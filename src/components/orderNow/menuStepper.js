@@ -73,7 +73,7 @@ class MenuStepper extends React.Component {
                 <div className={classes.menuDiv}>
                     <Navbar />
                     <div className={classes.menuSpacingDiv}>
-                        {this.state.step1 === true ? <Menu type='order' itemAddedToCart={this.itemAddedToCart} goToCheckout={this.goToCheckout} checkout={this.state.checkout} /> : null}
+                        {this.state.step1 === true ? <Menu type='order' itemAddedToCart={this.itemAddedToCart} goToCheckout={this.goToCheckout} /> : null}
                         {this.state.step2 === true ? <AddItemOrCheckout addAnotherItem={this.addAnotherItem} goToCheckout={this.goToCheckout} /> : null}
                         {this.state.checkout === true ? <Checkout addAnotherItem={this.addAnotherItem} /> : null}
                     </div>

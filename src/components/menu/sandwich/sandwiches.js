@@ -376,7 +376,6 @@ const styles = theme => ({
 
 class Sandwiches extends React.Component {
     state={
-        redirect: false,
         moreInfoBLT: false,
         moreInfoBuffaloChicken: false,
         moreInfoChickenBaconRanch: false,
@@ -449,13 +448,6 @@ class Sandwiches extends React.Component {
             extraCheesePrice: 0.00,
             extraMeatPrice: 0.00,
         }
-    }
-
-    checkout = (event) => {
-        event.preventDefault();
-        this.setState({
-            redirect: true,
-        })
     }
 
     openMoreInfoBLT = (event) => {
@@ -631,11 +623,10 @@ class Sandwiches extends React.Component {
 
     render() {
         const { classes } = this.props;
-        console.log(this.state.sandwich)
+
         if(this.props.type === 'order') {
             return (
                 <div className={classes.menuDiv}>
-                    {this.state.redirect === true ? <Redirect to='/orderNow/checkout' /> : null }
                     {this.state.createSandwich === true ? <CreateSandwich title={this.state.sandwich['name']} sandwich={this.state.sandwich} close={this.closeMenu}  /> : null }
 
                     <div className={classes.menuSpacingOrderDiv}>
@@ -644,7 +635,7 @@ class Sandwiches extends React.Component {
                                 <Button className={classes.backButton} onClick={this.props.goBack}>
                                     Go Back
                                 </Button>
-                                <Button className={classes.checkoutButton} onClick={this.checkout}>
+                                <Button className={classes.checkoutButton} onClick={this.props.goToCheckout}>
                                     Checkout
                                 </Button>
                             </div> : 
