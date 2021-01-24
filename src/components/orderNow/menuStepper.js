@@ -3,6 +3,8 @@ import Navbar from '../navbar';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { AppContext } from '../context/appContext.js';
 import Menu from '../menu';
+import AddItemOrCheckout from './addItemOrCheckout.js';
+import Checkout from '../checkout/checkout.js';
 
 const styles = theme => ({
     menuDiv: {
@@ -64,14 +66,6 @@ class MenuStepper extends React.Component {
         })
     }
 
-    continueShopping = () => {
-        this.setState({
-            step1: true,
-            step2: false,
-            checkout: false,
-        })
-    }
-
     render() {
         const { classes } = this.props;
 
@@ -79,35 +73,9 @@ class MenuStepper extends React.Component {
                 <div className={classes.menuDiv}>
                     <Navbar />
                     <div className={classes.menuSpacingDiv}>
-
                         {this.state.step1 === true ? <Menu type='order' itemAddedToCart={this.itemAddedToCart} goToCheckout={this.goToCheckout} checkout={this.state.checkout} /> : null}
-                        {/*  */}
-                        {this.state.step2 === true ? null : null}
-
-                        {this.state.checkout === true ? null : null}
-                        {/* Top Stepper Past Step 1 Back button to push stepper back a page*/}
-                        {/* 
-                            Step 3:
-                            If Salad()
-                                Choose Dressing
-
-                            If Side()
-                                Add to cart button
-
-                            If Drink()
-                                Choose flavour of soda
-
-                            Bottom of Page
-                            Add to Cart
-
-                            Step 4
-                            Add another item or checkout
-
-                            If add another item() Revert to step 1
-                            If checkout go to checkout
-                        */}
-
-                        {/* Below Stepper while item count > 0,  Show cart on bottom of screen*/}
+                        {this.state.step2 === true ? <AddItemOrCheckout addAnotherItem={this.addAnotherItem} goToCheckout={this.goToCheckout} /> : null}
+                        {this.state.checkout === true ? <Checkout addAnotherItem={this.addAnotherItem} /> : null}
                     </div>
                 </div>
             )
