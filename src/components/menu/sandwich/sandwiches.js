@@ -12,7 +12,6 @@ import PhillyCheesesteakImg from '../../../images/Sandwiches/PhillyCheeseSteak.j
 import TurkeyImg from '../../../images/Sandwiches/Turkey.jpg';
 import CreateYourOwnImg from '../../../images/Sandwiches/CreateYourOwn.jpg';
 import Button from "@material-ui/core/Button";
-import { Redirect } from 'react-router-dom';
 import SandwichInfo from './sandwichInfo.js';
 import CreateSandwich from './createSandwich.js';
 
@@ -627,7 +626,7 @@ class Sandwiches extends React.Component {
         if(this.props.type === 'order') {
             return (
                 <div className={classes.menuDiv}>
-                    {this.state.createSandwich === true ? <CreateSandwich title={this.state.sandwich['name']} sandwich={this.state.sandwich} close={this.closeMenu}  /> : null }
+                    {this.state.createSandwich === true ? <CreateSandwich itemAddedToCart={this.props.itemAddedToCart} title={this.state.sandwich['name']} sandwich={this.state.sandwich} close={this.closeMenu}  /> : null }
 
                     <div className={classes.menuSpacingOrderDiv}>
                         {this.context.state.orderItemCount > 0 ? 

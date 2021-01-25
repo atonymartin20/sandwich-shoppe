@@ -392,8 +392,8 @@ class CreateSandwich extends React.Component {
             ...this.state.sauces,
             ...this.state.otherValues,
         }
-
-        console.log(newSandwich)
+        this.props.itemAddedToCart();
+        this.context.addSandwichToCart(newSandwich);
 
     }
     render() {
