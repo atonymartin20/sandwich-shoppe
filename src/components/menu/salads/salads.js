@@ -1,11 +1,11 @@
 import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { AppContext } from '../context/appContext.js';
-import BuffaloChickenSaladImg from '../../images/Salads/BuffaloChickenSalad.jpg';
-import CaesarSaladImg from '../../images/Salads/CaesarSalad.jpg';
-import ChickenCaesarSaladImg from '../../images/Salads/ChickenCaesarSalad.jpg';
-import GardenSaladImg from '../../images/Salads/GardenSalad.jpg';
-import SideSaladImg from '../../images/Salads/SideSalad.jpg';
+import { AppContext } from '../../context/appContext.js';
+import BuffaloChickenSaladImg from '../../../images/Salads/BuffaloChickenSalad.jpg';
+import CaesarSaladImg from '../../../images/Salads/CaesarSalad.jpg';
+import ChickenCaesarSaladImg from '../../../images/Salads/ChickenCaesarSalad.jpg';
+import GardenSaladImg from '../../../images/Salads/GardenSalad.jpg';
+import SideSaladImg from '../../../images/Salads/SideSalad.jpg';
 import Button from "@material-ui/core/Button";
 import { Redirect } from 'react-router-dom';
 import SaladInfo from './saladInfo.js';
