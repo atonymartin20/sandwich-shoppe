@@ -16,6 +16,7 @@ class AddItemOrCheckout extends React.Component {
 
             return (
                 <div>
+                    Add Item Or Checkout
                 </div>
             )
     }

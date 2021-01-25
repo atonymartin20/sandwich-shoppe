@@ -322,14 +322,14 @@ const styles = theme => ({
         textAlign: 'center',
         cursor: 'pointer',
     },
-    menuDiv: {
+    sandwichDiv: {
         width: '100%',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
     },
-    menuInsideContainer: {
+    sandwichInsideContainer: {
         width: '100%',
         maxWidth: 1400,
         display: 'flex',
@@ -337,7 +337,7 @@ const styles = theme => ({
         justifyContent: 'center',
         flexWrap: 'wrap',
     },
-    menuSpacingDiv: {
+    sandwichSpacingDiv: {
         marginTop: 90,
         width: '100%',
         maxWidth: 1400,
@@ -352,7 +352,7 @@ const styles = theme => ({
         fontSize: '2.0rem',
         lineHeight: 1.25,
     },
-    menuSpacingOrderDiv: {
+    sandwichSpacingOrderDiv: {
         marginTop: 0,
         width: '100%',
         maxWidth: 1400,
@@ -366,10 +366,6 @@ const styles = theme => ({
         padding: '0px 0px',
         fontSize: '2.0rem',
         lineHeight: 1.25,
-    },
-    menuText: {
-        marginTop: 20,
-        marginBottom: 20,
     },
 });
 
@@ -625,10 +621,10 @@ class Sandwiches extends React.Component {
 
         if(this.props.type === 'order') {
             return (
-                <div className={classes.menuDiv}>
+                <div className={classes.sandwichDiv}>
                     {this.state.createSandwich === true ? <CreateSandwich itemAddedToCart={this.props.itemAddedToCart} title={this.state.sandwich['name']} sandwich={this.state.sandwich} close={this.closeMenu}  /> : null }
 
-                    <div className={classes.menuSpacingOrderDiv}>
+                    <div className={classes.sandwichSpacingOrderDiv}>
                         {this.context.state.orderItemCount > 0 ? 
                             <div className={classes.buttonContainerDiv}>
                                 <Button className={classes.backButton} onClick={this.props.goBack}>
@@ -643,7 +639,7 @@ class Sandwiches extends React.Component {
                             </div>
                         }
                         <h1 className={classes.headerText}>Sandwiches</h1>
-                        <div className={classes.menuInsideContainer}>
+                        <div className={classes.sandwichInsideContainer}>
     
                             <div className={classes.groupDivBLT} onClick={() => {this.createSandwich({name: 'BLT', hasBacon: true, hasLeafLettuce: true, hasTomatoes: true, startingPrice: 3.99 })}}>
                                 <div className={classes.insideGroupDiv}>
@@ -711,8 +707,8 @@ class Sandwiches extends React.Component {
         }
         else {
             return (
-                <div className={classes.menuDiv}>
-                    <div className={classes.menuSpacingDiv}>
+                <div className={classes.sandwichDiv}>
+                    <div className={classes.sandwichSpacingDiv}>
                         {this.state.moreInfoBLT === true ? <SandwichInfo close={this.closeMoreInfo} name='BLT' text='Bacon, lettuce, and tomato' img={BLTImg} /> : null }
                         {this.state.moreInfoBuffaloChicken === true ? <SandwichInfo close={this.closeMoreInfo} name='Buffalo Chicken' text='Homemade Buffalo sauce, chicken, lettuce, and tomato' img={BuffaloChickenImg} /> : null }
                         {this.state.moreInfoChickenBaconRanch === true ? <SandwichInfo close={this.closeMoreInfo} name='Chicken Bacon Ranch' text='Bacon, chicken, lettuce, tomato, and ranch dressing' img={ChickenBaconRanchImg} /> : null }

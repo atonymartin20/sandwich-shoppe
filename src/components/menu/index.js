@@ -7,9 +7,9 @@ import SaladImg from '../../images/Salads/CaesarSalad.jpg';
 import SidesImg from '../../images/Sides/Cookies.jpg';
 import DrinkImg from '../../images/Drinks/Soda.jpg';
 import Sandwiches from './sandwich/sandwiches.js';
-import Salads from './salads.js';
-import Sides from './sides.js';
-import Drinks from './drinks.js';
+import Salads from './salads/salads.js';
+import Sides from './sides/sides.js';
+import Drinks from './drinks/drinks.js';
 import Button from "@material-ui/core/Button";
 
 const styles = theme => ({
@@ -170,10 +170,6 @@ const styles = theme => ({
         padding: '0px 0px',
         fontSize: '2.0rem',
         lineHeight: 1.25,
-    },
-    menuText: {
-        marginTop: 20,
-        marginBottom: 20,
     },
 });
 

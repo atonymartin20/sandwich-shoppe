@@ -29,10 +29,6 @@ const styles = theme => ({
         lineHeight: 1.25,
         marginTop: 90,
     },
-    menuText: {
-        marginTop: 20,
-        marginBottom: 20,
-    },
 });
 
 class MenuStepper extends React.Component {
