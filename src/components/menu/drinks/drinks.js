@@ -1,12 +1,12 @@
 import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { AppContext } from '../context/appContext.js';
-import LemonadeImg from '../../images/Drinks/Lemonade.jpg';
-import SodaImg from '../../images/Drinks/Soda.jpg';
-import TeaImg from '../../images/Drinks/Tea.jpg';
+import { AppContext } from '../../context/appContext.js';
+import LemonadeImg from '../../../images/Drinks/Lemonade.jpg';
+import SodaImg from '../../../images/Drinks/Soda.jpg';
+import TeaImg from '../../../images/Drinks/Tea.jpg';
 import Button from "@material-ui/core/Button";
-import { Redirect } from 'react-router-dom';
 import DrinkInfo from './drinkInfo.js';
+import CreateDrink from './createDrink.js';
 
 const styles = theme => ({
     backButton: {
@@ -256,7 +256,6 @@ class Drinks extends React.Component {
         })
     }
 
-    itemAddedToCart={this.props.itemAddedToCart} 
     render() {
         const { classes } = this.props;
         if(this.props.type === 'order') {
