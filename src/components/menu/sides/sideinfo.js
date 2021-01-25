@@ -1,6 +1,5 @@
 import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { AppContext } from '../context/appContext.js';
 import CloseIcon from '@material-ui/icons/Close';
 
 const styles = theme => ({
@@ -84,7 +83,5 @@ class SideInfo extends React.Component {
             )
         }
 }
-
-SideInfo.contextType = AppContext;
 
 export default withStyles(styles)(SideInfo);

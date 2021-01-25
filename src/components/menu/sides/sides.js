@@ -1,9 +1,9 @@
 import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { AppContext } from '../context/appContext.js';
-import CheesebreadImg from '../../images/Sides/Cheesebread.jpg';
-import ChipsImg from '../../images/Sides/Chips.jpg';
-import CookiesImg from '../../images/Sides/Cookies.jpg';
+import { AppContext } from '../../context/appContext.js';
+import CheesebreadImg from '../../../images/Sides/Cheesebread.jpg';
+import ChipsImg from '../../../images/Sides/Chips.jpg';
+import CookiesImg from '../../../images/Sides/Cookies.jpg';
 import Button from "@material-ui/core/Button";
 import { Redirect } from 'react-router-dom';
 import SideInfo from './sideinfo.js';
