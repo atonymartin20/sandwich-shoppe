@@ -435,7 +435,7 @@ class CreateSandwich extends React.Component {
                         <div className={classes.categoryBar}>Add Seasonings:</div>
                         <SandwichSeasoningsCheckboxes updateButtons={this.UpdateSandwichSeasoningsCheckboxes} seasonings={this.state.seasonings} />
 
-                        <div className={classes.finalInfo}>Price: { this.state.otherValues['finalPrice']}<Button className={classes.addToCartButton} onClick={this.AddSandwichToCart} disabled={this.state.disableCartButton}>Add to Cart</Button></div>
+                        <div className={classes.finalInfo}>Price: ${ this.state.otherValues['finalPrice']}<Button className={classes.addToCartButton} onClick={this.AddSandwichToCart} disabled={this.state.disableCartButton}>Add to Cart</Button></div>
                     </div>
                 </div>
             )

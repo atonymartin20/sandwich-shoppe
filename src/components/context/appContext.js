@@ -20,10 +20,11 @@ export default class AppProvider extends React.Component {
         drink1Created: false,
         drink1: {
             name: '',
-            isSmall: false,
+            type: '',
+            isSmall: true,
             isLarge: false,
-            smallPrice: 1.50,
-            largePrice: 2.50,
+            smallPrice: 1.49,
+            largePrice: 2.49,
         },
         sandwich1Created: false,
         sandwich1: {
@@ -107,7 +108,19 @@ export default class AppProvider extends React.Component {
                         this.setState({
                             business
                         })
-                    }
+                    },
+                    addSandwichToCart: (sandwich) => {
+                        console.log(sandwich)
+                    },
+                    addSaladToCart: (salad) => {
+                        console.log(salad)
+                    },
+                    addSideToCart: (side) => {
+                        console.log(side)
+                    },
+                    addDrinkToCart: (drink) => {
+                        console.log(drink)
+                    },
 
                 }}
             >
