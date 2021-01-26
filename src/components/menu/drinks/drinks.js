@@ -57,6 +57,51 @@ const styles = theme => ({
             marginBottom: '10px',
         },
     },
+    drinksDiv: {
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+    },
+    drinksInsideContainer: {
+        width: '100%',
+        maxWidth: 1400,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        flexWrap: 'wrap',
+    },
+    drinksSpacingDiv: {
+        marginTop: 90,
+        width: '100%',
+        maxWidth: 1400,
+        borderRadius: '4px',
+        backgroundColor: '#f8fbfd',
+        minHeight: 100,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        padding: '20px 0px',
+        fontSize: '2.0rem',
+        lineHeight: 1.25,
+    },
+    drinksSpacingOrderDiv: {
+        marginTop: 0,
+        width: '100%',
+        maxWidth: 1400,
+        borderRadius: '4px',
+        backgroundColor: '#f8fbfd',
+        minHeight: 100,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        padding: '0px 0px',
+        fontSize: '2.0rem',
+        lineHeight: 1.25,
+    },
     goBackDiv: {
         width: '100%',
         display: 'flex',
@@ -152,55 +197,6 @@ const styles = theme => ({
         textAlign: 'center',
         cursor: 'pointer',
     },
-    menuDiv: {
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-    },
-    menuInsideContainer: {
-        width: '100%',
-        maxWidth: 1400,
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        flexWrap: 'wrap',
-    },
-    menuSpacingDiv: {
-        marginTop: 90,
-        width: '100%',
-        maxWidth: 1400,
-        borderRadius: '4px',
-        backgroundColor: '#f8fbfd',
-        minHeight: 100,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-        padding: '20px 0px',
-        fontSize: '2.0rem',
-        lineHeight: 1.25,
-    },
-    menuSpacingOrderDiv: {
-        marginTop: 0,
-        width: '100%',
-        maxWidth: 1400,
-        borderRadius: '4px',
-        backgroundColor: '#f8fbfd',
-        minHeight: 100,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-        padding: '0px 0px',
-        fontSize: '2.0rem',
-        lineHeight: 1.25,
-    },
-    menuText: {
-        marginTop: 20,
-        marginBottom: 20,
-    },
 });
 
 class Drinks extends React.Component {
@@ -209,7 +205,14 @@ class Drinks extends React.Component {
         moreInfoSoda: false,
         moreInfoTea: false,
         createDrink: false,
-        checkout: this.props.checkout,
+        drink :{
+            name: '',
+            type: '',
+            isSmall: true,
+            isLarge: false,
+            smallPrice: 1.49,
+            largePrice: 2.49,
+        }
     }
 
     openMoreInfoLemonade = (event) => {
@@ -242,29 +245,48 @@ class Drinks extends React.Component {
         })
     }
 
-    createDrink = (event) => {
-        event.preventDefault();
+    createDrink = (drink) => {
+        let newDrink = this.state.drink;
+        Object.keys(newDrink).forEach(function (newDrinkKey) {
+            Object.keys(drink).forEach(function (drinkKey) {
+                if(drinkKey === newDrinkKey) {
+                    newDrink[newDrinkKey] = drink[drinkKey]
+                }
+            })
+        });
+
         this.setState({
+            drink: newDrink,
             createDrink: true,
         })
     }
 
     closeMenu = (event) => {
         event.preventDefault();
+        let drink = {
+            name: '',
+            type: '',
+            isSmall: true,
+            isLarge: false,
+            smallPrice: 1.49,
+            largePrice: 2.49,
+        }
+
         this.setState({
             createDrink: false,
+            drink,
         })
     }
 
     render() {
         const { classes } = this.props;
+
         if(this.props.type === 'order') {
             return (
-                <div className={classes.menuDiv}>
-                    {this.state.moreInfoLemonade === true ? <CreateDrink close={this.closeMenu} name='Lemonade' itemAddedToCart={this.props.itemAddedToCart} /> : null }
-                    {this.state.moreInfoSoda === true ? <CreateDrink close={this.closeMenu} name='Soda' itemAddedToCart={this.props.itemAddedToCart}  /> : null }
-                    {this.state.moreInfoTea === true ? <CreateDrink close={this.closeMenu} name='Tea' itemAddedToCart={this.props.itemAddedToCart} /> : null }
-                    <div className={classes.menuSpacingOrderDiv}>
+                <div className={classes.drinksDiv}>
+                    {this.state.createDrink === true ? <CreateDrink itemAddedToCart={this.props.itemAddedToCart} title={this.state.drink['type']} drink={this.state.drink} close={this.closeMenu} /> : null }
+
+                    <div className={classes.drinksSpacingOrderDiv}>
                         {this.context.state.orderItemCount > 0 ? 
                             <div className={classes.buttonContainerDiv}>
                                 <Button className={classes.backButton} onClick={this.props.goBack}>
@@ -279,21 +301,21 @@ class Drinks extends React.Component {
                             </div>
                         }
                         <h1 className={classes.headerText}>Drinks</h1>
-                        <div className={classes.menuInsideContainer}>
+                        <div className={classes.drinksInsideContainer}>
     
-                            <div className={classes.groupDivLemonade} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivLemonade} onClick={() => {this.createDrink({type: 'Lemonade', name: 'Lemonade'})}} >
                                 <div className={classes.insideGroupDiv}>
                                     Lemonade
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivSoda} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivSoda} onClick={() => {this.createDrink({type: 'Soda'})}} >
                                 <div className={classes.insideGroupDiv}>
                                     Soda
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivTea} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivTea} onClick={() => {this.createDrink({type: 'Tea'})}} >
                                 <div className={classes.insideGroupDiv}>
                                     Tea
                                 </div>
@@ -305,16 +327,18 @@ class Drinks extends React.Component {
         }
         else {
             return (
-                <div className={classes.menuDiv}>
-                    {this.state.moreInfoLemonade === true ? <DrinkInfo close={this.closeMoreInfo} name='Lemonade' text='Homemade lemonade' img={LemonadeImg} /> : null }
-                    {this.state.moreInfoSoda === true ? <DrinkInfo close={this.closeMoreInfo} name='Soda' text='Pepsi, Diet Pepsi, Dr. Pepper, Diet Dr. Pepper, Sierra Mist, Mountain Dew, and MUG Root Beer' img={SodaImg} /> : null }
-                    {this.state.moreInfoTea === true ? <DrinkInfo close={this.closeMoreInfo} name='Tea' text='Sweet or unsweet tea' img={TeaImg} /> : null }
-                    <div className={classes.menuSpacingDiv}>
+                <div className={classes.drinksDiv}>
+                    <div className={classes.drinksSpacingDiv}>
+                        {this.state.moreInfoLemonade === true ? <DrinkInfo close={this.closeMoreInfo} name='Lemonade' text='Homemade lemonade' img={LemonadeImg} /> : null }
+                        {this.state.moreInfoSoda === true ? <DrinkInfo close={this.closeMoreInfo} name='Soda' text='Pepsi, Diet Pepsi, Dr. Pepper, Diet Dr. Pepper, Sierra Mist, Mountain Dew, and MUG Root Beer' img={SodaImg} /> : null }
+                        {this.state.moreInfoTea === true ? <DrinkInfo close={this.closeMoreInfo} name='Tea' text='Sweet or unsweet tea' img={TeaImg} /> : null }
+
                         <div className={classes.goBackDiv}>
                             <Button className={classes.backButton} onClick={this.props.goBack}>Go Back</Button>
                         </div>
+
                         <h1 className={classes.headerText}>Drinks</h1>
-                        <div className={classes.menuInsideContainer}>
+                        <div className={classes.drinksInsideContainer}>
     
                             <div className={classes.groupDivLemonade} onClick={this.openMoreInfoLemonade}>
                                 <div className={classes.insideGroupDiv}>
