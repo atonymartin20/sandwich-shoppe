@@ -205,7 +205,7 @@ class Drinks extends React.Component {
         moreInfoSoda: false,
         moreInfoTea: false,
         createDrink: false,
-        drink :{
+        drink: {
             name: '',
             type: '',
             isSmall: true,
