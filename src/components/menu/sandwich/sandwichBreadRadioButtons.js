@@ -40,19 +40,22 @@ export default function SandwichBreadRadioButtons(props) {
 	const handleChange = (event) => {
         setValue(event.target.value);
         if(event.target.value === 'italian') {
-            props.updateButtons(true, false, false, false, false)
+            props.updateButtons(true, false, false, false, false, false)
         }
         else if(event.target.value === 'parm') {
-            props.updateButtons(false, true, false, false, false)
+            props.updateButtons(false, true, false, false, false, false)
         }
         else if(event.target.value === 'wheat') {
-            props.updateButtons(false, false, true, false, false)
+            props.updateButtons(false, false, true, false, false, false)
         }
         else if(event.target.value === 'white') {
-            props.updateButtons(false, false, false, true, false)
+            props.updateButtons(false, false, false, true, false, false)
         }
         else if(event.target.value === 'wrap') {
-            props.updateButtons(false, false, false, false, true)
+            props.updateButtons(false, false, false, false, true, false)
+        }
+        else if(event.target.value === 'none') {
+            props.updateButtons(false, false, false, false, false, true)
         }
     };
     
@@ -93,6 +96,12 @@ export default function SandwichBreadRadioButtons(props) {
 					value="wrap"
 					control={<Radio color="default" />}
                     label= {<Typography className={classes.label}>Wrap</Typography>}
+                    className={classes.formControlLabel}
+				/>
+                <FormControlLabel
+					value="none"
+					control={<Radio color="default" />}
+                    label= {<Typography className={classes.label}>No bread</Typography>}
                     className={classes.formControlLabel}
 				/>
 			</RadioGroup>

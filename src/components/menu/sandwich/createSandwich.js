@@ -239,7 +239,7 @@ class CreateSandwich extends React.Component {
         }
     }
 
-    UpdateSandwichBreadRadios = (italian, parm, wheat, white, wrap) => {
+    UpdateSandwichBreadRadios = (italian, parm, wheat, white, wrap, none) => {
         let breads = this.state.breads
 
         if(italian || parm || wheat || white || wrap) {
@@ -248,6 +248,7 @@ class CreateSandwich extends React.Component {
             breads['hasWheatBread'] = wheat;
             breads['hasWhiteBread'] = white;
             breads['hasWrap'] = wrap;
+            breads['hasNoBread'] = none
 
             this.setState({
                 breads,
@@ -259,6 +260,7 @@ class CreateSandwich extends React.Component {
             breads['hasWheatBread'] = false;
             breads['hasWhiteBread'] = false;
             breads['hasWrap'] = false;
+            breads['hasNoBread'] = false;
 
             this.setState({
                 breads,
@@ -435,7 +437,7 @@ class CreateSandwich extends React.Component {
                         <div className={classes.categoryBar}>Add Seasonings:</div>
                         <SandwichSeasoningsCheckboxes updateButtons={this.UpdateSandwichSeasoningsCheckboxes} seasonings={this.state.seasonings} />
 
-                        <div className={classes.finalInfo}>Price: ${ this.state.otherValues['finalPrice']}<Button className={classes.addToCartButton} onClick={this.AddSandwichToCart} disabled={this.state.disableCartButton}>Add to Cart</Button></div>
+                        <div className={classes.finalInfo}>Price: ${ this.state.otherValues['finalPrice']}<Button className={classes.addToCartButton} onClick={this.AddSandwichToCart} disabled={this.state.disableCartButton || (this.state.breads['hasItalianBread'] === false && this.state.breads['hasParmesanOreganoBread'] === false && this.state.breads['hasWheatBread'] === false && this.state.breads['hasWhiteBread'] === false && this.state.breads['hasWrap'] === false && this.state.breads['hasNoBread'] === false) }>Add to Cart</Button></div>
                     </div>
                 </div>
             )

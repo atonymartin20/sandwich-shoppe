@@ -390,6 +390,7 @@ class Sandwiches extends React.Component {
             hasWheatBread: false,
             hasWhiteBread: false,
             hasWrap: false,
+            hasNoBread: false,
             // Meats
             hasBacon: false,
             hasChicken: false,
@@ -541,6 +542,7 @@ class Sandwiches extends React.Component {
             hasWheatBread: false,
             hasWhiteBread: false,
             hasWrap: false,
+            hasNoBread: false,
             // Meats
             hasBacon: false,
             hasChicken: false,
