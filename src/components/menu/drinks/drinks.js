@@ -254,6 +254,8 @@ class Drinks extends React.Component {
                 }
             })
         });
+        
+        newDrink['name'] = `Small ${newDrink['type']}`
 
         this.setState({
             drink: newDrink,

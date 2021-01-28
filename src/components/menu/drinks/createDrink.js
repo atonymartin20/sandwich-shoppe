@@ -161,7 +161,15 @@ class CreateDrink extends React.Component {
         this.setState({
             disableCartButton: true,
         })
+
         let drink = this.state.drink
+
+        if(drink['isLarge'] === true) {
+            drink['name'] = 'Large ' + drink['name']
+        }
+        else {
+            drink['name'] = 'Small ' + drink['name']
+        }
 
         this.props.itemAddedToCart();
         this.context.addDrinkToCart(drink);
@@ -172,19 +180,29 @@ class CreateDrink extends React.Component {
         if(this.state.render) {
             return (
                 <div className={classes.container}>
-                    <div className={classes.menuSpacingDiv}>
-                        <div className={classes.header}>
-                            <h1 className={classes.headerText}>{this.props.title}</h1>
-                            <CloseIcon onClick={this.props.close} className={classes.closeIconStyling} />
+                    {this.context.state.orderItemCount >= 25 || this.context.state.orderDrinkCount >= 10 ? 
+                        <div className={classes.menuSpacingDiv}>
+                            <div className={classes.header}>
+                                <h1 className={classes.headerText}>{this.props.title}</h1>
+                                <CloseIcon onClick={this.props.close} className={classes.closeIconStyling} />
+                            </div>
+                            <div>This order is getting too large.  Please call the store for large orders.</div>
                         </div>
-                        <div className={classes.categoryBar}>Choose Size:</div>
-                        <DrinkSizeRadioButtons updateButtons={this.UpdateDrinkSizeRadios} drink={this.props.drink} />
+                    :
+                        <div className={classes.menuSpacingDiv}>
+                            <div className={classes.header}>
+                                <h1 className={classes.headerText}>{this.props.title}</h1>
+                                <CloseIcon onClick={this.props.close} className={classes.closeIconStyling} />
+                            </div>
+                            <div className={classes.categoryBar}>Choose Size:</div>
+                            <DrinkSizeRadioButtons updateButtons={this.UpdateDrinkSizeRadios} drink={this.props.drink} />
 
-                        {this.state.drink['type'] === 'Tea' || this.state.drink['type'] === 'Soda' ? <div className={classes.categoryBar}>Choose Flavor:</div> : null}
-                        {this.state.drink['type'] === 'Tea' || this.state.drink['type'] === 'Soda' ? <DrinkTypeRadioButtons updateButtons={this.UpdateDrinkTypeRadios} drink={this.props.drink} /> : null}
+                            {this.state.drink['type'] === 'Tea' || this.state.drink['type'] === 'Soda' ? <div className={classes.categoryBar}>Choose Flavor:</div> : null}
+                            {this.state.drink['type'] === 'Tea' || this.state.drink['type'] === 'Soda' ? <DrinkTypeRadioButtons updateButtons={this.UpdateDrinkTypeRadios} drink={this.props.drink} /> : null}
 
-                        <div className={classes.finalInfo}>Price: ${this.state.drink['isLarge'] === true ? 2.49 : 1.49}<Button className={classes.addToCartButton} onClick={this.AddDrinkToCart} disabled={this.state.disableCartButton}>Add to Cart</Button></div>
-                    </div>
+                            <div className={classes.finalInfo}>Price: ${this.state.drink['isLarge'] === true ? 2.49 : 1.49}<Button className={classes.addToCartButton} onClick={this.AddDrinkToCart} disabled={this.state.disableCartButton || this.state.drink['name'] === '' || this.context.state.orderItemCount >= 25 || this.context.state.orderDrinkCount >= 10}>Add to Cart</Button></div>
+                        </div>
+                    }
                 </div>
             )
         }
