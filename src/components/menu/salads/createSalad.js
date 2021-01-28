@@ -165,19 +165,29 @@ class CreateSide extends React.Component {
         if(this.state.render) {
             return (
                 <div className={classes.container}>
-                    <div className={classes.menuSpacingDiv}>
-                        <div className={classes.header}>
-                            <h1 className={classes.headerText}>{this.props.title}</h1>
-                            <CloseIcon onClick={this.props.close} className={classes.closeIconStyling} />
+                    {this.context.state.orderItemCount >= 25 || this.context.state.orderSaladCount >= 10 ? 
+                        <div className={classes.menuSpacingDiv}>
+                            <div className={classes.header}>
+                                <h1 className={classes.headerText}>{this.props.title}</h1>
+                                <CloseIcon onClick={this.props.close} className={classes.closeIconStyling} />
+                            </div>
+                            <div>This order is getting too large.  Please call the store for large orders.</div>
                         </div>
-
-                            <div className={classes.holderDiv}>
-                                <div className={classes.categoryBar}>Choose Dressing:</div>
-                                <SaladDressingRadioButtons updateButtons={this.UpdateDressingRadios} salad={this.props.salad} />
+                    :
+                        <div className={classes.menuSpacingDiv}>
+                            <div className={classes.header}>
+                                <h1 className={classes.headerText}>{this.props.title}</h1>
+                                <CloseIcon onClick={this.props.close} className={classes.closeIconStyling} />
                             </div>
 
-                        <div className={classes.finalInfo}>Price: ${this.state.salad['price']}<Button className={classes.addToCartButton} onClick={this.AddSideToCart} disabled={this.state.disableCartButton}>Add to Cart</Button></div>
-                    </div>
+                                <div className={classes.holderDiv}>
+                                    <div className={classes.categoryBar}>Choose Dressing:</div>
+                                    <SaladDressingRadioButtons updateButtons={this.UpdateDressingRadios} salad={this.props.salad} />
+                                </div>
+
+                            <div className={classes.finalInfo}>Price: ${this.state.salad['price']}<Button className={classes.addToCartButton} onClick={this.AddSideToCart} disabled={this.state.disableCartButton || this.context.state.orderItemCount >= 25 || this.context.state.orderSaladCount >= 10}>Add to Cart</Button></div>
+                        </div>
+                    }
                 </div>
             )
         }

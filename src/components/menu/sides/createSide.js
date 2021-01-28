@@ -186,38 +186,58 @@ class CreateSide extends React.Component {
         if(this.state.render) {
             return (
                 <div className={classes.container}>
-                    <div className={classes.menuSpacingDiv}>
-                        <div className={classes.header}>
-                            <h1 className={classes.headerText}>{this.props.title}</h1>
-                            <CloseIcon onClick={this.props.close} className={classes.closeIconStyling} />
+                    {this.context.state.orderItemCount >= 25 || this.context.state.orderSaladCount >= 10 ? 
+                        <div className={classes.menuSpacingDiv}>
+                            <div className={classes.header}>
+                                <h1 className={classes.headerText}>{this.props.title}</h1>
+                                <CloseIcon onClick={this.props.close} className={classes.closeIconStyling} />
+                            </div>
+                            <div>This order is getting too large.  Please call the store for large orders.</div>
                         </div>
-
-                        {this.state.side['type'] === 'Cookies' ? 
-                            <div className={classes.holderDiv}>
-                                <div className={classes.categoryBar}>Choose Flavor:</div>
-                                <CookieFlavorRadioButtons updateButtons={this.UpdateCookieFlavorRadios} side={this.props.side} />
-
-                                <div className={classes.categoryBar}>Choose Amount:</div>
-                                <CookieCountRadioButtons updateButtons={this.UpdateCookieCountRadios} side={this.props.side} />
+                    :
+                        <div className={classes.menuSpacingDiv}>
+                            <div className={classes.header}>
+                                <h1 className={classes.headerText}>{this.props.title}</h1>
+                                <CloseIcon onClick={this.props.close} className={classes.closeIconStyling} />
                             </div>
-                        : null }
 
-                        {this.state.side['type'] === 'Cheesebread' ? 
-                            <div className={classes.holderDiv}>
-                                <div className={classes.categoryBar}>Side of Marinara:</div>
-                                <CheesebreadMarinaraCheckbox updateButton={this.UpdateSideMarinaraRadio} side={this.props.side} />
-                            </div>
-                        : null }
+                            {this.state.side['type'] === 'Cookies' ? 
+                                <div className={classes.holderDiv}>
+                                    <div className={classes.categoryBar}>Choose Flavor:</div>
+                                    <CookieFlavorRadioButtons updateButtons={this.UpdateCookieFlavorRadios} side={this.props.side} />
 
-                        {this.state.side['type'] === 'Chips' ?
-                            <div className={classes.holderDiv}>
-                                <div className={classes.categoryBar}>Choose Flavor:</div>
-                                <ChipFlavorRadioButtons updateButtons={this.UpdateChipFlavorRadios} side={this.props.side} />
-                            </div>
-                        : null }
+                                    <div className={classes.categoryBar}>Choose Amount:</div>
+                                    <CookieCountRadioButtons updateButtons={this.UpdateCookieCountRadios} side={this.props.side} />
+                                </div>
+                            : null }
 
-                        <div className={classes.finalInfo}>Price: ${this.state.side['price']}<Button className={classes.addToCartButton} onClick={this.AddSideToCart} disabled={this.state.disableCartButton}>Add to Cart</Button></div>
-                    </div>
+                            {this.state.side['type'] === 'Cheesebread' ? 
+                                <div className={classes.holderDiv}>
+                                    <div className={classes.categoryBar}>Side of Marinara:</div>
+                                    <CheesebreadMarinaraCheckbox updateButton={this.UpdateSideMarinaraRadio} side={this.props.side} />
+                                </div>
+                            : null }
+
+                            {this.state.side['type'] === 'Chips' ?
+                                <div className={classes.holderDiv}>
+                                    <div className={classes.categoryBar}>Choose Flavor:</div>
+                                    <ChipFlavorRadioButtons updateButtons={this.UpdateChipFlavorRadios} side={this.props.side} />
+                                </div>
+                            : null }
+
+                            {this.state.side['type'] === 'Chips' ?
+                            <div className={classes.finalInfo}>Price: ${this.state.side['price']}<Button className={classes.addToCartButton} onClick={this.AddSideToCart} disabled={this.state.disableCartButton || this.state.side['name'] === ''}>Add to Cart</Button></div>
+                            : null }
+
+                            {this.state.side['type'] === 'Cookies' ?
+                            <div className={classes.finalInfo}>Price: ${this.state.side['price']}<Button className={classes.addToCartButton} onClick={this.AddSideToCart} disabled={this.state.disableCartButton || (this.state.side['name'] === '' || this.state.side['price'] === 0.00)}>Add to Cart</Button></div>
+                            : null }
+
+                            {this.state.side['type'] === 'Cheesebread' ?
+                                <div className={classes.finalInfo}>Price: ${this.state.side['price']}<Button className={classes.addToCartButton} onClick={this.AddSideToCart} disabled={this.state.disableCartButton || this.context.state.orderItemCount >= 25 || this.context.state.orderSideCount >= 10}>Add to Cart</Button></div>
+                            : null }
+                        </div>
+                    }
                 </div>
             )
         }
