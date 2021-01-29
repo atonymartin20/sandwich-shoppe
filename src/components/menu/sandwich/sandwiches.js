@@ -384,6 +384,7 @@ class Sandwiches extends React.Component {
         createSandwich: false,
         sandwich: {
             name: '',
+            type: '',
             // Bread
             hasItalianBread: false,
             hasParmesanOreganoBread: false,
@@ -525,6 +526,7 @@ class Sandwiches extends React.Component {
                 }
             })
         });
+        newSandwich['name'] = `Small ${newSandwich['type']}`
         
         this.setState({
             sandwich: newSandwich,
@@ -536,6 +538,7 @@ class Sandwiches extends React.Component {
         event.preventDefault();
         let sandwich = {
             name: '',
+            type: '',
             // Bread
             hasItalianBread: false,
             hasParmesanOreganoBread: false,
@@ -624,7 +627,7 @@ class Sandwiches extends React.Component {
         if(this.props.type === 'order') {
             return (
                 <div className={classes.sandwichDiv}>
-                    {this.state.createSandwich === true ? <CreateSandwich itemAddedToCart={this.props.itemAddedToCart} title={this.state.sandwich['name']} sandwich={this.state.sandwich} close={this.closeMenu}  /> : null }
+                    {this.state.createSandwich === true ? <CreateSandwich itemAddedToCart={this.props.itemAddedToCart} title={this.state.sandwich['type']} sandwich={this.state.sandwich} close={this.closeMenu}  /> : null }
 
                     <div className={classes.sandwichSpacingOrderDiv}>
                         {this.context.state.orderItemCount > 0 ? 
@@ -643,61 +646,61 @@ class Sandwiches extends React.Component {
                         <h1 className={classes.headerText}>Sandwiches</h1>
                         <div className={classes.sandwichInsideContainer}>
     
-                            <div className={classes.groupDivBLT} onClick={() => {this.createSandwich({name: 'BLT', hasBacon: true, hasLeafLettuce: true, hasTomatoes: true, startingPrice: 3.99 })}}>
+                            <div className={classes.groupDivBLT} onClick={() => {this.createSandwich({type: 'BLT', hasBacon: true, hasLeafLettuce: true, hasTomatoes: true, startingPrice: 3.99 })}}>
                                 <div className={classes.insideGroupDiv}>
                                     BLT
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivBuffaloChicken} onClick={() => {this.createSandwich({name: 'Buffalo Chicken', hasBuffaloSauce: true, hasChicken: true, hasShreddedLettuce: true, hasTomatoes: true, startingPrice: 3.99 })}}>
+                            <div className={classes.groupDivBuffaloChicken} onClick={() => {this.createSandwich({type: 'Buffalo Chicken', hasBuffaloSauce: true, hasChicken: true, hasShreddedLettuce: true, hasTomatoes: true, startingPrice: 3.99 })}}>
                                 <div className={classes.insideGroupDiv}>
                                     Buffalo Chicken
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivChickenBaconRanch} onClick={() => {this.createSandwich({name: 'Chicken Bacon Ranch', hasBacon: true, hasChicken: true, hasLeafLettuce: true, hasTomatoes: true, hasRanchDressing: true, startingPrice: 4.59 })}}>
+                            <div className={classes.groupDivChickenBaconRanch} onClick={() => {this.createSandwich({type: 'Chicken Bacon Ranch', hasBacon: true, hasChicken: true, hasLeafLettuce: true, hasTomatoes: true, hasRanchDressing: true, startingPrice: 4.59 })}}>
                                 <div className={classes.insideGroupDiv}>
                                     Chicken Bacon Ranch
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivChickenParm} onClick={() => {this.createSandwich({name: 'Chicken Parm', hasChicken: true, hasMarinara: true, startingPrice: 3.99 })}}>
+                            <div className={classes.groupDivChickenParm} onClick={() => {this.createSandwich({type: 'Chicken Parm', hasChicken: true, hasMarinara: true, startingPrice: 3.99 })}}>
                                 <div className={classes.insideGroupDiv}>
                                     Chicken Parm
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivClub} onClick={() => {this.createSandwich({name: 'Club', hasBacon: true, hasHam: true, hasTurkey: true, hasLeafLettuce: true, hasTomatoes: true, startingPrice: 4.59 })}}>
+                            <div className={classes.groupDivClub} onClick={() => {this.createSandwich({type: 'Club', hasBacon: true, hasHam: true, hasTurkey: true, hasLeafLettuce: true, hasTomatoes: true, startingPrice: 4.59 })}}>
                                 <div className={classes.insideGroupDiv}>
                                     Club
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivHamAndCheese} onClick={() => {this.createSandwich({name: 'Ham and Cheese', hasHam: true, hasLeafLettuce: true, hasTomatoes: true, startingPrice: 3.99 })}}>
+                            <div className={classes.groupDivHamAndCheese} onClick={() => {this.createSandwich({type: 'Ham and Cheese', hasHam: true, hasLeafLettuce: true, hasTomatoes: true, startingPrice: 3.99 })}}>
                                 <div className={classes.insideGroupDiv}>
                                     Ham and Cheese
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivMeatball} onClick={() => {this.createSandwich({name: 'Chicken Parm', hasMeatball: true, hasMarinara: true, startingPrice: 3.99 })}}>
+                            <div className={classes.groupDivMeatball} onClick={() => {this.createSandwich({type: 'Meatball', hasMeatball: true, hasMarinara: true, startingPrice: 3.99 })}}>
                                 <div className={classes.insideGroupDiv}>
                                     Meatball
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivPhillyCheesesteak} onClick={() => {this.createSandwich({name: 'Philly Cheesesteak', hasSteak: true, hasGrilledOnions: true, hasGreenPeppers: true, startingPrice: 4.99 })}}>
+                            <div className={classes.groupDivPhillyCheesesteak} onClick={() => {this.createSandwich({type: 'Philly Cheesesteak', hasSteak: true, hasGrilledOnions: true, hasGreenPeppers: true, startingPrice: 4.99 })}}>
                                 <div className={classes.insideGroupDiv}>
                                     Philly Cheesesteak
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivTurkey} onClick={() => {this.createSandwich({name: 'Turkey', hasChicken: true, hasLeafLettuce: true, hasTomatoes: true, startingPrice: 3.99 })}}>
+                            <div className={classes.groupDivTurkey} onClick={() => {this.createSandwich({type: 'Turkey', hasChicken: true, hasLeafLettuce: true, hasTomatoes: true, startingPrice: 3.99 })}}>
                                 <div className={classes.insideGroupDiv}>
                                     Turkey
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivCreateYourOwn} onClick={() => {this.createSandwich({name: 'Create your Own', startingPrice: 3.49 })}}>
+                            <div className={classes.groupDivCreateYourOwn} onClick={() => {this.createSandwich({type: 'Create your Own', startingPrice: 3.49 })}}>
                                 <div className={classes.insideGroupDiv}>
                                     Create Your Own
                                 </div>

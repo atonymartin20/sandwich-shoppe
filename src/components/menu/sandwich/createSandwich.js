@@ -191,7 +191,7 @@ class CreateSandwich extends React.Component {
                 sauces[key] = value
             }
 
-            if (key === 'name' || key === 'isToasted' || key.includes('Sandwich') || key.includes('Price')) {
+            if (key === 'name' || key === 'isToasted' || key.includes('Sandwich') || key.includes('Price') || key.includes('type')) {
                 otherValues[key] = value
             }
         }
@@ -214,11 +214,20 @@ class CreateSandwich extends React.Component {
 
     UpdateSandwichSizeRadios = (small, medium, large, largerSandwichPrice) => {
         let otherValues = this.state.otherValues
-        
         if(small || medium || large) {
+            if(small === true) {
+                otherValues['name'] = `Small ${otherValues['type']}`
+            }
+            if(medium === true) {
+                otherValues['name'] = `Medium ${otherValues['type']}`
+            }
+            if(large === true) {
+                otherValues['name'] = `Large ${otherValues['type']}`
+            }
             otherValues['isSmallSandwich'] = small;
             otherValues['isMediumSandwich'] = medium;
             otherValues['isLargeSandwich'] = large;
+            
             otherValues['largerSandwichPrice'] = largerSandwichPrice;
             let finalPrice = Number(this.state.otherValues['startingPrice'] + largerSandwichPrice + this.state.otherValues['extraCheesePrice'] + this.state.otherValues['extraMeatPrice']).toFixed(2)
             otherValues['finalPrice'] = Number(finalPrice)
@@ -232,6 +241,7 @@ class CreateSandwich extends React.Component {
             otherValues['isMediumSandwich'] = false;
             otherValues['isLargeSandwich'] = false;
             otherValues['largerSandwichPrice'] = 0.00;
+            otherValues['name'] = `Small ${otherValues['type']}`;
 
             this.setState({
                 otherValues,
@@ -403,42 +413,52 @@ class CreateSandwich extends React.Component {
         if(this.state.render) {
             return (
                 <div className={classes.container}>
-                    <div className={classes.menuSpacingDiv}>
-                        <div className={classes.header}>
-                            <h1 className={classes.headerText}>{this.props.title}</h1>
-                            <CloseIcon onClick={this.props.close} className={classes.closeIconStyling} />
+                    {this.context.state.orderItemCount >= 25 || this.context.state.orderSandwichCount >= 10 ? 
+                        <div className={classes.menuSpacingDiv}>
+                            <div className={classes.header}>
+                                <h1 className={classes.headerText}>{this.props.title}</h1>
+                                <CloseIcon onClick={this.props.close} className={classes.closeIconStyling} />
+                            </div>
+                            <div>This order is getting too large.  Please call the store for large orders.</div>
                         </div>
-                        <div className={classes.categoryBar}>Choose Size:</div>
-                        <SandwichSizeRadioButtons updateButtons={this.UpdateSandwichSizeRadios} price={this.state.otherValues['startingPrice']} largerSandwichPrice={this.state.otherValues['largerSandwichPrice']} />
+                    : 
+                        <div className={classes.menuSpacingDiv}>
+                            <div className={classes.header}>
+                                <h1 className={classes.headerText}>{this.props.title}</h1>
+                                <CloseIcon onClick={this.props.close} className={classes.closeIconStyling} />
+                            </div>
+                            <div className={classes.categoryBar}>Choose Size:</div>
+                            <SandwichSizeRadioButtons updateButtons={this.UpdateSandwichSizeRadios} price={this.state.otherValues['startingPrice']} largerSandwichPrice={this.state.otherValues['largerSandwichPrice']} />
 
-                        <div className={classes.categoryBar}>Choose Bread:</div>
-                        <SandwichBreadRadioButtons updateButtons={this.UpdateSandwichBreadRadios} />
+                            <div className={classes.categoryBar}>Choose Bread:</div>
+                            <SandwichBreadRadioButtons updateButtons={this.UpdateSandwichBreadRadios} />
 
-                        <div className={classes.categoryBar}>Choose Cheese:</div>
-                        <div className={classes.categoryInfoBar}>One cheese comes with the sandwich.  Extra cheeses $.40 each.</div>
-                        <SandwichCheeseCheckboxes updateButtons={this.UpdateSandwichCheeseCheckboxes} cheeses={this.state.cheeses} extraCheesePrice={this.state.otherValues['extraCheesePrice']} />
+                            <div className={classes.categoryBar}>Choose Cheese:</div>
+                            <div className={classes.categoryInfoBar}>One cheese comes with the sandwich.  Extra cheeses $.40 each.</div>
+                            <SandwichCheeseCheckboxes updateButtons={this.UpdateSandwichCheeseCheckboxes} cheeses={this.state.cheeses} extraCheesePrice={this.state.otherValues['extraCheesePrice']} />
 
-                        {(Object.keys(this.state.sandwichDefaults).length > 0) ? <div className={classes.holderDiv}><div className={classes.categoryBar}>Comes With:</div>
-                        <SandwichDefaultsCheckboxes updateButtons={this.UpdateSandwichDefaultsCheckboxes} defaults={this.state.sandwichDefaults} /></div> : null }
+                            {(Object.keys(this.state.sandwichDefaults).length > 0) ? <div className={classes.holderDiv}><div className={classes.categoryBar}>Comes With:</div>
+                            <SandwichDefaultsCheckboxes updateButtons={this.UpdateSandwichDefaultsCheckboxes} defaults={this.state.sandwichDefaults} /></div> : null }
 
-                        <div className={classes.categoryBar}>Add Meat:</div>
-                        <div className={classes.categoryInfoBar}>Extra meats $.80 each.</div>
-                        <SandwichMeatCheckboxes updateButtons={this.UpdateSandwichMeatCheckboxes} defaults={this.state.sandwichDefaults} meats={this.state.meats} extraMeatPrice={this.state.otherValues['extraMeatPrice']} />
+                            <div className={classes.categoryBar}>Add Meat:</div>
+                            <div className={classes.categoryInfoBar}>Extra meats $.80 each.</div>
+                            <SandwichMeatCheckboxes updateButtons={this.UpdateSandwichMeatCheckboxes} defaults={this.state.sandwichDefaults} meats={this.state.meats} extraMeatPrice={this.state.otherValues['extraMeatPrice']} />
 
-                        <div className={classes.categoryBar}>Toasted:</div>
-                        <SandwichToastedCheckbox updateButton={this.UpdateSandwichToastedCheckbox} toasted={this.state.otherValues['isToasted']} />
+                            <div className={classes.categoryBar}>Toasted:</div>
+                            <SandwichToastedCheckbox updateButton={this.UpdateSandwichToastedCheckbox} toasted={this.state.otherValues['isToasted']} />
 
-                        <div className={classes.categoryBar}>Add Veggies:</div>
-                        <SandwichVeggiesCheckboxes updateButtons={this.UpdateSandwichVeggiesCheckboxes} defaults={this.state.sandwichDefaults} veggies={this.state.veggies} />
+                            <div className={classes.categoryBar}>Add Veggies:</div>
+                            <SandwichVeggiesCheckboxes updateButtons={this.UpdateSandwichVeggiesCheckboxes} defaults={this.state.sandwichDefaults} veggies={this.state.veggies} />
 
-                        <div className={classes.categoryBar}>Add Sauces:</div>
-                        <SandwichSaucesCheckboxes updateButtons={this.UpdateSandwichSaucesCheckboxes} defaults={this.state.sandwichDefaults} sauces={this.state.sauces} />
+                            <div className={classes.categoryBar}>Add Sauces:</div>
+                            <SandwichSaucesCheckboxes updateButtons={this.UpdateSandwichSaucesCheckboxes} defaults={this.state.sandwichDefaults} sauces={this.state.sauces} />
 
-                        <div className={classes.categoryBar}>Add Seasonings:</div>
-                        <SandwichSeasoningsCheckboxes updateButtons={this.UpdateSandwichSeasoningsCheckboxes} seasonings={this.state.seasonings} />
+                            <div className={classes.categoryBar}>Add Seasonings:</div>
+                            <SandwichSeasoningsCheckboxes updateButtons={this.UpdateSandwichSeasoningsCheckboxes} seasonings={this.state.seasonings} />
 
-                        <div className={classes.finalInfo}>Price: ${ this.state.otherValues['finalPrice']}<Button className={classes.addToCartButton} onClick={this.AddSandwichToCart} disabled={this.state.disableCartButton || (this.state.breads['hasItalianBread'] === false && this.state.breads['hasParmesanOreganoBread'] === false && this.state.breads['hasWheatBread'] === false && this.state.breads['hasWhiteBread'] === false && this.state.breads['hasWrap'] === false && this.state.breads['hasNoBread'] === false) }>Add to Cart</Button></div>
-                    </div>
+                            <div className={classes.finalInfo}>Price: ${ this.state.otherValues['finalPrice']}<Button className={classes.addToCartButton} onClick={this.AddSandwichToCart} disabled={this.state.disableCartButton || (this.state.breads['hasItalianBread'] === false && this.state.breads['hasParmesanOreganoBread'] === false && this.state.breads['hasWheatBread'] === false && this.state.breads['hasWhiteBread'] === false && this.state.breads['hasWrap'] === false && this.state.breads['hasNoBread'] === false) || this.context.state.orderItemCount >= 25 || this.context.state.orderSandwichCount >= 10 }>Add to Cart</Button></div>
+                        </div>
+                    }
                 </div>
             )
         }
