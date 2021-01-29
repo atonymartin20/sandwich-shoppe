@@ -362,46 +362,185 @@ export default class AppProvider extends React.Component {
                         }
                         else {
                             if(this.state.orderSaladCount === 9) {
+                                let orderSaladCount = this.state.orderSaladCount + 1;
+                                let orderItemCount = this.state.orderItemCount + 1;
+                                let totalOrderPrice = this.state.totalOrderPrice + salad['price'];
+                                let totalSaladPrice = this.state.totalSaladPrice + salad['price'];
+                                let salad10Created = true;
+                                let salads = [...this.state.salads, salad];
                                 
+                                this.setState({
+                                    orderSaladCount,
+                                    orderItemCount,
+                                    totalOrderPrice,
+                                    totalSaladPrice,
+                                    salad10Created,
+                                    salads,
+                                })
                             }
 
                             else if(this.state.orderSaladCount === 8) {
-
+                                let orderSaladCount = this.state.orderSaladCount + 1;
+                                let orderItemCount = this.state.orderItemCount + 1;
+                                let totalOrderPrice = this.state.totalOrderPrice + salad['price'];
+                                let totalSaladPrice = this.state.totalSaladPrice + salad['price'];
+                                let salad9Created = true;
+                                let salads = [...this.state.salads, salad];
+                                
+                                this.setState({
+                                    orderSaladCount,
+                                    orderItemCount,
+                                    totalOrderPrice,
+                                    totalSaladPrice,
+                                    salad9Created,
+                                    salads,
+                                })
                             }
 
                             else if(this.state.orderSaladCount === 7) {
+                                let orderSaladCount = this.state.orderSaladCount + 1;
+                                let orderItemCount = this.state.orderItemCount + 1;
+                                let totalOrderPrice = this.state.totalOrderPrice + salad['price'];
+                                let totalSaladPrice = this.state.totalSaladPrice + salad['price'];
+                                let salad8Created = true;
+                                let salads = [...this.state.salads, salad];
                                 
+                                this.setState({
+                                    orderSaladCount,
+                                    orderItemCount,
+                                    totalOrderPrice,
+                                    totalSaladPrice,
+                                    salad8Created,
+                                    salads,
+                                })
                             }
 
                             else if(this.state.orderSaladCount === 6) {
+                                let orderSaladCount = this.state.orderSaladCount + 1;
+                                let orderItemCount = this.state.orderItemCount + 1;
+                                let totalOrderPrice = this.state.totalOrderPrice + salad['price'];
+                                let totalSaladPrice = this.state.totalSaladPrice + salad['price'];
+                                let salad7Created = true;
+                                let salads = [...this.state.salads, salad];
                                 
+                                this.setState({
+                                    orderSaladCount,
+                                    orderItemCount,
+                                    totalOrderPrice,
+                                    totalSaladPrice,
+                                    salad7Created,
+                                    salads,
+                                })
                             }
 
                             else if(this.state.orderSaladCount === 5) {
+                                let orderSaladCount = this.state.orderSaladCount + 1;
+                                let orderItemCount = this.state.orderItemCount + 1;
+                                let totalOrderPrice = this.state.totalOrderPrice + salad['price'];
+                                let totalSaladPrice = this.state.totalSaladPrice + salad['price'];
+                                let salad6Created = true;
+                                let salads = [...this.state.salads, salad];
                                 
+                                this.setState({
+                                    orderSaladCount,
+                                    orderItemCount,
+                                    totalOrderPrice,
+                                    totalSaladPrice,
+                                    salad6Created,
+                                    salads,
+                                })
                             }
 
                             else if(this.state.orderSaladCount === 4) {
+                                let orderSaladCount = this.state.orderSaladCount + 1;
+                                let orderItemCount = this.state.orderItemCount + 1;
+                                let totalOrderPrice = this.state.totalOrderPrice + salad['price'];
+                                let totalSaladPrice = this.state.totalSaladPrice + salad['price'];
+                                let salad5Created = true;
+                                let salads = [...this.state.salads, salad];
                                 
+                                this.setState({
+                                    orderSaladCount,
+                                    orderItemCount,
+                                    totalOrderPrice,
+                                    totalSaladPrice,
+                                    salad5Created,
+                                    salads,
+                                })
                             }
 
                             else if(this.state.orderSaladCount === 3) {
+                                let orderSaladCount = this.state.orderSaladCount + 1;
+                                let orderItemCount = this.state.orderItemCount + 1;
+                                let totalOrderPrice = this.state.totalOrderPrice + salad['price'];
+                                let totalSaladPrice = this.state.totalSaladPrice + salad['price'];
+                                let salad4Created = true;
+                                let salads = [...this.state.salads, salad];
                                 
+                                this.setState({
+                                    orderSaladCount,
+                                    orderItemCount,
+                                    totalOrderPrice,
+                                    totalSaladPrice,
+                                    salad4Created,
+                                    salads,
+                                })
                             }
 
                             else if(this.state.orderSaladCount === 2) {
+                                let orderSaladCount = this.state.orderSaladCount + 1;
+                                let orderItemCount = this.state.orderItemCount + 1;
+                                let totalOrderPrice = this.state.totalOrderPrice + salad['price'];
+                                let totalSaladPrice = this.state.totalSaladPrice + salad['price'];
+                                let salad3Created = true;
+                                let salads = [...this.state.salads, salad];
                                 
+                                this.setState({
+                                    orderSaladCount,
+                                    orderItemCount,
+                                    totalOrderPrice,
+                                    totalSaladPrice,
+                                    salad3Created,
+                                    salads,
+                                })
                             }
 
                             else if(this.state.orderSaladCount === 1) {
+                                let orderSaladCount = this.state.orderSaladCount + 1;
+                                let orderItemCount = this.state.orderItemCount + 1;
+                                let totalOrderPrice = this.state.totalOrderPrice + salad['price'];
+                                let totalSaladPrice = this.state.totalSaladPrice + salad['price'];
+                                let salad2Created = true;
+                                let salads = [...this.state.salads, salad];
                                 
+                                this.setState({
+                                    orderSaladCount,
+                                    orderItemCount,
+                                    totalOrderPrice,
+                                    totalSaladPrice,
+                                    salad2Created,
+                                    salads,
+                                })
                             }
 
                             else {
-
+                                let orderSaladCount = this.state.orderSaladCount + 1;
+                                let orderItemCount = this.state.orderItemCount + 1;
+                                let totalOrderPrice = this.state.totalOrderPrice + salad['price'];
+                                let totalSaladPrice = this.state.totalSaladPrice + salad['price'];
+                                let salad1Created = true;
+                                let salads = [...this.state.salads, salad];
+                                
+                                this.setState({
+                                    orderSaladCount,
+                                    orderItemCount,
+                                    totalOrderPrice,
+                                    totalSaladPrice,
+                                    salad1Created,
+                                    salads,
+                                })
                             }
                         }
-                        console.log(salad)
                     },
                     addSandwichToCart: (sandwich) => {
                         if(this.state.orderSandwichCount >= 10 || this.state.orderItemCount >= 25) {
@@ -456,46 +595,185 @@ export default class AppProvider extends React.Component {
                         }
                         else {
                             if(this.state.orderSideCount === 9) {
+                                let orderSideCount = this.state.orderSideCount + 1;
+                                let orderItemCount = this.state.orderItemCount + 1;
+                                let totalOrderPrice = this.state.totalOrderPrice + side['price'];
+                                let totalSidePrice = this.state.totalSidePrice + side['price'];
+                                let side10Created = true;
+                                let sides = [...this.state.sides, side];
                                 
+                                this.setState({
+                                    orderSideCount,
+                                    orderItemCount,
+                                    totalOrderPrice,
+                                    totalSidePrice,
+                                    side10Created,
+                                    sides,
+                                })
                             }
 
                             else if(this.state.orderSideCount === 8) {
-
+                                let orderSideCount = this.state.orderSideCount + 1;
+                                let orderItemCount = this.state.orderItemCount + 1;
+                                let totalOrderPrice = this.state.totalOrderPrice + side['price'];
+                                let totalSidePrice = this.state.totalSidePrice + side['price'];
+                                let side9Created = true;
+                                let sides = [...this.state.sides, side];
+                                
+                                this.setState({
+                                    orderSideCount,
+                                    orderItemCount,
+                                    totalOrderPrice,
+                                    totalSidePrice,
+                                    side9Created,
+                                    sides,
+                                })
                             }
 
                             else if(this.state.orderSideCount === 7) {
+                                let orderSideCount = this.state.orderSideCount + 1;
+                                let orderItemCount = this.state.orderItemCount + 1;
+                                let totalOrderPrice = this.state.totalOrderPrice + side['price'];
+                                let totalSidePrice = this.state.totalSidePrice + side['price'];
+                                let side8Created = true;
+                                let sides = [...this.state.sides, side];
                                 
+                                this.setState({
+                                    orderSideCount,
+                                    orderItemCount,
+                                    totalOrderPrice,
+                                    totalSidePrice,
+                                    side8Created,
+                                    sides,
+                                })
                             }
 
                             else if(this.state.orderSideCount === 6) {
+                                let orderSideCount = this.state.orderSideCount + 1;
+                                let orderItemCount = this.state.orderItemCount + 1;
+                                let totalOrderPrice = this.state.totalOrderPrice + side['price'];
+                                let totalSidePrice = this.state.totalSidePrice + side['price'];
+                                let side7Created = true;
+                                let sides = [...this.state.sides, side];
                                 
+                                this.setState({
+                                    orderSideCount,
+                                    orderItemCount,
+                                    totalOrderPrice,
+                                    totalSidePrice,
+                                    side7Created,
+                                    sides,
+                                })
                             }
 
                             else if(this.state.orderSideCount === 5) {
+                                let orderSideCount = this.state.orderSideCount + 1;
+                                let orderItemCount = this.state.orderItemCount + 1;
+                                let totalOrderPrice = this.state.totalOrderPrice + side['price'];
+                                let totalSidePrice = this.state.totalSidePrice + side['price'];
+                                let side6Created = true;
+                                let sides = [...this.state.sides, side];
                                 
+                                this.setState({
+                                    orderSideCount,
+                                    orderItemCount,
+                                    totalOrderPrice,
+                                    totalSidePrice,
+                                    side6Created,
+                                    sides,
+                                })
                             }
 
                             else if(this.state.orderSideCount === 4) {
+                                let orderSideCount = this.state.orderSideCount + 1;
+                                let orderItemCount = this.state.orderItemCount + 1;
+                                let totalOrderPrice = this.state.totalOrderPrice + side['price'];
+                                let totalSidePrice = this.state.totalSidePrice + side['price'];
+                                let side5Created = true;
+                                let sides = [...this.state.sides, side];
                                 
+                                this.setState({
+                                    orderSideCount,
+                                    orderItemCount,
+                                    totalOrderPrice,
+                                    totalSidePrice,
+                                    side5Created,
+                                    sides,
+                                })
                             }
 
                             else if(this.state.orderSideCount === 3) {
+                                let orderSideCount = this.state.orderSideCount + 1;
+                                let orderItemCount = this.state.orderItemCount + 1;
+                                let totalOrderPrice = this.state.totalOrderPrice + side['price'];
+                                let totalSidePrice = this.state.totalSidePrice + side['price'];
+                                let side4Created = true;
+                                let sides = [...this.state.sides, side];
                                 
+                                this.setState({
+                                    orderSideCount,
+                                    orderItemCount,
+                                    totalOrderPrice,
+                                    totalSidePrice,
+                                    side4Created,
+                                    sides,
+                                })
                             }
 
                             else if(this.state.orderSideCount === 2) {
+                                let orderSideCount = this.state.orderSideCount + 1;
+                                let orderItemCount = this.state.orderItemCount + 1;
+                                let totalOrderPrice = this.state.totalOrderPrice + side['price'];
+                                let totalSidePrice = this.state.totalSidePrice + side['price'];
+                                let side3Created = true;
+                                let sides = [...this.state.sides, side];
                                 
+                                this.setState({
+                                    orderSideCount,
+                                    orderItemCount,
+                                    totalOrderPrice,
+                                    totalSidePrice,
+                                    side3Created,
+                                    sides,
+                                })
                             }
 
                             else if(this.state.orderSideCount === 1) {
+                                let orderSideCount = this.state.orderSideCount + 1;
+                                let orderItemCount = this.state.orderItemCount + 1;
+                                let totalOrderPrice = this.state.totalOrderPrice + side['price'];
+                                let totalSidePrice = this.state.totalSidePrice + side['price'];
+                                let side2Created = true;
+                                let sides = [...this.state.sides, side];
                                 
+                                this.setState({
+                                    orderSideCount,
+                                    orderItemCount,
+                                    totalOrderPrice,
+                                    totalSidePrice,
+                                    side2Created,
+                                    sides,
+                                })
                             }
 
                             else {
-
+                                let orderSideCount = this.state.orderSideCount + 1;
+                                let orderItemCount = this.state.orderItemCount + 1;
+                                let totalOrderPrice = this.state.totalOrderPrice + side['price'];
+                                let totalSidePrice = this.state.totalSidePrice + side['price'];
+                                let side1Created = true;
+                                let sides = [...this.state.sides, side];
+                                
+                                this.setState({
+                                    orderSideCount,
+                                    orderItemCount,
+                                    totalOrderPrice,
+                                    totalSidePrice,
+                                    side1Created,
+                                    sides,
+                                })
                             }
                         }
-                        console.log(side)
                     },
 
                 }}
