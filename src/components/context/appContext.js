@@ -548,46 +548,185 @@ export default class AppProvider extends React.Component {
                         }
                         else {
                             if(this.state.orderSandwichCount === 9) {
+                                let orderSandwichCount = this.state.orderSandwichCount + 1;
+                                let orderItemCount = this.state.orderItemCount + 1;
+                                let totalOrderPrice = this.state.totalOrderPrice + sandwich['finalPrice'];
+                                let totalSandwichPrice = this.state.totalSandwichPrice + sandwich['finalPrice'];
+                                let sandwich10Created = true;
+                                let sandwiches = [...this.state.sandwiches, sandwich];
                                 
+                                this.setState({
+                                    orderSandwichCount,
+                                    orderItemCount,
+                                    totalOrderPrice,
+                                    totalSandwichPrice,
+                                    sandwich10Created,
+                                    sandwiches,
+                                })
                             }
 
                             else if(this.state.orderSandwichCount === 8) {
-
+                                let orderSandwichCount = this.state.orderSandwichCount + 1;
+                                let orderItemCount = this.state.orderItemCount + 1;
+                                let totalOrderPrice = this.state.totalOrderPrice + sandwich['finalPrice'];
+                                let totalSandwichPrice = this.state.totalSandwichPrice + sandwich['finalPrice'];
+                                let sandwich9Created = true;
+                                let sandwiches = [...this.state.sandwiches, sandwich];
+                                
+                                this.setState({
+                                    orderSandwichCount,
+                                    orderItemCount,
+                                    totalOrderPrice,
+                                    totalSandwichPrice,
+                                    sandwich9Created,
+                                    sandwiches,
+                                })
                             }
 
                             else if(this.state.orderSandwichCount === 7) {
+                                let orderSandwichCount = this.state.orderSandwichCount + 1;
+                                let orderItemCount = this.state.orderItemCount + 1;
+                                let totalOrderPrice = this.state.totalOrderPrice + sandwich['finalPrice'];
+                                let totalSandwichPrice = this.state.totalSandwichPrice + sandwich['finalPrice'];
+                                let sandwich8Created = true;
+                                let sandwiches = [...this.state.sandwiches, sandwich];
                                 
+                                this.setState({
+                                    orderSandwichCount,
+                                    orderItemCount,
+                                    totalOrderPrice,
+                                    totalSandwichPrice,
+                                    sandwich8Created,
+                                    sandwiches,
+                                })
                             }
 
                             else if(this.state.orderSandwichCount === 6) {
+                                let orderSandwichCount = this.state.orderSandwichCount + 1;
+                                let orderItemCount = this.state.orderItemCount + 1;
+                                let totalOrderPrice = this.state.totalOrderPrice + sandwich['finalPrice'];
+                                let totalSandwichPrice = this.state.totalSandwichPrice + sandwich['finalPrice'];
+                                let sandwich7Created = true;
+                                let sandwiches = [...this.state.sandwiches, sandwich];
                                 
+                                this.setState({
+                                    orderSandwichCount,
+                                    orderItemCount,
+                                    totalOrderPrice,
+                                    totalSandwichPrice,
+                                    sandwich7Created,
+                                    sandwiches,
+                                })
                             }
 
                             else if(this.state.orderSandwichCount === 5) {
+                                let orderSandwichCount = this.state.orderSandwichCount + 1;
+                                let orderItemCount = this.state.orderItemCount + 1;
+                                let totalOrderPrice = this.state.totalOrderPrice + sandwich['finalPrice'];
+                                let totalSandwichPrice = this.state.totalSandwichPrice + sandwich['finalPrice'];
+                                let sandwich6Created = true;
+                                let sandwiches = [...this.state.sandwiches, sandwich];
                                 
+                                this.setState({
+                                    orderSandwichCount,
+                                    orderItemCount,
+                                    totalOrderPrice,
+                                    totalSandwichPrice,
+                                    sandwich6Created,
+                                    sandwiches,
+                                })
                             }
 
                             else if(this.state.orderSandwichCount === 4) {
+                                let orderSandwichCount = this.state.orderSandwichCount + 1;
+                                let orderItemCount = this.state.orderItemCount + 1;
+                                let totalOrderPrice = this.state.totalOrderPrice + sandwich['finalPrice'];
+                                let totalSandwichPrice = this.state.totalSandwichPrice + sandwich['finalPrice'];
+                                let sandwich5Created = true;
+                                let sandwiches = [...this.state.sandwiches, sandwich];
                                 
+                                this.setState({
+                                    orderSandwichCount,
+                                    orderItemCount,
+                                    totalOrderPrice,
+                                    totalSandwichPrice,
+                                    sandwich5Created,
+                                    sandwiches,
+                                })
                             }
 
                             else if(this.state.orderSandwichCount === 3) {
+                                let orderSandwichCount = this.state.orderSandwichCount + 1;
+                                let orderItemCount = this.state.orderItemCount + 1;
+                                let totalOrderPrice = this.state.totalOrderPrice + sandwich['finalPrice'];
+                                let totalSandwichPrice = this.state.totalSandwichPrice + sandwich['finalPrice'];
+                                let sandwich4Created = true;
+                                let sandwiches = [...this.state.sandwiches, sandwich];
                                 
+                                this.setState({
+                                    orderSandwichCount,
+                                    orderItemCount,
+                                    totalOrderPrice,
+                                    totalSandwichPrice,
+                                    sandwich4Created,
+                                    sandwiches,
+                                })
                             }
 
                             else if(this.state.orderSandwichCount === 2) {
+                                let orderSandwichCount = this.state.orderSandwichCount + 1;
+                                let orderItemCount = this.state.orderItemCount + 1;
+                                let totalOrderPrice = this.state.totalOrderPrice + sandwich['finalPrice'];
+                                let totalSandwichPrice = this.state.totalSandwichPrice + sandwich['finalPrice'];
+                                let sandwich3Created = true;
+                                let sandwiches = [...this.state.sandwiches, sandwich];
                                 
+                                this.setState({
+                                    orderSandwichCount,
+                                    orderItemCount,
+                                    totalOrderPrice,
+                                    totalSandwichPrice,
+                                    sandwich3Created,
+                                    sandwiches,
+                                })
                             }
 
                             else if(this.state.orderSandwichCount === 1) {
+                                let orderSandwichCount = this.state.orderSandwichCount + 1;
+                                let orderItemCount = this.state.orderItemCount + 1;
+                                let totalOrderPrice = this.state.totalOrderPrice + sandwich['finalPrice'];
+                                let totalSandwichPrice = this.state.totalSandwichPrice + sandwich['finalPrice'];
+                                let sandwich2Created = true;
+                                let sandwiches = [...this.state.sandwiches, sandwich];
                                 
+                                this.setState({
+                                    orderSandwichCount,
+                                    orderItemCount,
+                                    totalOrderPrice,
+                                    totalSandwichPrice,
+                                    sandwich2Created,
+                                    sandwiches,
+                                })
                             }
 
                             else {
-
+                                let orderSandwichCount = this.state.orderSandwichCount + 1;
+                                let orderItemCount = this.state.orderItemCount + 1;
+                                let totalOrderPrice = this.state.totalOrderPrice + sandwich['finalPrice'];
+                                let totalSandwichPrice = this.state.totalSandwichPrice + sandwich['finalPrice'];
+                                let sandwich1Created = true;
+                                let sandwiches = [...this.state.sandwiches, sandwich];
+                                
+                                this.setState({
+                                    orderSandwichCount,
+                                    orderItemCount,
+                                    totalOrderPrice,
+                                    totalSandwichPrice,
+                                    sandwich1Created,
+                                    sandwiches,
+                                })
                             }
                         }
-                        console.log(sandwich)
                     },
                     addSideToCart: (side) => {
                         if(this.state.orderSideCount >= 10 || this.state.orderItemCount >= 25) {
@@ -775,7 +914,119 @@ export default class AppProvider extends React.Component {
                             }
                         }
                     },
+                    clearCart: () => {
+                        let orderItemCount = 0;
+                        let orderDrinkCount = 0;
+                        let orderSaladCount = 0;
+                        let orderSandwichCount = 0;
+                        let orderSideCount = 0;
+                        let drink1Created = false;
+                        let drink2Created = false;
+                        let drink3Created = false;
+                        let drink4Created = false;
+                        let drink5Created = false;
+                        let drink6Created = false;
+                        let drink7Created = false;
+                        let drink8Created = false;
+                        let drink9Created = false;
+                        let drink10Created = false;
+                        let drinks = [];
+                        let salad1Created = false;
+                        let salad2Created = false;
+                        let salad3Created = false;
+                        let salad4Created = false;
+                        let salad5Created = false;
+                        let salad6Created = false;
+                        let salad7Created = false;
+                        let salad8Created = false;
+                        let salad9Created = false;
+                        let salad10Created = false;
+                        let salads = [];
+                        let sandwich1Created = false;
+                        let sandwich2Created = false;
+                        let sandwich3Created = false;
+                        let sandwich4Created = false;
+                        let sandwich5Created = false;
+                        let sandwich6Created = false;
+                        let sandwich7Created = false;
+                        let sandwich8Created = false;
+                        let sandwich9Created = false;
+                        let sandwich10Created = false;
+                        let sandwiches = [];
+                        let side1Created = false;
+                        let side2Created = false;
+                        let side3Created = false;
+                        let side4Created = false;
+                        let side5Created = false;
+                        let side6Created = false;
+                        let side7Created = false;
+                        let side8Created = false;
+                        let side9Created = false;
+                        let side10Created = false;
+                        let sides = [];
+                        let totalOrderPrice = 0;
+                        let totalDrinkPrice = 0;
+                        let totalSaladPrice = 0;
+                        let totalSandwichPrice = 0;
+                        let totalSidePrice = 0;
 
+                        this.setState({
+                            orderItemCount,
+                            orderDrinkCount,
+                            orderSaladCount,
+                            orderSandwichCount,
+                            orderSideCount,
+                            drink1Created,
+                            drink2Created,
+                            drink3Created,
+                            drink4Created,
+                            drink5Created,
+                            drink6Created,
+                            drink7Created,
+                            drink8Created,
+                            drink9Created,
+                            drink10Created,
+                            drinks,
+                            salad1Created,
+                            salad2Created,
+                            salad3Created,
+                            salad4Created,
+                            salad5Created,
+                            salad6Created,
+                            salad7Created,
+                            salad8Created,
+                            salad9Created,
+                            salad10Created,
+                            salads,
+                            sandwich1Created,
+                            sandwich2Created,
+                            sandwich3Created,
+                            sandwich4Created,
+                            sandwich5Created,
+                            sandwich6Created,
+                            sandwich7Created,
+                            sandwich8Created,
+                            sandwich9Created,
+                            sandwich10Created,
+                            sandwiches,
+                            side1Created,
+                            side2Created,
+                            side3Created,
+                            side4Created,
+                            side5Created,
+                            side6Created,
+                            side7Created,
+                            side8Created,
+                            side9Created,
+                            side10Created,
+                            sides,
+                            totalOrderPrice,
+                            totalDrinkPrice,
+                            totalSaladPrice,
+                            totalSandwichPrice,
+                            totalSidePrice,
+                        })
+                    },
                 }}
             >
                 {this.props.children}
