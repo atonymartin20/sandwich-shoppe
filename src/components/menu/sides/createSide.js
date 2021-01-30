@@ -176,7 +176,19 @@ class CreateSide extends React.Component {
             disableCartButton: true,
         })
         let side = this.state.side
+        if(this.state.side['name'].includes('Cookie')) {
+            if(this.state.side['is1CookiePack'] === true) {
+                side['name'] += ' (1)'
+            }
 
+            else if(this.state.side['is3CookiePack'] === true) {
+                side['name'] += ' (3)'
+            }
+
+            else if(this.state.side['is5CookiePack'] === true) {
+                side['name'] += ' (5)'
+            }
+        }
         this.props.itemAddedToCart();
         this.context.addSideToCart(side);
     }

@@ -165,11 +165,14 @@ class CreateDrink extends React.Component {
         let drink = this.state.drink
 
         if(drink['isLarge'] === true) {
-            drink['name'] = 'Large ' + drink['name']
+            drink['name'] = 'Large ' + drink['name'];
+            drink['price'] = drink['largePrice']
         }
         else {
-            drink['name'] = 'Small ' + drink['name']
+            drink['name'] = 'Small ' + drink['name'];
+            drink['price'] = drink['smallPrice']
         }
+
 
         this.props.itemAddedToCart();
         this.context.addDrinkToCart(drink);
@@ -200,7 +203,7 @@ class CreateDrink extends React.Component {
                             {this.state.drink['type'] === 'Tea' || this.state.drink['type'] === 'Soda' ? <div className={classes.categoryBar}>Choose Flavor:</div> : null}
                             {this.state.drink['type'] === 'Tea' || this.state.drink['type'] === 'Soda' ? <DrinkTypeRadioButtons updateButtons={this.UpdateDrinkTypeRadios} drink={this.props.drink} /> : null}
 
-                            <div className={classes.finalInfo}>Price: ${this.state.drink['isLarge'] === true ? 2.49 : 1.49}<Button className={classes.addToCartButton} onClick={this.AddDrinkToCart} disabled={this.state.disableCartButton || this.state.drink['name'] === '' || this.context.state.orderItemCount >= 25 || this.context.state.orderDrinkCount >= 10}>Add to Cart</Button></div>
+                            <div className={classes.finalInfo}>Price: ${this.state.drink['isLarge'] === true ? 2.49 : 1.49}<Button className={classes.addToCartButton} onClick={this.AddDrinkToCart} disabled={this.state.disableCartButton || this.state.drink['name'] === 'Tea' || this.state.drink['name'] === 'Soda' || this.context.state.orderItemCount >= 25 || this.context.state.orderDrinkCount >= 10}>Add to Cart</Button></div>
                         </div>
                     }
                 </div>

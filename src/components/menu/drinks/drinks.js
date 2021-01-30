@@ -212,6 +212,7 @@ class Drinks extends React.Component {
             isLarge: false,
             smallPrice: 1.49,
             largePrice: 2.49,
+            price: 0.00,
         }
     }
 
@@ -255,7 +256,7 @@ class Drinks extends React.Component {
             })
         });
         
-        newDrink['name'] = `Small ${newDrink['type']}`
+        newDrink['name'] = `${newDrink['type']}`
 
         this.setState({
             drink: newDrink,
@@ -272,6 +273,7 @@ class Drinks extends React.Component {
             isLarge: false,
             smallPrice: 1.49,
             largePrice: 2.49,
+            price: 0.00,
         }
 
         this.setState({

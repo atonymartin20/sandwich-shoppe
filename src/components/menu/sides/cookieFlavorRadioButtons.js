@@ -55,7 +55,6 @@ export default function ChipFlavorRadioButtons(props) {
         setValue(event.target.value)
 
         side['name'] = event.target.value
-        console.log(side)
         setState({
             ...state,
             side,
