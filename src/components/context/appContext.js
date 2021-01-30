@@ -163,6 +163,33 @@ export default class AppProvider extends React.Component {
                             totalSidePrice,
                         })
                     },
+                    removeDrink: (drink, index) => {
+                        let drinks = this.state.drinks;
+                        let orderItemCount = this.state.orderItemCount - 1;
+                        let orderDrinkCount = this.state.orderDrinkCount - 1;
+                        let totalOrderPrice = this.state.totalOrderPrice - drink['price'];
+                        let totalDrinkPrice = this.state.totalDrinkPrice - drink['price'];
+
+                        if(drinks[index] === drink) {
+                            drinks.splice([index], 1)
+                        }
+                        this.setState({
+                            orderItemCount,
+                            orderDrinkCount,
+                            totalOrderPrice,
+                            totalDrinkPrice,
+                            drinks,
+                        })
+                    },
+                    removeSalad: (salad) => {
+                        let salads = this.state.salads;
+                    },
+                    removeSandwich: (sandwich) => {
+                        let sandwiches = this.state.sandwiches
+                    },
+                    removeSide: (side) => {
+                        let sides = this.state.sides
+                    },
                 }}
             >
                 {this.props.children}
