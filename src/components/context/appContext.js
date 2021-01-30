@@ -181,14 +181,59 @@ export default class AppProvider extends React.Component {
                             drinks,
                         })
                     },
-                    removeSalad: (salad) => {
+                    removeSalad: (salad, index) => {
                         let salads = this.state.salads;
+                        let orderItemCount = this.state.orderItemCount - 1;
+                        let orderSaladCount = this.state.orderSaladCount - 1;
+                        let totalOrderPrice = this.state.totalOrderPrice - salad['price'];
+                        let totalSaladPrice = this.state.totalSaladPrice - salad['price'];
+
+                        if(salads[index] === salad) {
+                            salads.splice([index], 1)
+                        }
+                        this.setState({
+                            orderItemCount,
+                            orderSaladCount,
+                            totalOrderPrice,
+                            totalSaladPrice,
+                            salads,
+                        })
                     },
-                    removeSandwich: (sandwich) => {
+                    removeSandwich: (sandwich, index) => {
                         let sandwiches = this.state.sandwiches
+                        let orderItemCount = this.state.orderItemCount - 1;
+                        let orderSandwichCount = this.state.orderSandwichCount - 1;
+                        let totalOrderPrice = this.state.totalOrderPrice - sandwich['finalPrice'];
+                        let totalSandwichPrice = this.state.totalSandwichPrice - sandwich['finalPrice'];
+
+                        if(sandwiches[index] === sandwich) {
+                            sandwiches.splice([index], 1)
+                        }
+                        this.setState({
+                            orderItemCount,
+                            orderSandwichCount,
+                            totalOrderPrice,
+                            totalSandwichPrice,
+                            sandwiches,
+                        })
                     },
-                    removeSide: (side) => {
+                    removeSide: (side, index) => {
                         let sides = this.state.sides
+                        let orderItemCount = this.state.orderItemCount - 1;
+                        let orderSideCount = this.state.orderSideCount - 1;
+                        let totalOrderPrice = this.state.totalOrderPrice - side['price'];
+                        let totalSidePrice = this.state.totalSidePrice - side['price'];
+
+                        if(sides[index] === side) {
+                            sides.splice([index], 1)
+                        }
+                        this.setState({
+                            orderItemCount,
+                            orderSideCount,
+                            totalOrderPrice,
+                            totalSidePrice,
+                            sides,
+                        })
                     },
                 }}
             >
