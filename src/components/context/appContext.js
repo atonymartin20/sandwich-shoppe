@@ -15,6 +15,8 @@ export default class AppProvider extends React.Component {
             StreetAddress: '',
             Title: '',
         },
+        delivery: false,
+        pickup: false,
         orderItemCount: 0,
         orderDrinkCount: 0,
         orderSaladCount: 0,
@@ -37,6 +39,18 @@ export default class AppProvider extends React.Component {
                 value={{
                     state: this.state,
                     //functions
+                    userChosePickup: () => {
+                        let pickup = true;
+                        this.setState({
+                            pickup
+                        })
+                    },
+                    userChoseDelivery: () => {
+                        let delivery = true;
+                        this.setState({
+                            delivery
+                        })
+                    },
                     storeAddress: (address, city, stateValue, zipCode) => {
                         this.setState({
                             address,

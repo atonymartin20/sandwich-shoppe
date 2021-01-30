@@ -110,6 +110,7 @@ class AddressDropdown extends React.Component {
 		this.setState({
 			disableButton: true,
 		})
+		this.context.userChosePickup();
 		this.context.storeAddress("", this.state.city, this.state.stateValue, this.state.zipCode)
 		setTimeout(() => {this.setState({ pickupRedirect: true})}, 500);
 	}
@@ -119,8 +120,8 @@ class AddressDropdown extends React.Component {
 		this.setState({
 			disableButton: true,
 		})
+		this.context.userChoseDelivery();
 		this.context.storeAddress(this.state.address, this.state.city, this.state.stateValue, this.state.zipCode)
-		
 		setTimeout(() => {this.setState({ deliveryRedirect: true})}, 500);
 	}
 
