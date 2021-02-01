@@ -77,7 +77,7 @@ class Cart extends React.Component {
                         : null }
 
                         {this.context.state.orderItemCount > 0 ?
-                            <TotalsTable itemCount={this.context.state.orderItemCount} orderPrice={this.context.state.totalOrderPrice} />
+                            <TotalsTable orderPrice={this.context.state.totalOrderPrice} />
                         : null }
                     </div>
                 </div>

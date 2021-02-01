@@ -37,7 +37,7 @@ export default function BasicTable(props) {
     const [finalPrice, setFinalPrice] = React.useState(0);
 
 	React.useEffect(() => {
-		if (props.itemCount) {
+		if (props.orderPrice) {
             setTotalPrice(props.orderPrice.toFixed(2))
             setTax((props.orderPrice * 0.075).toFixed(2))
             setFinalPrice(((props.orderPrice * 0.075) + props.orderPrice).toFixed(2))

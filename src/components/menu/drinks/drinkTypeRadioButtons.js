@@ -52,6 +52,7 @@ export default function DrinkTypeRadioButtons(props) {
 
     const handleChange = (event) => {
         let drink = state.drink
+        
         setValue(event.target.value)
 
         drink['name'] = event.target.value
