@@ -7,7 +7,7 @@ This is a front-end only project.  Sandwich Shoppe is a simple website that woul
 * ContextAPI
 
 # Resources
-* [Front End Site - Hosted on Netlify](https://baseball-project-adm.netlify.com/)
+* [Front End Site - Hosted on Netlify](https://sandwich-shoppe-adm.netlify.app/)
  
 ### `yarn start`
 Runs the app in the development mode.\
