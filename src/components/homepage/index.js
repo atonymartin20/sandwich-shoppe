@@ -5,9 +5,6 @@ import { AppContext } from '../context/appContext.js';
 import BuffaloChickenImg from '../../images/Sandwiches/BuffaloChicken.jpg';
 import Button from "@material-ui/core/Button";
 import { Link } from 'react-router-dom';
-import FacebookIcon from '@material-ui/icons/Facebook';
-import InstagramIcon from '@material-ui/icons/Instagram';
-import TwitterIcon from '@material-ui/icons/Twitter';
 import Socials from './socialsContainer.js';
 
 const styles = theme => ({
