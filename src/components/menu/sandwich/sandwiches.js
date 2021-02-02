@@ -730,7 +730,7 @@ class Sandwiches extends React.Component {
                         </div>
 
                         <h1 className={classes.headerText}>Sandwiches</h1>
-                        <div className={classes.menuInsideContainer}>
+                        <div className={classes.sandwichInsideContainer}>
 
                             <div className={classes.groupDivBLT} onClick={this.openMoreInfoBLT}>
                                 <div className={classes.insideGroupDiv}>
