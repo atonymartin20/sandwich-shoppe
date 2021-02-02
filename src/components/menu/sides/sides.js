@@ -1,12 +1,12 @@
 import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { AppContext } from '../context/appContext.js';
-import LemonadeImg from '../../images/Drinks/Lemonade.jpg';
-import SodaImg from '../../images/Drinks/Soda.jpg';
-import TeaImg from '../../images/Drinks/Tea.jpg';
+import { AppContext } from '../../context/appContext.js';
+import CheesebreadImg from '../../../images/Sides/Cheesebread.jpg';
+import ChipsImg from '../../../images/Sides/Chips.jpg';
+import CookiesImg from '../../../images/Sides/Cookies.jpg';
 import Button from "@material-ui/core/Button";
-import { Redirect } from 'react-router-dom';
-import DrinkInfo from './drinkInfo.js';
+import SideInfo from './sideinfo.js';
+import CreateSide from './createSide.js';
 
 const styles = theme => ({
     backButton: {
@@ -66,7 +66,7 @@ const styles = theme => ({
             padding: '0px',    
         },
     },
-    groupDivLemonade: {
+    groupDivCheesebread: {
         width: '30%',
         minWidth: 200,
         border: '1px solid black',
@@ -80,7 +80,7 @@ const styles = theme => ({
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-        backgroundImage: `url(${LemonadeImg})`,
+        backgroundImage: `url(${CheesebreadImg})`,
         [theme.breakpoints.down(850)]: {
             width: '45%',
         },
@@ -89,7 +89,7 @@ const styles = theme => ({
             margin: '10px 0px',
         }
     },
-    groupDivSoda: {
+    groupDivChips: {
         width: '30%',
         minWidth: 200,
         border: '1px solid black',
@@ -103,7 +103,7 @@ const styles = theme => ({
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-        backgroundImage: `url(${SodaImg})`,
+        backgroundImage: `url(${ChipsImg})`,
         [theme.breakpoints.down(850)]: {
             width: '45%',
         },
@@ -112,7 +112,7 @@ const styles = theme => ({
             margin: '10px 0px',
         }
     },
-    groupDivTea: {
+    groupDivCookies: {
         width: '30%',
         minWidth: 200,
         border: '1px solid black',
@@ -126,7 +126,7 @@ const styles = theme => ({
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-        backgroundImage: `url(${TeaImg})`,
+        backgroundImage: `url(${CookiesImg})`,
         [theme.breakpoints.down(850)]: {
             width: '45%',
         },
@@ -152,14 +152,14 @@ const styles = theme => ({
         textAlign: 'center',
         cursor: 'pointer',
     },
-    menuDiv: {
+    sideDiv: {
         width: '100%',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
     },
-    menuInsideContainer: {
+    sideInsideContainer: {
         width: '100%',
         maxWidth: 1400,
         display: 'flex',
@@ -167,7 +167,7 @@ const styles = theme => ({
         justifyContent: 'center',
         flexWrap: 'wrap',
     },
-    menuSpacingDiv: {
+    sideSpacingDiv: {
         marginTop: 90,
         width: '100%',
         maxWidth: 1400,
@@ -182,7 +182,7 @@ const styles = theme => ({
         fontSize: '2.0rem',
         lineHeight: 1.25,
     },
-    menuSpacingOrderDiv: {
+    sideSpacingOrderDiv: {
         marginTop: 0,
         width: '100%',
         maxWidth: 1400,
@@ -197,70 +197,104 @@ const styles = theme => ({
         fontSize: '2.0rem',
         lineHeight: 1.25,
     },
-    menuText: {
-        marginTop: 20,
-        marginBottom: 20,
-    },
 });
 
-class Drinks extends React.Component {
+class Sides extends React.Component {
     state={
-        redirect: false,
-        moreInfoLemonade: false,
-        moreInfoSoda: false,
-        moreInfoTea: false,
+        moreInfoCheesebread: false,
+        moreInfoChips: false,
+        moreInfoCookies: false,
+        createSide: false,
+        side: {
+            name: '',
+            type: '',
+            price: 0.00,
+            is1CookiePack: false,
+            is3CookiePack: false,
+            is5CookiePack: false,
+            addMarinara: false,
+        }
     }
 
-    checkout = (event) => {
+    openMoreInfoCheesebread = (event) => {
         event.preventDefault();
         this.setState({
-            redirect: true,
+            moreInfoCheesebread: true,
         })
     }
 
-    openMoreInfoLemonade = (event) => {
+    openMoreInfoChips = (event) => {
         event.preventDefault();
         this.setState({
-            moreInfoLemonade: true,
+            moreInfoChips: true,
         })
     }
 
-    openMoreInfoSoda = (event) => {
+    openMoreInfoCookies = (event) => {
         event.preventDefault();
         this.setState({
-            moreInfoSoda: true,
-        })
-    }
-
-    openMoreInfoTea = (event) => {
-        event.preventDefault();
-        this.setState({
-            moreInfoTea: true,
+            moreInfoCookies: true,
         })
     }
 
     closeMoreInfo = (event) => {
         event.preventDefault();
         this.setState({
-            moreInfoLemonade: false,
-            moreInfoSoda: false,
-            moreInfoTea: false,
+            moreInfoCheesebread: false,
+            moreInfoChips: false,
+            moreInfoCookies: false,
+        })
+    }
+
+    createSide = (side) => {
+        let newSide = this.state.side;
+        Object.keys(newSide).forEach(function (newSideKey) {
+            Object.keys(side).forEach(function (sideKey) {
+                if(sideKey === newSideKey) {
+                    newSide[newSideKey] = side[sideKey]
+                }
+            })
+        });
+
+        this.setState({
+            side: newSide,
+            createSide: true,
+        })
+    }
+
+    closeMenu = (event) => {
+        event.preventDefault();
+        let side = {
+            name: '',
+            type: '',
+            price: 0.00,
+            is1CookiePack: false,
+            is3CookiePack: false,
+            is5CookiePack: false,
+            addMarinara: false,
+        }
+
+        this.setState({
+            createSide: false,
+            side,
         })
     }
 
     render() {
         const { classes } = this.props;
+
         if(this.props.type === 'order') {
             return (
-                <div className={classes.menuDiv}>
-                    {this.state.redirect === true ? <Redirect to='/orderNow/checkout' /> : null }
-                    <div className={classes.menuSpacingOrderDiv}>
+                <div className={classes.sideDiv}>
+                    {this.state.createSide === true ? <CreateSide itemAddedToCart={this.props.itemAddedToCart} title={this.state.side['type']} side={this.state.side} close={this.closeMenu} /> : null }
+
+                    <div className={classes.sideSpacingOrderDiv}>
                         {this.context.state.orderItemCount > 0 ? 
                             <div className={classes.buttonContainerDiv}>
                                 <Button className={classes.backButton} onClick={this.props.goBack}>
                                     Go Back
                                 </Button>
-                                <Button className={classes.checkoutButton} onClick={this.checkout}>
+                                <Button className={classes.checkoutButton} onClick={this.props.goToCheckout}>
                                     Checkout
                                 </Button>
                             </div> : 
@@ -268,24 +302,24 @@ class Drinks extends React.Component {
                                 <Button className={classes.backButton} onClick={this.props.goBack}>Go Back</Button>
                             </div>
                         }
-                        <h1 className={classes.headerText}>Drinks</h1>
-                        <div className={classes.menuInsideContainer}>
+                        <h1 className={classes.headerText}>Sides</h1>
+                        <div className={classes.sideInsideContainer}>
     
-                            <div className={classes.groupDivLemonade} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivCheesebread} onClick={() => {this.createSide({type: 'Cheesebread', name: 'Cheesebread', price: 4.49})}}>
                                 <div className={classes.insideGroupDiv}>
-                                    Lemonade
+                                    Cheesebread
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivSoda} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivChips} onClick={() => {this.createSide({type: 'Chips', price: 1.09})}}>
                                 <div className={classes.insideGroupDiv}>
-                                    Soda
+                                    Chips
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivTea} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivCookies} onClick={() => {this.createSide({type: 'Cookies', price: 0.00})}}>
                                 <div className={classes.insideGroupDiv}>
-                                    Tea
+                                    Cookies
                                 </div>
                             </div>
                         </div>
@@ -295,32 +329,34 @@ class Drinks extends React.Component {
         }
         else {
             return (
-                <div className={classes.menuDiv}>
-                    {this.state.moreInfoLemonade === true ? <DrinkInfo close={this.closeMoreInfo} name='Lemonade' text='Homemade lemonade' img={LemonadeImg} /> : null }
-                    {this.state.moreInfoSoda === true ? <DrinkInfo close={this.closeMoreInfo} name='Soda' text='Pepsi, Diet Pepsi, Dr. Pepper, Diet Dr. Pepper, Sierra Mist, Mountain Dew, and MUG Root Beer' img={SodaImg} /> : null }
-                    {this.state.moreInfoTea === true ? <DrinkInfo close={this.closeMoreInfo} name='Tea' text='Sweet or unsweet tea' img={TeaImg} /> : null }
-                    <div className={classes.menuSpacingDiv}>
+                <div className={classes.sideDiv}>
+                    <div className={classes.sideSpacingDiv}>
+                        {this.state.moreInfoCheesebread === true ? <SideInfo close={this.closeMoreInfo} name='Cheesebread' text='Stuffed cheesebread with garlic and italian seasoning' img={CheesebreadImg} /> : null }
+                        {this.state.moreInfoChips === true ? <SideInfo close={this.closeMoreInfo} name='Chips' text='Doritos, Fritos, Lays, or Sun Chips' img={ChipsImg} /> : null }
+                        {this.state.moreInfoCookies === true ? <SideInfo close={this.closeMoreInfo} name='Cookies' text='Chocolate chip or sugar cookies' img={CookiesImg} /> : null }
+
                         <div className={classes.goBackDiv}>
                             <Button className={classes.backButton} onClick={this.props.goBack}>Go Back</Button>
                         </div>
-                        <h1 className={classes.headerText}>Drinks</h1>
-                        <div className={classes.menuInsideContainer}>
+
+                        <h1 className={classes.headerText}>Sides</h1>
+                        <div className={classes.sideInsideContainer}>
     
-                            <div className={classes.groupDivLemonade} onClick={this.openMoreInfoLemonade}>
+                            <div className={classes.groupDivCheesebread} onClick={this.openMoreInfoCheesebread}>
                                 <div className={classes.insideGroupDiv}>
-                                    Lemonade
+                                    Cheesebread
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivSoda} onClick={this.openMoreInfoSoda}>
+                            <div className={classes.groupDivChips} onClick={this.openMoreInfoChips}>
                                 <div className={classes.insideGroupDiv}>
-                                    Soda
+                                    Chips
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivTea} onClick={this.openMoreInfoTea}>
+                            <div className={classes.groupDivCookies} onClick={this.openMoreInfoCookies}>
                                 <div className={classes.insideGroupDiv}>
-                                    Tea
+                                    Cookies
                                 </div>
                             </div>
                         </div>
@@ -331,6 +367,6 @@ class Drinks extends React.Component {
     }
 }
 
-Drinks.contextType = AppContext;
+Sides.contextType = AppContext;
 
-export default withStyles(styles)(Drinks);
+export default withStyles(styles)(Sides);

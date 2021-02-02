@@ -1,19 +1,19 @@
 import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { AppContext } from '../context/appContext.js';
-import BLTImg from '../../images/Sandwiches/BLT.jpg';
-import BuffaloChickenImg from '../../images/Sandwiches/BuffaloChicken.jpg';
-import ChickenBaconRanchImg from '../../images/Sandwiches/ChickenBaconRanch.jpg';
-import ChickenParmImg from '../../images/Sandwiches/ChickenParm.jpg';
-import ClubImg from '../../images/Sandwiches/Club.jpg';
-import HamAndCheeseImg from '../../images/Sandwiches/HamAndCheese.jpg';
-import MeatballImg from '../../images/Sandwiches/Meatball.jpg';
-import PhillyCheesesteakImg from '../../images/Sandwiches/PhillyCheeseSteak.jpg';
-import TurkeyImg from '../../images/Sandwiches/Turkey.jpg';
-import CreateYourOwnImg from '../../images/Sandwiches/CreateYourOwn.jpg';
+import { AppContext } from '../../context/appContext.js';
+import BLTImg from '../../../images/Sandwiches/BLT.jpg';
+import BuffaloChickenImg from '../../../images/Sandwiches/BuffaloChicken.jpg';
+import ChickenBaconRanchImg from '../../../images/Sandwiches/ChickenBaconRanch.jpg';
+import ChickenParmImg from '../../../images/Sandwiches/ChickenParm.jpg';
+import ClubImg from '../../../images/Sandwiches/Club.jpg';
+import HamAndCheeseImg from '../../../images/Sandwiches/HamAndCheese.jpg';
+import MeatballImg from '../../../images/Sandwiches/Meatball.jpg';
+import PhillyCheesesteakImg from '../../../images/Sandwiches/PhillyCheeseSteak.jpg';
+import TurkeyImg from '../../../images/Sandwiches/Turkey.jpg';
+import CreateYourOwnImg from '../../../images/Sandwiches/CreateYourOwn.jpg';
 import Button from "@material-ui/core/Button";
-import { Redirect } from 'react-router-dom';
 import SandwichInfo from './sandwichInfo.js';
+import CreateSandwich from './createSandwich.js';
 
 const styles = theme => ({
     backButton: {
@@ -26,6 +26,7 @@ const styles = theme => ({
         border: '3px solid #0087A8',
         borderRadius: '10px',
         width: '200px',
+        textTransform: 'none',
         "&:hover": {
             color: '#0087A8',
             backgroundColor: 'white',
@@ -55,6 +56,7 @@ const styles = theme => ({
         border: '3px solid #7600A8',
         borderRadius: '10px',
         width: '200px',
+        textTransform: 'none',
         "&:hover": {
             color: '#7600A8',
             backgroundColor: 'white',
@@ -320,14 +322,14 @@ const styles = theme => ({
         textAlign: 'center',
         cursor: 'pointer',
     },
-    menuDiv: {
+    sandwichDiv: {
         width: '100%',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
     },
-    menuInsideContainer: {
+    sandwichInsideContainer: {
         width: '100%',
         maxWidth: 1400,
         display: 'flex',
@@ -335,7 +337,7 @@ const styles = theme => ({
         justifyContent: 'center',
         flexWrap: 'wrap',
     },
-    menuSpacingDiv: {
+    sandwichSpacingDiv: {
         marginTop: 90,
         width: '100%',
         maxWidth: 1400,
@@ -350,7 +352,7 @@ const styles = theme => ({
         fontSize: '2.0rem',
         lineHeight: 1.25,
     },
-    menuSpacingOrderDiv: {
+    sandwichSpacingOrderDiv: {
         marginTop: 0,
         width: '100%',
         maxWidth: 1400,
@@ -365,15 +367,10 @@ const styles = theme => ({
         fontSize: '2.0rem',
         lineHeight: 1.25,
     },
-    menuText: {
-        marginTop: 20,
-        marginBottom: 20,
-    },
 });
 
 class Sandwiches extends React.Component {
     state={
-        redirect: false,
         moreInfoBLT: false,
         moreInfoBuffaloChicken: false,
         moreInfoChickenBaconRanch: false,
@@ -384,13 +381,70 @@ class Sandwiches extends React.Component {
         moreInfoPhillyCheesesteak: false,
         moreInfoTurkey: false,
         moreInfoCreateYourOwn: false,
-    }
-
-    checkout = (event) => {
-        event.preventDefault();
-        this.setState({
-            redirect: true,
-        })
+        createSandwich: false,
+        sandwich: {
+            name: '',
+            type: '',
+            // Bread
+            hasItalianBread: false,
+            hasParmesanOreganoBread: false,
+            hasWheatBread: false,
+            hasWhiteBread: false,
+            hasWrap: false,
+            hasNoBread: false,
+            // Meats
+            hasBacon: false,
+            hasChicken: false,
+            hasHam: false,
+            hasMeatball: false,
+            hasSteak: false,
+            hasTurkey: false,
+            // Cheese
+            hasAmericanCheese: false,
+            hasCheddarCheese: false,
+            hasMozzarellaCheese: false,
+            hasPepperjackCheese: false,
+            hasProvoloneCheese: false,
+            hasSwissCheese: false,
+            // Veggies
+            hasBananaPeppers: false,
+            hasCucumbers: false,
+            hasGreenPeppers: false,
+            hasGrilledOnions: false,
+            hasJalapenos: false,
+            hasLeafLettuce: false,
+            hasPickles: false,
+            hasRedOnions: false,
+            hasShreddedLettuce: false,
+            hasSpinach: false,
+            hasTomatoes: false,
+            // Seasonings
+            hasOregano: false,
+            hasPepper: false,
+            hasSalt: false,
+            hasSaltAndPepper: false,
+            // Sauces
+            hasBarbecueSauce: false,
+            hasBuffaloSauce: false,
+            hasMarinara: false,
+            hasMayo: false,
+            hasMustard: false,
+            hasOil: false,
+            hasRanchDressing: false,
+            hasSpicyMustard: false,
+            hasSrirachaSauce: false,
+            hasThousandIslandDressing: false,
+            // Other
+            isToasted: false,
+            isSmallSandwich: true,
+            isMediumSandwich: false,
+            isLargeSandwich: false,
+            startingPrice: 0.00,
+            finalPrice: 0.00,
+            largerSandwichPrice: 0.00,
+            extraCheesePrice: 0.00,
+            extraMeatPrice: 0.00,
+        }
     }
 
     openMoreInfoBLT = (event) => {
@@ -463,6 +517,94 @@ class Sandwiches extends React.Component {
         })
     }
 
+    createSandwich = (sandwich) => {
+        let newSandwich = this.state.sandwich;
+        Object.keys(newSandwich).forEach(function (newSandwichKey) {
+            Object.keys(sandwich).forEach(function (sandwichKey) {
+                if(sandwichKey === newSandwichKey) {
+                    newSandwich[newSandwichKey] = sandwich[sandwichKey]
+                }
+            })
+        });
+        newSandwich['name'] = `Small ${newSandwich['type']}`
+        
+        this.setState({
+            sandwich: newSandwich,
+            createSandwich: true,
+        })
+    }
+
+    closeMenu = (event) => {
+        event.preventDefault();
+        let sandwich = {
+            name: '',
+            type: '',
+            // Bread
+            hasItalianBread: false,
+            hasParmesanOreganoBread: false,
+            hasWheatBread: false,
+            hasWhiteBread: false,
+            hasWrap: false,
+            hasNoBread: false,
+            // Meats
+            hasBacon: false,
+            hasChicken: false,
+            hasHam: false,
+            hasMeatball: false,
+            hasSteak: false,
+            hasTurkey: false,
+            // Cheese
+            hasAmericanCheese: false,
+            hasCheddarCheese: false,
+            hasMozzarellaCheese: false,
+            hasPepperjackCheese: false,
+            hasProvoloneCheese: false,
+            hasSwissCheese: false,
+            // Veggies
+            hasBananaPeppers: false,
+            hasCucumbers: false,
+            hasGreenPeppers: false,
+            hasGrilledOnions: false,
+            hasJalapenos: false,
+            hasLeafLettuce: false,
+            hasPickles: false,
+            hasRedOnions: false,
+            hasShreddedLettuce: false,
+            hasSpinach: false,
+            hasTomatoes: false,
+            // Seasonings
+            hasOregano: false,
+            hasPepper: false,
+            hasSalt: false,
+            hasSaltAndPepper: false,
+            // Sauces
+            hasBarbecueSauce: false,
+            hasBuffaloSauce: false,
+            hasMarinara: false,
+            hasMayo: false,
+            hasMustard: false,
+            hasOil: false,
+            hasRanchDressing: false,
+            hasSpicyMustard: false,
+            hasSrirachaSauce: false,
+            hasThousandIslandDressing: false,
+            // Other
+            isToasted: false,
+            isSmallSandwich: false,
+            isMediumSandwich: false,
+            isLargeSandwich: false,
+            startingPrice: 0.00,
+            finalPrice: 0.00,
+            largerSandwichPrice: 0.00,
+            extraCheesePrice: 0.00,
+            extraMeatPrice: 0.00,
+        }
+        this.setState({
+            createSandwich: false,
+            sandwich,
+        })
+    }
+
     closeMoreInfo = (event) => {
         event.preventDefault();
         this.setState({
@@ -481,17 +623,19 @@ class Sandwiches extends React.Component {
 
     render() {
         const { classes } = this.props;
+
         if(this.props.type === 'order') {
             return (
-                <div className={classes.menuDiv}>
-                    {this.state.redirect === true ? <Redirect to='/orderNow/checkout' /> : null }
-                    <div className={classes.menuSpacingOrderDiv}>
+                <div className={classes.sandwichDiv}>
+                    {this.state.createSandwich === true ? <CreateSandwich itemAddedToCart={this.props.itemAddedToCart} title={this.state.sandwich['type']} sandwich={this.state.sandwich} close={this.closeMenu}  /> : null }
+
+                    <div className={classes.sandwichSpacingOrderDiv}>
                         {this.context.state.orderItemCount > 0 ? 
                             <div className={classes.buttonContainerDiv}>
                                 <Button className={classes.backButton} onClick={this.props.goBack}>
                                     Go Back
                                 </Button>
-                                <Button className={classes.checkoutButton} onClick={this.checkout}>
+                                <Button className={classes.checkoutButton} onClick={this.props.goToCheckout}>
                                     Checkout
                                 </Button>
                             </div> : 
@@ -500,63 +644,63 @@ class Sandwiches extends React.Component {
                             </div>
                         }
                         <h1 className={classes.headerText}>Sandwiches</h1>
-                        <div className={classes.menuInsideContainer}>
+                        <div className={classes.sandwichInsideContainer}>
     
-                            <div className={classes.groupDivBLT} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivBLT} onClick={() => {this.createSandwich({type: 'BLT', hasBacon: true, hasLeafLettuce: true, hasTomatoes: true, startingPrice: 3.99 })}}>
                                 <div className={classes.insideGroupDiv}>
                                     BLT
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivBuffaloChicken} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivBuffaloChicken} onClick={() => {this.createSandwich({type: 'Buffalo Chicken', hasBuffaloSauce: true, hasChicken: true, hasShreddedLettuce: true, hasTomatoes: true, startingPrice: 3.99 })}}>
                                 <div className={classes.insideGroupDiv}>
                                     Buffalo Chicken
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivChickenBaconRanch} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivChickenBaconRanch} onClick={() => {this.createSandwich({type: 'Chicken Bacon Ranch', hasBacon: true, hasChicken: true, hasLeafLettuce: true, hasTomatoes: true, hasRanchDressing: true, startingPrice: 4.59 })}}>
                                 <div className={classes.insideGroupDiv}>
                                     Chicken Bacon Ranch
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivChickenParm} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivChickenParm} onClick={() => {this.createSandwich({type: 'Chicken Parm', hasChicken: true, hasMarinara: true, startingPrice: 3.99 })}}>
                                 <div className={classes.insideGroupDiv}>
                                     Chicken Parm
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivClub} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivClub} onClick={() => {this.createSandwich({type: 'Club', hasBacon: true, hasHam: true, hasTurkey: true, hasLeafLettuce: true, hasTomatoes: true, startingPrice: 4.59 })}}>
                                 <div className={classes.insideGroupDiv}>
                                     Club
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivHamAndCheese} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivHamAndCheese} onClick={() => {this.createSandwich({type: 'Ham and Cheese', hasHam: true, hasLeafLettuce: true, hasTomatoes: true, startingPrice: 3.99 })}}>
                                 <div className={classes.insideGroupDiv}>
                                     Ham and Cheese
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivMeatball} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivMeatball} onClick={() => {this.createSandwich({type: 'Meatball', hasMeatball: true, hasMarinara: true, startingPrice: 3.99 })}}>
                                 <div className={classes.insideGroupDiv}>
                                     Meatball
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivPhillyCheesesteak} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivPhillyCheesesteak} onClick={() => {this.createSandwich({type: 'Philly Cheesesteak', hasSteak: true, hasGrilledOnions: true, hasGreenPeppers: true, startingPrice: 4.99 })}}>
                                 <div className={classes.insideGroupDiv}>
                                     Philly Cheesesteak
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivTurkey} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivTurkey} onClick={() => {this.createSandwich({type: 'Turkey', hasChicken: true, hasLeafLettuce: true, hasTomatoes: true, startingPrice: 3.99 })}}>
                                 <div className={classes.insideGroupDiv}>
                                     Turkey
                                 </div>
                             </div>
     
-                            <div className={classes.groupDivCreateYourOwn} onClick={this.chooseSandwiches}>
+                            <div className={classes.groupDivCreateYourOwn} onClick={() => {this.createSandwich({type: 'Create your Own', startingPrice: 3.49 })}}>
                                 <div className={classes.insideGroupDiv}>
                                     Create Your Own
                                 </div>
@@ -568,8 +712,8 @@ class Sandwiches extends React.Component {
         }
         else {
             return (
-                <div className={classes.menuDiv}>
-                    <div className={classes.menuSpacingDiv}>
+                <div className={classes.sandwichDiv}>
+                    <div className={classes.sandwichSpacingDiv}>
                         {this.state.moreInfoBLT === true ? <SandwichInfo close={this.closeMoreInfo} name='BLT' text='Bacon, lettuce, and tomato' img={BLTImg} /> : null }
                         {this.state.moreInfoBuffaloChicken === true ? <SandwichInfo close={this.closeMoreInfo} name='Buffalo Chicken' text='Homemade Buffalo sauce, chicken, lettuce, and tomato' img={BuffaloChickenImg} /> : null }
                         {this.state.moreInfoChickenBaconRanch === true ? <SandwichInfo close={this.closeMoreInfo} name='Chicken Bacon Ranch' text='Bacon, chicken, lettuce, tomato, and ranch dressing' img={ChickenBaconRanchImg} /> : null }
@@ -586,7 +730,7 @@ class Sandwiches extends React.Component {
                         </div>
 
                         <h1 className={classes.headerText}>Sandwiches</h1>
-                        <div className={classes.menuInsideContainer}>
+                        <div className={classes.sandwichInsideContainer}>
 
                             <div className={classes.groupDivBLT} onClick={this.openMoreInfoBLT}>
                                 <div className={classes.insideGroupDiv}>

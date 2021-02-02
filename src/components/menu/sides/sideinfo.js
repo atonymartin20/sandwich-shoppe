@@ -1,6 +1,5 @@
 import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { AppContext } from '../context/appContext.js';
 import CloseIcon from '@material-ui/icons/Close';
 
 const styles = theme => ({
@@ -28,10 +27,14 @@ const styles = theme => ({
         textAlign: 'center',
     },
     imgStyling: {
+        minWidth: '25%',
+        width: '50%',
         maxWidth: '1000px',
         maxHeight: '50vh',
         [theme.breakpoints.down(550)]: {
+            width: '80%',
             marginBottom: '10px',
+            maxHeight: '45vh',
         },
     },
     infoText: {
@@ -65,7 +68,7 @@ const styles = theme => ({
     },
 });
 
-class SaladInfo extends React.Component {
+class SideInfo extends React.Component {
     render() {
         const { classes } = this.props;
             return (
@@ -73,7 +76,7 @@ class SaladInfo extends React.Component {
                     <div className={classes.menuSpacingDiv}>
                         <CloseIcon onClick={this.props.close} className={classes.closeIconStyling} />
                         <h1 className={classes.headerText}>{this.props.name}</h1>
-                        <img className={classes.imgStyling} src={this.props.img} alt='Img of a salad' />
+                        <img className={classes.imgStyling} src={this.props.img} alt='Img of a sandwich' />
                         <p className={classes.infoText}>{this.props.text}</p>
                     </div>
                 </div>
@@ -81,6 +84,4 @@ class SaladInfo extends React.Component {
         }
 }
 
-SaladInfo.contextType = AppContext;
-
-export default withStyles(styles)(SaladInfo);
+export default withStyles(styles)(SideInfo);

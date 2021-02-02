@@ -1,6 +1,5 @@
 import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { AppContext } from '../context/appContext.js';
 import CloseIcon from '@material-ui/icons/Close';
 
 const styles = theme => ({
@@ -28,8 +27,6 @@ const styles = theme => ({
         textAlign: 'center',
     },
     imgStyling: {
-        minWidth: '25%',
-        width: '50%',
         maxWidth: '1000px',
         maxHeight: '50vh',
         [theme.breakpoints.down(550)]: {
@@ -67,7 +64,7 @@ const styles = theme => ({
     },
 });
 
-class DrinkInfo extends React.Component {
+class SaladInfo extends React.Component {
     render() {
         const { classes } = this.props;
             return (
@@ -75,7 +72,7 @@ class DrinkInfo extends React.Component {
                     <div className={classes.menuSpacingDiv}>
                         <CloseIcon onClick={this.props.close} className={classes.closeIconStyling} />
                         <h1 className={classes.headerText}>{this.props.name}</h1>
-                        <img className={classes.imgStyling} src={this.props.img} alt='Img of a sandwich' />
+                        <img className={classes.imgStyling} src={this.props.img} alt='Img of a salad' />
                         <p className={classes.infoText}>{this.props.text}</p>
                     </div>
                 </div>
@@ -83,6 +80,4 @@ class DrinkInfo extends React.Component {
         }
 }
 
-DrinkInfo.contextType = AppContext;
-
-export default withStyles(styles)(DrinkInfo);
+export default withStyles(styles)(SaladInfo);

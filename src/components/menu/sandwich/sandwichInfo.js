@@ -1,6 +1,5 @@
 import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { AppContext } from '../context/appContext.js';
 import CloseIcon from '@material-ui/icons/Close';
 
 const styles = theme => ({
@@ -28,14 +27,11 @@ const styles = theme => ({
         textAlign: 'center',
     },
     imgStyling: {
-        minWidth: '25%',
-        width: '50%',
+        width: '75%',
         maxWidth: '1000px',
-        maxHeight: '50vh',
         [theme.breakpoints.down(550)]: {
-            width: '80%',
+            width: '100%',
             marginBottom: '10px',
-            maxHeight: '45vh',
         },
     },
     infoText: {
@@ -69,7 +65,7 @@ const styles = theme => ({
     },
 });
 
-class SideInfo extends React.Component {
+class SandwichInfo extends React.Component {
     render() {
         const { classes } = this.props;
             return (
@@ -85,6 +81,4 @@ class SideInfo extends React.Component {
         }
 }
 
-SideInfo.contextType = AppContext;
-
-export default withStyles(styles)(SideInfo);
+export default withStyles(styles)(SandwichInfo);

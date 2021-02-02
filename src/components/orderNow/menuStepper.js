@@ -3,6 +3,8 @@ import Navbar from '../navbar';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { AppContext } from '../context/appContext.js';
 import Menu from '../menu';
+import AddItemOrCheckout from './addItemOrCheckout.js';
+import Checkout from '../checkout/checkout.js';
 
 const styles = theme => ({
     menuDiv: {
@@ -27,53 +29,49 @@ const styles = theme => ({
         lineHeight: 1.25,
         marginTop: 90,
     },
-    menuText: {
-        marginTop: 20,
-        marginBottom: 20,
-    },
 });
 
 class MenuStepper extends React.Component {
+    state={
+        step1: true,
+        step2: false,
+        checkout: false,
+    }
+
+    itemAddedToCart = () => {
+        this.setState({
+            step1: false,
+            step2: true,
+            checkout: false,
+        })
+    }
+
+    goToCheckout = () => {
+        this.setState({
+            step1: false,
+            step2: false,
+            checkout: true,
+        })
+    }
+
+    addAnotherItem = () => {
+        this.setState({
+            step1: true,
+            step2: false,
+            checkout: false,
+        })
+    }
+
     render() {
         const { classes } = this.props;
 
-
-        console.log(this.context.state)
             return (
                 <div className={classes.menuDiv}>
                     <Navbar />
                     <div className={classes.menuSpacingDiv}>
-                        <Menu type='order' />
-                        {/* Top Stepper Past Step 1 Back button to push stepper back a page*/}
-                        {/* 
-                            Step 3:
-                            If Sandwich(
-                                Make alterations to sandwich
-                                Choose Size and Bread
-                                Extra toppings etc
-                            )
-
-                            If Salad()
-                                Choose Dressing
-
-                            If Side()
-                                Add to cart button
-
-                            If Drink()
-                                Choose flavour of soda
-
-                            Bottom of Page
-                            Add to Cart
-
-                            Step 4
-                            Add another item or checkout
-
-                            If add another item() Revert to step 1
-                            If checkout go to checkout
-                        */}
-                        {this.context.state.orderItemCount > 0 ? null : null }
-
-                        {/* Below Stepper while item count > 0,  Show cart on bottom of screen*/}
+                        {this.state.step1 === true ? <Menu type='order' itemAddedToCart={this.itemAddedToCart} goToCheckout={this.goToCheckout} /> : null}
+                        {this.state.step2 === true ? <AddItemOrCheckout addAnotherItem={this.addAnotherItem} goToCheckout={this.goToCheckout} /> : null}
+                        {this.state.checkout === true ? <Checkout addAnotherItem={this.addAnotherItem} /> : null}
                     </div>
                 </div>
             )

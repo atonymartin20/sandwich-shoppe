@@ -6,12 +6,11 @@ import SandwichImg from '../../images/Sandwiches/sandwichesBackgroundImg.jpg';
 import SaladImg from '../../images/Salads/CaesarSalad.jpg';
 import SidesImg from '../../images/Sides/Cookies.jpg';
 import DrinkImg from '../../images/Drinks/Soda.jpg';
-import Sandwiches from './sandwiches.js';
-import Salads from './salads.js';
-import Sides from './sides.js';
-import Drinks from './drinks.js';
+import Sandwiches from './sandwich/sandwiches.js';
+import Salads from './salads/salads.js';
+import Sides from './sides/sides.js';
+import Drinks from './drinks/drinks.js';
 import Button from "@material-ui/core/Button";
-import { Redirect } from 'react-router-dom';
 
 const styles = theme => ({
     checkoutButton: {
@@ -172,10 +171,6 @@ const styles = theme => ({
         fontSize: '2.0rem',
         lineHeight: 1.25,
     },
-    menuText: {
-        marginTop: 20,
-        marginBottom: 20,
-    },
 });
 
 class Menu extends React.Component {
@@ -185,7 +180,6 @@ class Menu extends React.Component {
         showSalads: false,
         showSides: false,
         showDrinks: false,
-        redirect: false,
     }
 
     chooseSandwiches = (event) => {
@@ -193,7 +187,6 @@ class Menu extends React.Component {
         this.setState({
             showSandwiches: true,
             showIntro: false,
-            redirect: false,
         })
     }
 
@@ -202,7 +195,6 @@ class Menu extends React.Component {
         this.setState({
             showSalads: true,
             showIntro: false,
-            redirect: false,
         })
     }
 
@@ -211,7 +203,6 @@ class Menu extends React.Component {
         this.setState({
             showSides: true,
             showIntro: false,
-            redirect: false,
         })
     }
 
@@ -220,7 +211,6 @@ class Menu extends React.Component {
         this.setState({
             showDrinks: true,
             showIntro: false,
-            redirect: false,
         })
     }
 
@@ -232,14 +222,6 @@ class Menu extends React.Component {
             showSalads: false,
             showSides: false,
             showDrinks: false,
-            redirect: false,
-        })
-    }
-
-    checkout = (event) => {
-        event.preventDefault();
-        this.setState({
-            redirect: true,
         })
     }
 
@@ -248,13 +230,11 @@ class Menu extends React.Component {
         if(this.props.type === 'order') {
             return (
                 <div className={classes.menuDiv}>
-                    {this.state.redirect === true ? <Redirect to='/orderNow/checkout' /> : null }
-    
                     {this.state.showIntro === true ?
                         <div className={classes.menuSpacingOrderDiv}>
                             {this.context.state.orderItemCount > 0 ? 
                                 <div className={classes.checkoutDiv}>
-                                    <Button className={classes.checkoutButton} onClick={this.checkout}>
+                                    <Button className={classes.checkoutButton} onClick={this.props.goToCheckout}>
                                         Checkout
                                     </Button>
                                 </div> : null 
@@ -286,19 +266,19 @@ class Menu extends React.Component {
                     : null }
     
                     {this.state.showSandwiches === true ? 
-                        <Sandwiches type='order' goBack={this.goBack} />
+                        <Sandwiches type='order' goBack={this.goBack} itemAddedToCart={this.props.itemAddedToCart} goToCheckout={this.props.goToCheckout} />
                     : null }
     
                     {this.state.showSalads === true ? 
-                        <Salads type='order' goBack={this.goBack} />
+                        <Salads type='order' goBack={this.goBack} itemAddedToCart={this.props.itemAddedToCart} goToCheckout={this.props.goToCheckout} />
                     : null }
     
                     {this.state.showSides === true ? 
-                        <Sides type='order' goBack={this.goBack} />
+                        <Sides type='order' goBack={this.goBack} itemAddedToCart={this.props.itemAddedToCart} goToCheckout={this.props.goToCheckout} />
                     : null }
     
                     {this.state.showDrinks === true ?
-                        <Drinks type='order' goBack={this.goBack} />
+                        <Drinks type='order' goBack={this.goBack} itemAddedToCart={this.props.itemAddedToCart} goToCheckout={this.props.goToCheckout} />
                     : null }
                 </div>
             )
